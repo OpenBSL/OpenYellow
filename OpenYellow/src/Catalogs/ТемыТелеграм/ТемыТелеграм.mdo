@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="33ed3338-d465-4883-9f53-57f213600d24">
+  <producedTypes>
+    <objectType typeId="fd3ec449-fca0-4d41-abfb-af96a56fbe06" valueTypeId="496b1dfa-d3c9-45d4-9aff-eb39ccf27eb4"/>
+    <refType typeId="229d2fd5-e30d-4902-b616-3203ba611a5f" valueTypeId="50b9cb18-cd4b-4187-805c-7a208fa77634"/>
+    <selectionType typeId="6eb01a1b-77ba-4585-ac6d-7a933a734769" valueTypeId="cefedc0a-0005-4ad4-a1a7-4f8b1d83e109"/>
+    <listType typeId="9763c7e5-e8fb-41df-89a5-83e00011030a" valueTypeId="bb981192-ce30-40e1-b4b3-0d0260c94adb"/>
+    <managerType typeId="c4fda942-5d65-4ea2-ba37-fb2cae1b774c" valueTypeId="cd807dbe-b169-404d-8239-0e220aa40e64"/>
+  </producedTypes>
+  <name>ТемыТелеграм</name>
+  <synonym>
+    <key>ru</key>
+    <value>Темы телеграм</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <inputByString>Catalog.ТемыТелеграм.StandardAttribute.Description</inputByString>
+  <inputByString>Catalog.ТемыТелеграм.StandardAttribute.Code</inputByString>
+  <fullTextSearchOnInputByString>DontUse</fullTextSearchOnInputByString>
+  <createOnInput>Use</createOnInput>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <fullTextSearch>Use</fullTextSearch>
+  <levelCount>2</levelCount>
+  <foldersOnTop>true</foldersOnTop>
+  <codeLength>9</codeLength>
+  <descriptionLength>25</descriptionLength>
+  <codeType>String</codeType>
+  <codeAllowedLength>Variable</codeAllowedLength>
+  <checkUnique>true</checkUnique>
+  <autonumbering>true</autonumbering>
+  <defaultPresentation>AsDescription</defaultPresentation>
+  <predefined>
+    <items id="6d734ea8-3e87-4775-aa7c-6253aee7c169">
+      <name>Динамика</name>
+      <description>Динамика</description>
+      <code xsi:type="core:StringValue">
+        <value>000000002</value>
+      </code>
+    </items>
+    <items id="ff4c06e5-202d-40f5-9249-86649294f083">
+      <name>Продвижение</name>
+      <description>Продвижение</description>
+      <code xsi:type="core:StringValue">
+        <value>000000004</value>
+      </code>
+    </items>
+    <items id="6198f51d-ea55-41de-b855-428daec0356d">
+      <name>Релизы</name>
+      <description>Релизы</description>
+      <code xsi:type="core:StringValue">
+        <value>000000001</value>
+      </code>
+    </items>
+    <items id="cbfea2c1-f877-490f-89b9-1288d6f053dc">
+      <name>Тренды</name>
+      <description>Тренды</description>
+      <code xsi:type="core:StringValue">
+        <value>000000003</value>
+      </code>
+    </items>
+  </predefined>
+  <editType>InDialog</editType>
+  <choiceMode>BothWays</choiceMode>
+  <attributes uuid="75852065-c38d-4ffe-93c1-2619f4fca166">
+    <name>ID</name>
+    <synonym>
+      <key>ru</key>
+      <value>ID</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>10</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+</mdclass:Catalog>

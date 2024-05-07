@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Report xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="58dda7b8-b9f0-4f39-8e65-c42e55efd07c">
+  <producedTypes>
+    <objectType typeId="df652059-01da-4f78-a34f-017d83fb198d" valueTypeId="3a0ab818-8890-4ec8-9ba0-8a552e64cce0"/>
+    <managerType typeId="35d18447-ba23-43a9-8f3e-dff568219aa8" valueTypeId="3d748ff0-73d2-4138-8534-b305b09c2b06"/>
+  </producedTypes>
+  <name>ОтчетПоЗвездам</name>
+  <synonym>
+    <key>ru</key>
+    <value>Отчет по звездам</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <mainDataCompositionSchema>Report.ОтчетПоЗвездам.Template.ОсновнаяСхемаКомпоновкиДанных</mainDataCompositionSchema>
+  <templates uuid="bf9fb14e-8353-4955-950b-e5a3275e88bf">
+    <name>ОсновнаяСхемаКомпоновкиДанных</name>
+    <synonym>
+      <key>ru</key>
+      <value>Основная схема компоновки данных</value>
+    </synonym>
+    <templateType>DataCompositionSchema</templateType>
+  </templates>
+</mdclass:Report>

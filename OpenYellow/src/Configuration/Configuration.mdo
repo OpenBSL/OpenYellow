@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Configuration xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="bea9e7f7-10de-4c55-899e-43a89ae6164c">
+  <name>Конфигурация</name>
+  <containedObjects classId="9cd510cd-abfc-11d4-9434-004095e12fc7" objectId="3a78d6f9-f6b0-426f-9f71-655788d4c23a"/>
+  <containedObjects classId="9fcd25a0-4822-11d4-9414-008048da11f9" objectId="95fff0a7-f48c-4a0b-ac50-67483b4828cd"/>
+  <containedObjects classId="e3687481-0a87-462c-a166-9f34594f9bba" objectId="c31343b4-5024-43a8-98ab-a6dec6333e03"/>
+  <containedObjects classId="9de14907-ec23-4a07-96f0-85521cb6b53b" objectId="88139bea-806f-4954-9c05-f1b11548b65c"/>
+  <containedObjects classId="51f2d5d8-ea4d-4064-8892-82951750031e" objectId="f66e78ff-9e9d-40f1-9ede-5b97d01b300e"/>
+  <containedObjects classId="e68182ea-4237-4383-967f-90c1e3370bc7" objectId="d0dc1344-7730-4b7c-9878-7cb82c499c74"/>
+  <containedObjects classId="fb282519-d103-4dd3-bc12-cb271d631dfc" objectId="8056f497-6a5f-4a34-8d19-98b0d8c99048"/>
+  <configurationExtensionCompatibilityMode>8.3.18</configurationExtensionCompatibilityMode>
+  <defaultRunMode>ManagedApplication</defaultRunMode>
+  <usePurposes>PersonalComputer</usePurposes>
+  <scriptVariant>Russian</scriptVariant>
+  <usedMobileApplicationFunctionalities>
+    <functionality>
+      <use>true</use>
+    </functionality>
+    <functionality>
+      <functionality>OSBackup</functionality>
+      <use>true</use>
+    </functionality>
+  </usedMobileApplicationFunctionalities>
+  <defaultLanguage>Language.Русский</defaultLanguage>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <objectAutonumerationMode>NotAutoFree</objectAutonumerationMode>
+  <modalityUseMode>DontUse</modalityUseMode>
+  <synchronousPlatformExtensionAndAddInCallUseMode>DontUse</synchronousPlatformExtensionAndAddInCallUseMode>
+  <compatibilityMode>8.3.15</compatibilityMode>
+  <languages uuid="113c91b3-1172-4307-95f2-06fc2d757c53">
+    <name>Русский</name>
+    <synonym>
+      <key>ru</key>
+      <value>Русский</value>
+    </synonym>
+    <languageCode>ru</languageCode>
+  </languages>
+  <commonModules>CommonModule.Инструментарий</commonModules>
+  <commonModules>CommonModule.МетодыGitHub</commonModules>
+  <commonModules>CommonModule.МетодыNotion</commonModules>
+  <commonModules>CommonModule.МетодыСайта</commonModules>
+  <commonModules>CommonModule.МетодыТелеграм</commonModules>
+  <scheduledJobs>ScheduledJob.ОбновитьДанныеОРепозиториях</scheduledJobs>
+  <constants>Constant.GitHubToken</constants>
+  <constants>Constant.Токен</constants>
+  <constants>Constant.База</constants>
+  <constants>Constant.ПапкаСайта</constants>
+  <constants>Constant.Лого</constants>
+  <constants>Constant.БазаПоследних</constants>
+  <constants>Constant.БазаОбновленных</constants>
+  <constants>Constant.ТокенТелеграм</constants>
+  <constants>Constant.ЧатТелеграм</constants>
+  <catalogs>Catalog.Авторы</catalogs>
+  <catalogs>Catalog.Репозитории</catalogs>
+  <catalogs>Catalog.Запросы</catalogs>
+  <catalogs>Catalog.ТемыТелеграм</catalogs>
+  <reports>Report.ОтчетПоЗвездам</reports>
+  <dataProcessors>DataProcessor.КонсольЗаданий_УФ</dataProcessors>
+  <informationRegisters>InformationRegister.СтатистикаРепозиториев</informationRegisters>
+  <informationRegisters>InformationRegister.Исключения</informationRegisters>
+  <informationRegisters>InformationRegister.Тренды</informationRegisters>
+</mdclass:Configuration>

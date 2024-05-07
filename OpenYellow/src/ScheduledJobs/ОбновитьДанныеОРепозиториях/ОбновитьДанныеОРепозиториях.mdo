@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:ScheduledJob xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="d7e463e4-9c5c-48e3-b591-a0c741d514f9">
+  <name>ОбновитьДанныеОРепозиториях</name>
+  <synonym>
+    <key>ru</key>
+    <value>Обновить данные о репозиториях</value>
+  </synonym>
+  <methodName>CommonModule.МетодыGitHub.ОбновитьДанныеОРепозиториях</methodName>
+  <use>true</use>
+  <predefined>true</predefined>
+  <restartCountOnFailure>3</restartCountOnFailure>
+  <restartIntervalOnFailure>10</restartIntervalOnFailure>
+</mdclass:ScheduledJob>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Constant xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="6740b3a9-af75-4959-8184-4f6975b42fe6">
+  <producedTypes>
+    <managerType typeId="4b9031a7-27a8-471e-9c01-9de04dffdf27" valueTypeId="013815e0-1521-491e-8827-3f9f9ac16b2e"/>
+    <valueManagerType typeId="fa029f94-14bc-4d97-af85-2ec067c18d46" valueTypeId="838d531f-1501-4489-8c9e-8478f5e3e51b"/>
+    <valueKeyType typeId="64be6b42-bd82-4006-b4d4-3e6e51f1137a" valueTypeId="eb14ecbb-1e64-4d67-89c3-9a1eb5ad112b"/>
+  </producedTypes>
+  <name>ПапкаСайта</name>
+  <synonym>
+    <key>ru</key>
+    <value>Папка сайта</value>
+  </synonym>
+  <type>
+    <types>String</types>
+    <stringQualifiers>
+      <length>200</length>
+    </stringQualifiers>
+  </type>
+  <useStandardCommands>true</useStandardCommands>
+  <minValue xsi:type="core:UndefinedValue"/>
+  <maxValue xsi:type="core:UndefinedValue"/>
+  <dataLockControlMode>Managed</dataLockControlMode>
+</mdclass:Constant>
