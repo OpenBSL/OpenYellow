@@ -1,7 +1,7 @@
 
 <img src="https://github.com/OpenYellow/OpenYellow/raw/main/media/cover_zoom.png?v1">
 
-# Проект OpenYellow
+# Агрегатор OpenYellow
 
 > Сайт: [openyellow.notion.site](https://openyellow.notion.site)<br>
 > Телеграм: [@openyellowproject](https://t.me/openyellowproject)
