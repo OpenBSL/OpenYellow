@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Constant xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="1cb4e4b7-a406-4be9-8b99-c6d5c74070b3">
+  <producedTypes>
+    <managerType typeId="0b72e0a9-d0f6-46ba-b9dd-32cec0df0c71" valueTypeId="4b56892c-0edd-46ea-94d7-df1035db8da8"/>
+    <valueManagerType typeId="ccab263c-4814-4ee2-abeb-8c18db03121e" valueTypeId="d5e25cf3-c230-451f-bdf5-84a0e02482b1"/>
+    <valueKeyType typeId="0e8ec7c3-7170-407f-a286-77d2ab16fde9" valueTypeId="37df6c00-c8dc-4b13-bbea-32656ea55708"/>
+  </producedTypes>
+  <name>GithubTokenДополнительный</name>
+  <synonym>
+    <key>ru</key>
+    <value>Github token дополнительный</value>
+  </synonym>
+  <type>
+    <types>String</types>
+    <stringQualifiers>
+      <length>100</length>
+    </stringQualifiers>
+  </type>
+  <useStandardCommands>true</useStandardCommands>
+  <minValue xsi:type="core:UndefinedValue"/>
+  <maxValue xsi:type="core:UndefinedValue"/>
+  <dataLockControlMode>Managed</dataLockControlMode>
+</mdclass:Constant>

@@ -40,7 +40,9 @@
   <commonModules>CommonModule.МетодыNotion</commonModules>
   <commonModules>CommonModule.МетодыСайта</commonModules>
   <commonModules>CommonModule.МетодыТелеграм</commonModules>
+  <commonModules>CommonModule.ИнструментарийКлиент</commonModules>
   <scheduledJobs>ScheduledJob.ОбновитьДанныеОРепозиториях</scheduledJobs>
+  <scheduledJobs>ScheduledJob.ОбновитьДанныеОРелизах</scheduledJobs>
   <constants>Constant.GitHubToken</constants>
   <constants>Constant.Токен</constants>
   <constants>Constant.База</constants>
@@ -50,13 +52,15 @@
   <constants>Constant.БазаОбновленных</constants>
   <constants>Constant.ТокенТелеграм</constants>
   <constants>Constant.ЧатТелеграм</constants>
+  <constants>Constant.GithubTokenДополнительный</constants>
   <catalogs>Catalog.Авторы</catalogs>
   <catalogs>Catalog.Репозитории</catalogs>
   <catalogs>Catalog.Запросы</catalogs>
-  <catalogs>Catalog.ТемыТелеграм</catalogs>
+  <catalogs>Catalog.Файлы</catalogs>
   <reports>Report.ОтчетПоЗвездам</reports>
   <dataProcessors>DataProcessor.КонсольЗаданий_УФ</dataProcessors>
   <informationRegisters>InformationRegister.СтатистикаРепозиториев</informationRegisters>
   <informationRegisters>InformationRegister.Исключения</informationRegisters>
   <informationRegisters>InformationRegister.Тренды</informationRegisters>
+  <informationRegisters>InformationRegister.Релизы</informationRegisters>
 </mdclass:Configuration>
