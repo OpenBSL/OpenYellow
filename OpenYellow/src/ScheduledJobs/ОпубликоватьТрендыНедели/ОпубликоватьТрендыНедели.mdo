@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:ScheduledJob xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="9e1b959b-6de8-4e7a-964c-e362c5880bde">
+  <name>ОпубликоватьТрендыНедели</name>
+  <synonym>
+    <key>ru</key>
+    <value>Опубликовать тренды недели</value>
+  </synonym>
+  <methodName>CommonModule.МетодыТелеграм.ОпубликоватьЕженедельныйТоп</methodName>
+  <use>true</use>
+  <predefined>true</predefined>
+  <restartCountOnFailure>3</restartCountOnFailure>
+  <restartIntervalOnFailure>10</restartIntervalOnFailure>
+</mdclass:ScheduledJob>

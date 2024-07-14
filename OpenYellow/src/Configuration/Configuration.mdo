@@ -43,6 +43,7 @@
   <commonModules>CommonModule.ИнструментарийКлиент</commonModules>
   <scheduledJobs>ScheduledJob.ОбновитьДанныеОРепозиториях</scheduledJobs>
   <scheduledJobs>ScheduledJob.ОбновитьДанныеОРелизах</scheduledJobs>
+  <scheduledJobs>ScheduledJob.ОпубликоватьТрендыНедели</scheduledJobs>
   <constants>Constant.GitHubToken</constants>
   <constants>Constant.Токен</constants>
   <constants>Constant.База</constants>

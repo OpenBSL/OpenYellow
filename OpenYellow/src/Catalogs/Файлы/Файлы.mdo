@@ -122,6 +122,13 @@
         <value>000000001</value>
       </code>
     </items>
+    <items id="ba62891a-1cb4-415e-9dbf-01641f02212a">
+      <name>Тренды</name>
+      <description>Тренды</description>
+      <code xsi:type="core:StringValue">
+        <value>000000002</value>
+      </code>
+    </items>
   </predefined>
   <editType>InDialog</editType>
   <choiceMode>BothWays</choiceMode>
