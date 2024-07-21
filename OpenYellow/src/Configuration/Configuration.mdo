@@ -54,6 +54,7 @@
   <constants>Constant.ТокенТелеграм</constants>
   <constants>Constant.ЧатТелеграм</constants>
   <constants>Constant.GithubTokenДополнительный</constants>
+  <constants>Constant.АдресСайта</constants>
   <catalogs>Catalog.Авторы</catalogs>
   <catalogs>Catalog.Репозитории</catalogs>
   <catalogs>Catalog.Запросы</catalogs>
@@ -64,4 +65,5 @@
   <informationRegisters>InformationRegister.Исключения</informationRegisters>
   <informationRegisters>InformationRegister.Тренды</informationRegisters>
   <informationRegisters>InformationRegister.Релизы</informationRegisters>
+  <informationRegisters>InformationRegister.Пакеты</informationRegisters>
 </mdclass:Configuration>
