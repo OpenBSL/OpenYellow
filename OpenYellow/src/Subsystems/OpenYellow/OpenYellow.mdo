@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Subsystem xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="2154bffa-c8f6-4b6c-97b8-f861609eb4f0">
+  <name>OpenYellow</name>
+  <synonym>
+    <key>ru</key>
+    <value>Open Yellow</value>
+  </synonym>
+  <includeHelpInContents>true</includeHelpInContents>
+  <includeInCommandInterface>true</includeInCommandInterface>
+  <content>Constant.АдресСайта</content>
+  <content>Constant.GithubTokenДополнительный</content>
+  <content>Constant.ЧатТелеграм</content>
+  <content>Constant.ТокенТелеграм</content>
+  <content>Constant.БазаОбновленных</content>
+  <content>Constant.БазаПоследних</content>
+  <content>Constant.Лого</content>
+  <content>Constant.ПапкаСайта</content>
+  <content>Constant.База</content>
+  <content>Constant.Токен</content>
+  <content>Constant.GitHubToken</content>
+  <content>Catalog.Авторы</content>
+  <content>Catalog.Запросы</content>
+  <content>Catalog.Репозитории</content>
+  <content>Catalog.Файлы</content>
+  <content>Report.ОтчетПоЗвездам</content>
+  <content>DataProcessor.КонсольЗаданий_УФ</content>
+  <content>InformationRegister.СтатистикаРепозиториев</content>
+  <content>InformationRegister.Исключения</content>
+  <content>InformationRegister.Тренды</content>
+  <content>InformationRegister.Релизы</content>
+  <content>InformationRegister.Пакеты</content>
+  <content>Constant.ВерсияYPM</content>
+  <content>Catalog.ВерсииYPM</content>
+</mdclass:Subsystem>

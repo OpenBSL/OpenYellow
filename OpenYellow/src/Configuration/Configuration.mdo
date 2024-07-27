@@ -35,6 +35,7 @@
     </synonym>
     <languageCode>ru</languageCode>
   </languages>
+  <subsystems>Subsystem.OpenYellow</subsystems>
   <commonModules>CommonModule.Инструментарий</commonModules>
   <commonModules>CommonModule.МетодыGitHub</commonModules>
   <commonModules>CommonModule.МетодыNotion</commonModules>
@@ -55,10 +56,12 @@
   <constants>Constant.ЧатТелеграм</constants>
   <constants>Constant.GithubTokenДополнительный</constants>
   <constants>Constant.АдресСайта</constants>
+  <constants>Constant.ВерсияYPM</constants>
   <catalogs>Catalog.Авторы</catalogs>
   <catalogs>Catalog.Репозитории</catalogs>
   <catalogs>Catalog.Запросы</catalogs>
   <catalogs>Catalog.Файлы</catalogs>
+  <catalogs>Catalog.ВерсииYPM</catalogs>
   <reports>Report.ОтчетПоЗвездам</reports>
   <dataProcessors>DataProcessor.КонсольЗаданий_УФ</dataProcessors>
   <informationRegisters>InformationRegister.СтатистикаРепозиториев</informationRegisters>

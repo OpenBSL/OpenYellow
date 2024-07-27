@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="58ba3704-e444-4480-bff2-55b128c9fac2">
+  <producedTypes>
+    <objectType typeId="c56dd18a-954d-44a7-a555-93e170992fcd" valueTypeId="fb234e0a-96f5-442f-98b2-061efadf170f"/>
+    <refType typeId="653469f6-26ea-493b-bf34-3d0deb47d538" valueTypeId="54f3f6d3-56d0-48c4-b610-4bb9ab7d2cbb"/>
+    <selectionType typeId="734272bb-77c5-4243-9349-a778a90f53fb" valueTypeId="96fe852e-a83a-41bc-ba2b-809b14b0c126"/>
+    <listType typeId="93854ecc-2aa9-4bf6-bc05-0ae19afacb2f" valueTypeId="434ce1d6-8960-45a9-9360-4cbb0152bd8a"/>
+    <managerType typeId="0bc8726b-fedc-4349-b515-8329d2b7c4fb" valueTypeId="c41ca74d-4bcc-43f5-b25a-33a3a763a095"/>
+  </producedTypes>
+  <name>ВерсииYPM</name>
+  <synonym>
+    <key>ru</key>
+    <value>Версии YPM</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <inputByString>Catalog.ВерсииYPM.StandardAttribute.Description</inputByString>
+  <inputByString>Catalog.ВерсииYPM.StandardAttribute.Code</inputByString>
+  <fullTextSearchOnInputByString>DontUse</fullTextSearchOnInputByString>
+  <createOnInput>Use</createOnInput>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <fullTextSearch>Use</fullTextSearch>
+  <levelCount>2</levelCount>
+  <foldersOnTop>true</foldersOnTop>
+  <codeLength>9</codeLength>
+  <descriptionLength>25</descriptionLength>
+  <codeType>String</codeType>
+  <codeAllowedLength>Variable</codeAllowedLength>
+  <checkUnique>true</checkUnique>
+  <autonumbering>true</autonumbering>
+  <defaultPresentation>AsDescription</defaultPresentation>
+  <editType>InDialog</editType>
+  <choiceMode>BothWays</choiceMode>
+  <attributes uuid="0ae72376-27a5-48a4-b732-61e1860ef69a">
+    <name>Описание</name>
+    <synonym>
+      <key>ru</key>
+      <value>Описание</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="d468feed-9efb-4963-a6e0-be046af9fa88">
+    <name>URLФайла</name>
+    <synonym>
+      <key>ru</key>
+      <value>URL файла</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>300</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+</mdclass:Catalog>

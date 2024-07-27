@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Constant xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="aa1716de-d88b-4abf-bdfb-544ff2731ffc">
+  <producedTypes>
+    <managerType typeId="052a2758-8ff9-4f23-ba62-ce1251907b69" valueTypeId="8be89935-5589-4380-aae7-7d290cdbce8a"/>
+    <valueManagerType typeId="17fc310a-6821-4dbd-92ae-f6101d8a669a" valueTypeId="61099603-5ab1-456a-92cd-07220c99dabb"/>
+    <valueKeyType typeId="6729c12c-2812-436c-8f76-0511b20a185c" valueTypeId="9e2caf5d-8bce-406d-9189-b5547dc98f5f"/>
+  </producedTypes>
+  <name>ВерсияYPM</name>
+  <synonym>
+    <key>ru</key>
+    <value>Версия YPM</value>
+  </synonym>
+  <type>
+    <types>CatalogRef.ВерсииYPM</types>
+  </type>
+  <useStandardCommands>true</useStandardCommands>
+  <minValue xsi:type="core:UndefinedValue"/>
+  <maxValue xsi:type="core:UndefinedValue"/>
+  <dataLockControlMode>Managed</dataLockControlMode>
+</mdclass:Constant>
