@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /offline
+Disallow: /404
+Sitemap: https://athenaeum.digital/sitemap.xml

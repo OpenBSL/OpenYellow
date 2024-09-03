@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="copy.xml"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    
+    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+    <head>
+      <title>OpenYellow - агрегатор open-source проектов для 1С:Предприятие</title>
+      <meta http-equiv="Content-Type"     content="text/xhtml; charset=utf-8"/>
+      <meta http-equiv="content-language" content="ru" />
+      <meta name="robots"                 content="all" />
+      <meta name="viewport"               content="width=device-width, height=device-height, initial-scale=1.0"/>
+      <meta name="description"            content="OpenYellow - агрегатор open-source проектов для 1С:Предприятие"/>
+      
+      <meta name="mobile-web-app-capable"                 content="yes"/>
+      <meta name="apple-mobile-web-app-capable"           content="yes"/>
+      <meta name="application-name"                       content="OpenYellow"/>
+      <meta name="apple-mobile-web-app-title"             content="OpenYellow"/>
+      <meta name="theme-color"                            content="#212121"/>
+      <meta name="msapplication-navbutton-color"          content="#212121"/>
+      <meta name="apple-mobile-web-app-status-bar-style"  content="black-translucent"/>
+      <meta name="msapplication-starturl"                 content="/"/>
+      <meta name="viewport"                               content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+      
+      <link rel="stylesheet"      type="text/css" href="css/bootstrap.min.css" />
+      <link rel="stylesheet"      type="text/css" href="css/open-iconic-bootstrap.min.css" />
+      <link rel="stylesheet"      type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+      <link rel="stylesheet"      type="text/css" href="css/style.css" />
+      <link rel="stylesheet"      type="text/css" href="css/ag-grid-theme-builder.css">
+      <link rel="icon"            href="favicon.ico" />
+      <link rel="manifest" href="/pwa/manifest.json"/>
+            
+      <script src="js/telegram-web-app.js"></script>
+      <script src="js/app.js?v2"     type="module"></script>
+      <script src="js/xhttp.js?v1"   type="module"></script>
+      <script src="js/effects.js?v1" type="module"></script>
+      <script src="js/grid.js?v1"    type="module"></script>
+      <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
+      
+      
+    </head>
+
+    <body>
+          
+      <div id="sidebar"></div>
+
+      <div id="content" class="content-center">
+      
+        <div class="container">
+          
+          <div class="row">
+            <div class="col">
+              <h2 id="title">Топ-500 репозиториев</h2>
+              <small id="description">По числу звезд</small><br/><br/>
+            </div>
+            <div class="col">
+              <input type="text" id="filterbox" class="searchinput bg-dark" placeholder="Поиск..." style="  float: right; clear: both; margin-top: 30px;"/>
+            </div>
+          </div>
+
+          
+          <div id="myGrid" class="ag-theme-custom topGrid"></div>
+          <div id="selectedRows" class="col bottomblock selectedBlock">
+            <div class="row">
+              <div class="col-1" style="min-width: 80px;">
+                <img id="currentPic" style="width: 64px; border-radius: 45px; margin-top: 2px; margin-bottom: 5px; box-shadow:rgba(0,0,0,.40) 0px 5px 10px;"/>
+              </div>
+              <div class="col-9">
+                <h3>
+                  <a id="currentTitle"></a> by <a id="currentAuthor"></a>
+                  </h3>
+                
+                <small id="currentDescription"></small>
+              </div>
+              <div class="col">
+                <span class="stat" id="currentStars"></span><br/>
+                <span class="stat" id="currentForks"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      
+      </div>
+      
+      <script type="text/javascript">
+  
+  window.addEventListener( "pageshow", function ( event ) {
+  var historyTraversal = event.persisted || 
+                         ( typeof window.performance != "undefined" && 
+                              window.performance.navigation.type === 2 );
+  if ( historyTraversal ) {
+    // Handle page restore.
+    window.location.reload();
+  }
+});
+</script>
+
+  
+    </body> 
+    </html>
