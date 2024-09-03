@@ -4,7 +4,7 @@
 
 # Агрегатор OpenYellow
 
-> Сайт: [openyellow.notion.site](https://openyellow.org)<br>
+> Сайт: [openyellow.org](https://openyellow.org)<br>
 > Телеграм: [@openyellowproject](https://t.me/openyellowproject)
 
 <br>
