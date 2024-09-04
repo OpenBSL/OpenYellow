@@ -1,12 +1,8 @@
 import { getDataByUrl } from './xhttp.js?v4';
-import { ping } from './xhttp.js?v4';
-import { getCookie } from './xhttp.js?v4';
 import { setPreloaderEvent } from './effects.js?v4';
 
 const content = document.getElementById('content');
 const sidebar = document.getElementById('sidebar');
-
-let sidebarCache = false;
 
 window.addEventListener('pageshow', function (event) {
 
@@ -18,6 +14,8 @@ window.addEventListener('pageshow', function (event) {
   }
 
 });
+
+standartOnLoad();
 
 function standartOnLoad() {
 
@@ -37,7 +35,7 @@ function standartOnLoad() {
     content.style.opacity = "1";
   }
 
-  standartOnLoad();
+
   getDataByUrl('/blocks/sidebar.html', false).then(function (response) {
 
     if (sidebar != undefined) {
@@ -45,12 +43,6 @@ function standartOnLoad() {
       sidebar.style.display = 'flex';
       localStorage.setItem('navigation', sidebar.innerHTML);
     }
-
-
-    const status = document.getElementById("status");
-    const info = document.getElementById("statinfo");
-    const profile = document.getElementById('profilelink');
-
 
     setPreloaderEvent();
     setOpacity();

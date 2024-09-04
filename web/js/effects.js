@@ -1,5 +1,3 @@
-import { getCookie } from './xhttp.js?v4';
-
 function setPreloaderEvent() {
 
   let links = document.getElementsByTagName("a");
