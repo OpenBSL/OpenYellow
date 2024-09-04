@@ -1,6 +1,8 @@
 name: Развернуть на Neocities (Тест)
 
 on:
+  push:
+    branches: ["main"]
   workflow_dispatch:
 
 concurrency: 
