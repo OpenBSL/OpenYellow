@@ -59,7 +59,19 @@ function setPreloaderEvent() {
 
 function showPreloader() {
   const content = document.getElementById('content');
+  
   content.style.opacity = "0";
+  
+  const menu    = document.getElementById('menu');
+  let menulogo  = document.getElementById('menulogo');
+  
+  if(menu != undefined){
+    
+    menulogo.classList.remove("fa-xmark");
+    menulogo.classList.add("fa-cubes-stacked");
+    menu.style.opacity = "0"; 
+  }
+  
 }
 
 function showMessage(text, style) {

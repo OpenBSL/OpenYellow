@@ -42,6 +42,7 @@ function standartOnLoad() {
       sidebar.innerHTML = response;
       sidebar.style.display = 'flex';
       localStorage.setItem('navigation', sidebar.innerHTML);
+      setMenuEvent();
     }
 
     setPreloaderEvent();
@@ -51,4 +52,42 @@ function standartOnLoad() {
 }
 
 
+function setMenuEvent(){
+ 
+ let menu       = document.getElementById('menu');
+ let menubutton = document.getElementById('menubutton');
+ let menulogo   = document.getElementById('menulogo');
+ 
+ if (menu != undefined && menubutton != undefined){
+ 
+   menu.style.display = "none";
+   menubutton.onclick = function (event) {
+     
+     if(menu.style.display == "none")
+     {
+       
+       menulogo.classList.remove("fa-cubes-stacked");
+       menulogo.classList.add("fa-xmark");
+       
+       menu.style.display = "flex";
+       setTimeout(function () {menu.style.opacity = "1"}, 10);
+       
 
+     }
+     else
+     {
+       
+       menulogo.classList.remove("fa-xmark");
+       menulogo.classList.add("fa-cubes-stacked");
+       
+       menu.style.opacity = "0";
+       setTimeout(function () {menu.style.display = "none"}, 300);
+
+     }
+
+     
+   };
+     
+ }
+ 
+}
