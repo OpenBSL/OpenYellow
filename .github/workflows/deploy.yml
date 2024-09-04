@@ -1,0 +1,25 @@
+name: Развернуть на Neocities
+
+on:
+  workflow_dispatch:
+
+concurrency: 
+  group: deploy-to-neocities
+  cancel-in-progress: true
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        
+    - name: Развертывание на neocities
+      uses: bcomnes/deploy-to-neocities@v2
+      with:
+        api_token: ${{ secrets.NEOCITIES_API_TOKEN }}
+        cleanup: false
+        dist_dir: ./web
