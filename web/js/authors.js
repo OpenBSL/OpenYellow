@@ -12,7 +12,7 @@ let position;
 let pic;
 let repos;
 
-getDataByUrl("https://openyellow.org/data/authors.json", true).then(function (response) {
+getDataByUrl("./data/authors.json", true).then(function (response) {
 
   if (list != undefined) {
 

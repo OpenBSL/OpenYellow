@@ -202,7 +202,7 @@ function dateFormatter(params) {
   return yyyymmdd(params.value);
 }
 
-getDataByUrl("https://openyellow.org/data/" + dataname + ".json", true).then(function (response) {
+getDataByUrl("./data/" + dataname + ".json", true).then(function (response) {
 
   gridOptions["rowData"] = response["data"];
 
