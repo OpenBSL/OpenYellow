@@ -144,7 +144,7 @@ if (dataname == "top") {
 
     { headerName: "🍴", field: "forks", filter: true, cellDataType: 'number' },
     { headerName: "🔼", field: "dynamic", filter: false, maxWidth: 64, cellRenderer: dynamicRender },
-    { headerName: "📈", field: "changing", filter: false, cellDataType: 'number', maxWidth: 64 },
+    { headerName: "📈", field: "сhanging", filter: false, cellDataType: 'number', maxWidth: 64 },
     { headerName: "Создан", field: "createddate", filter: true, cellDataType: 'date', valueFormatter: dateFormatter },
     { headerName: "Обновлен", field: "updateddate", filter: true, cellDataType: 'date', valueFormatter: dateFormatter },
     { headerName: "Лицензия", field: "license", filter: true },
