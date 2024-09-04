@@ -1,95 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="copy.xml"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-    
-    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
-    <head>
-      <title>OpenYellow - агрегатор open-source проектов для 1С:Предприятие</title>
-      <meta http-equiv="Content-Type"     content="text/xhtml; charset=utf-8"/>
-      <meta http-equiv="content-language" content="ru" />
-      <meta name="robots"                 content="all" />
-      <meta name="viewport"               content="width=device-width, height=device-height, initial-scale=1.0"/>
-      <meta name="description"            content="OpenYellow - агрегатор open-source проектов для 1С:Предприятие"/>
-      
-      <meta name="mobile-web-app-capable"                 content="yes"/>
-      <meta name="apple-mobile-web-app-capable"           content="yes"/>
-      <meta name="application-name"                       content="OpenYellow"/>
-      <meta name="apple-mobile-web-app-title"             content="OpenYellow"/>
-      <meta name="theme-color"                            content="#212121"/>
-      <meta name="msapplication-navbutton-color"          content="#212121"/>
-      <meta name="apple-mobile-web-app-status-bar-style"  content="black-translucent"/>
-      <meta name="msapplication-starturl"                 content="/"/>
-      <meta name="viewport"                               content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-      
-      <link rel="stylesheet"      type="text/css" href="css/bootstrap.min.css" />
-      <link rel="stylesheet"      type="text/css" href="css/open-iconic-bootstrap.min.css" />
-      <link rel="stylesheet"      type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-      <link rel="stylesheet"      type="text/css" href="css/style.css" />
-      <link rel="stylesheet"      type="text/css" href="css/ag-grid-theme-builder.css">
-      <link rel="icon"            href="favicon.ico" />
-      <link rel="manifest" href="/pwa/manifest.json"/>
-            
-      <script src="js/telegram-web-app.js"></script>
-      <script src="js/app.js?v2"     type="module"></script>
-      <script src="js/xhttp.js?v1"   type="module"></script>
-      <script src="js/effects.js?v1" type="module"></script>
-      <script src="js/authors.js?v1"    type="module"></script>
-      <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
-      
-      
-    </head>
 
-    <body>
-          
-          <!-- Yandex.Metrika counter -->
-<script type="text/javascript" >
-   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-   m[i].l=1*new Date();
-   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
 
-   ym(98234044, "init", {
-        clickmap:true,
-        trackLinks:true,
-        accurateTrackBounce:true
-   });
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/98234044" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
+<head>
+  <title>OpenYellow - агрегатор open-source проектов для 1С:Предприятие</title>
+  <meta http-equiv="Content-Type" content="text/xhtml; charset=utf-8" />
+  <meta http-equiv="content-language" content="ru" />
+  <meta name="robots" content="all" />
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
+  <meta name="description" content="OpenYellow - агрегатор open-source проектов для 1С:Предприятие" />
 
-      <div id="sidebar"></div>
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="application-name" content="OpenYellow" />
+  <meta name="apple-mobile-web-app-title" content="OpenYellow" />
+  <meta name="theme-color" content="#212121" />
+  <meta name="msapplication-navbutton-color" content="#212121" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="msapplication-starturl" content="/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-      <div id="content" class="content-center">
-      
-        <div class="container" >
-          
-            <div style="text-align:center; margin-top: 50px; margin-bottom: 30px;">
-              <img src="./static/Gaspar.svg" style="width: 128px"/>
-              <h2 id="title">Лучшие мейнтейнеры и организации</h2>
-              <small id="description">100 авторов репозиториев с наибольшим числом звезд</small><br/><br/>
-            </div>
-            
-              <div class="row" id="authors"></div>
-          </div>
-        </div>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/open-iconic-bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/ag-grid-theme-builder.css">
+  <link rel="icon" href="favicon.ico" />
+  <link rel="manifest" href="/pwa/manifest.json" />
 
-      
+  <script src="js/telegram-web-app.js"></script>
+  <script src="js/app.js?v2" type="module"></script>
+  <script src="js/xhttp.js?v1" type="module"></script>
+  <script src="js/effects.js?v1" type="module"></script>
+  <script src="js/authors.js?v1" type="module"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
+
+
+</head>
+
+<body>
+
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+      m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+      m[i].l = 1 * new Date();
+      for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+      k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+      (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(98234044, "init", {
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true
+    });
+  </script>
+  <noscript>
+    <div><img src="https://mc.yandex.ru/watch/98234044" style="position:absolute; left:-9999px;" alt="" /></div>
+  </noscript>
+  <!-- /Yandex.Metrika counter -->
+
+  <div id="sidebar"></div>
+
+  <div id="content" class="content-center">
+
+    <div class="container">
+
+      <div style="text-align:center; margin-top: 50px; margin-bottom: 30px;">
+        <img src="./static/Gaspar.svg" style="width: 128px" />
+        <h2 id="title">Лучшие мейнтейнеры и организации</h2>
+        <small id="description">100 авторов репозиториев с наибольшим числом звезд</small><br /><br />
       </div>
-      
-      <script type="text/javascript">
-  
-  window.addEventListener( "pageshow", function ( event ) {
-  var historyTraversal = event.persisted || 
-                         ( typeof window.performance != "undefined" && 
-                              window.performance.navigation.type === 2 );
-  if ( historyTraversal ) {
-    // Handle page restore.
-    window.location.reload();
-  }
-});
-</script>
 
-  
-    </body> 
-    </html>
+      <div class="row" id="authors"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    window.addEventListener("pageshow", function (event) {
+      var historyTraversal = event.persisted ||
+        (typeof window.performance != "undefined" &&
+          window.performance.navigation.type === 2);
+      if (historyTraversal) {
+        // Handle page restore.
+        window.location.reload();
+      }
+    });
+  </script>
+
+
+</body>
+
+</html>
