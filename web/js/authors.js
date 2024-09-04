@@ -36,7 +36,7 @@ getDataByUrl("https://openyellow.org/data/authors.json", true).then(function(res
      
      pic = document.createElement('img');
      pic.setAttribute('src', item.pic);
-     pic.setAttribute('style', 'width: 32px; border-radius: 45px');
+     pic.setAttribute('style', 'width: 32px; border-radius: 45px; ');
        
      info = document.createElement('div');
      info.setAttribute('class', 'col');   

@@ -140,6 +140,7 @@ if (dataname == "top"){
    { headerName: "Автор"       , field: "author", filter: true},
    { headerName: "URL"       , field: "authorUrl", filter: true},
    { headerName: "Язык"        , field: "lang", filter: true},
+   { headerName: "Тэги"        , field: "tags", filter: true},
    
    { headerName: "🍴"          , field: "forks", filter: true, cellDataType: 'number'},
    { headerName: "🔼"          , field: "dynamic", filter: false, maxWidth: 64, cellRenderer: dynamicRender},
@@ -147,7 +148,7 @@ if (dataname == "top"){
    { headerName: "Создан"      , field: "createddate", filter: true, cellDataType: 'date', valueFormatter: dateFormatter},
    { headerName: "Обновлен"    , field: "updateddate", filter: true, cellDataType: 'date', valueFormatter: dateFormatter},
    { headerName: "Лицензия"    , field: "license", filter: true},
-   { headerName: "Значок"      , field: "badge", filter: true},
+   { headerName: "Значок"      , field: "badge", filter: true, editable:true},
    {field: "pic", hide: true}
   ]
 }

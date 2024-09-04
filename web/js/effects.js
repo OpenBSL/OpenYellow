@@ -16,8 +16,13 @@ function setPreloaderEvent(){
       links[i].onclick = function(event){
         try{
           event.preventDefault();
-          if (this != undefined && this.href != undefined && this.baseURI != this.href && this.href.search('#') == -1)              
+          if (this != undefined 
+            && this.href != undefined 
+            && this.baseURI != this.href 
+            && this.href.search('#') == -1 
+            && this.target != "_blank")
           {
+            
             
             let href = this.href;
             
