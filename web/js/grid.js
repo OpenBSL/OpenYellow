@@ -7,13 +7,16 @@ let description = document.getElementById('description');
 let current = document.getElementById('selectedRows');
 let params = new URL(document.location.toString()).searchParams;
 let dataname = params.get("data");
-
+let repo = params.get("repo");
+let currentPage;
+let pageSize;
 let currentTitle = document.getElementById('currentTitle');
 let currentPic = document.getElementById('currentPic');
 let currentStars = document.getElementById('currentStars');
 let currentForks = document.getElementById('currentForks');
 let currentDescription = document.getElementById('currentDescription');
 let currentAuthor = document.getElementById('currentAuthor');
+let firstRender = true;
 
 
 if (dataname == undefined) {
@@ -85,19 +88,24 @@ const gridOptions = {
 
   onPaginationChanged: (params) => {
     if (params.newPage) {
-      let currentPage = params.api.paginationGetCurrentPage();
-      let pageSize = params.api.paginationGetPageSize();
 
-      params.api.forEachNode(node => node.rowIndex - (currentPage * pageSize) ? 0 : node.setSelected(true));
+      if (firstRender) {
+        firstRender = false;
+      } else {
+        repo = undefined;
+      }
 
-
+      selectRow();
       localStorage.setItem('currentPage' + dataname, JSON.stringify(currentPage));
+
     }
   },
 
   onFirstDataRendered: (params) => {
-    const pageToNavigate = JSON.parse(localStorage.getItem('currentPage' + dataname));
-    params.api.paginationGoToPage(pageToNavigate);
+    if (repo == undefined) {
+      const pageToNavigate = JSON.parse(localStorage.getItem('currentPage' + dataname));
+      params.api.paginationGoToPage(pageToNavigate);
+    }
   },
 };
 
@@ -149,7 +157,8 @@ if (dataname == "top") {
     { headerName: "Обновлен", field: "updateddate", filter: true, cellDataType: 'date', valueFormatter: dateFormatter },
     { headerName: "Лицензия", field: "license", filter: true },
     { headerName: "Значок", field: "badge", filter: true, editable: true },
-    { field: "pic", hide: true }
+    { field: "pic", hide: true },
+    { field: "id", hide: true }
   ]
 }
 else if (dataname == "new") {
@@ -165,7 +174,8 @@ else if (dataname == "new") {
     { headerName: "Язык", field: "lang", filter: true },
     { headerName: "Обновлен", field: "updateddate", filter: true, cellDataType: 'date', valueFormatter: dateFormatter },
     { headerName: "Лицензия", field: "license", filter: true },
-    { field: "pic", hide: true }
+    { field: "pic", hide: true },
+    { field: "id", hide: true }
   ]
 }
 else {
@@ -181,7 +191,8 @@ else {
     { headerName: "Язык", field: "lang", filter: true },
     { headerName: "Создан", field: "createddate", filter: true, cellDataType: 'date', valueFormatter: dateFormatter },
     { headerName: "Лицензия", field: "license", filter: true },
-    { field: "pic", hide: true }
+    { field: "pic", hide: true },
+    { field: "id", hide: true }
   ]
 }
 
@@ -202,6 +213,37 @@ function dateFormatter(params) {
   return yyyymmdd(params.value);
 }
 
+function selectRow() {
+
+  currentPage = gridApi.paginationGetCurrentPage();
+  pageSize = gridApi.paginationGetPageSize();
+
+  if (repo == undefined) {
+    gridApi.forEachNode(node => node.rowIndex - (currentPage * pageSize) ? 0 : node.setSelected(true));
+  } else {
+
+    gridApi.forEachNode(node => {
+
+      if (node.data.id.toString() == repo.toString()) {
+
+        let page = Math.ceil(node.rowIndex / pageSize) - 1;
+
+        if (currentPage != page) {
+          gridApi.paginationGoToPage(page);
+        }
+
+        if (page == 0) {
+          firstRender = false;
+        }
+
+        node.setSelected(true);
+        gridApi.ensureIndexVisible(node.rowIndex, null);
+      }
+
+    });
+  }
+}
+
 getDataByUrl("./data/" + dataname + ".json", true).then(function (response) {
 
   gridOptions["rowData"] = response["data"];
@@ -216,8 +258,8 @@ getDataByUrl("./data/" + dataname + ".json", true).then(function (response) {
 
   const myGridElement = document.querySelector('#myGrid');
   gridApi = agGrid.createGrid(myGridElement, gridOptions);
-  gridApi.forEachNode(node => node.rowIndex ? 0 : node.setSelected(true));
 
+  selectRow();
 
 });
 

@@ -43,7 +43,7 @@ html {
 
 .container {
     margin-top: 1.7vw;
-    max-width: 80vw;
+    max-width: 88vw;
 }
 
 button,
@@ -174,7 +174,7 @@ td {
 }
 
 .tgside {
-    width: 128px;
+    width: 160px;
     border-radius: 45px;
     float: right;
     clear: both;
@@ -227,7 +227,7 @@ td {
     height: 66vh;
 }
 
-.menublocks{
+.menublocks {
 
     padding: 20px;
     margin: 0.7vw;
@@ -240,54 +240,54 @@ td {
     height: 150px;
 }
 
-.menublocks:hover{
- border: 1px solid white; 
- cursor: pointer;
+.menublocks:hover {
+    border: 1px solid white;
+    cursor: pointer;
 }
 
-.bigico{
- font-size: 60px;
- margin: auto;
- margin-top: 5px;
- width: 100%;
- text-align: center;
+.bigico {
+    font-size: 60px;
+    margin: auto;
+    margin-top: 5px;
+    width: 100%;
+    text-align: center;
 }
 
-.menusmall{
- width: 100%;
- margin-top: 20px;
- text-align: center;
- font-size: 12px;
+.menusmall {
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12px;
 }
 
-.menucontainer{
-        height: 100vh;
-        width: 100%;
-        position: fixed;
-        display :flex;
-        flex-direction:column;
-        justify-content: center;
-        z-index: 99;
-        transition: opacity 0.3s ease-out;
-        opacity: 0;
+.menucontainer {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 99;
+    transition: opacity 0.3s ease-out;
+    opacity: 0;
 
 }
 
-.glass{
-  background: rgba( 0, 0, 0, 0.9 );
-  border: none;
-        height: 100vh;
-        width: 100%;
-        position: fixed;
-        display :flex;
-        z-index: -10;
-        
+.glass {
+    background: rgba(0, 0, 0, 0.9);
+    border: none;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    display: flex;
+    z-index: -10;
+
 }
 
-.menurow{
- margin: auto;
- width: 75%;
- max-width: 1250px;
+.menurow {
+    margin: auto;
+    width: 75%;
+    max-width: 1250px;
 }
 
 .stat {
@@ -304,9 +304,9 @@ td {
     font-size: 24px
 }
 
-#myGrid{
- scrollbar-color: grey #2D2D2D;
- 
+#myGrid {
+    scrollbar-color: grey #2D2D2D;
+
 }
 
 .author {
@@ -314,7 +314,8 @@ td {
     width: 15vw;
     min-width: 270px;
     padding: 20px;
-    margin: 0.5vw;
+    margin: auto;
+    margin-bottom: 15px;
     background-color: #212121;
     border-top: solid 1px rgba(0, 0, 0, .3);
     border-radius: 45px;
@@ -390,30 +391,30 @@ td {
         width: 100%;
 
     }
-    
-    #infoblock{
-     display:none; 
+
+    #infoblock {
+        display: none;
     }
-    
-    #buttonsblock{
-     width: 100%; 
+
+    #buttonsblock {
+        width: 100%;
     }
-    
-    .menurow{
-     
-     margin: auto;
-     margin-bottom: 100px;
-     margin-top: 0px;
-     
+
+    .menurow {
+
+        margin: auto;
+        margin-bottom: 100px;
+        margin-top: 0px;
+
     }
-    
-    .menublocks{
-      width: 38vmin;
-      height: 38vmin;
-      max-width: 150px;
-      max-height: 150px;
-      margin: auto;
-      margin-bottom: 1vmax;
+
+    .menublocks {
+        width: 38vmin;
+        height: 38vmin;
+        max-width: 150px;
+        max-height: 150px;
+        margin: auto;
+        margin-bottom: 1vmax;
     }
 
 }
@@ -458,7 +459,7 @@ td {
         box-shadow: rgba(0, 0, 0, .48) 0 2px 7px;
         background-color: #212121;
         border-radius: 45px;
-        
+
     }
 
     .nav {
@@ -481,6 +482,11 @@ td {
         margin-left: 9px;
         margin-top: 8px;
         margin-bottom: 0px;
+    }
+
+    #content:not(img) {
+        padding-left: 140px;
+
     }
 
 }
