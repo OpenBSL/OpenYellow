@@ -182,12 +182,15 @@ td {
 
 
 .textblock {
-    width: 98%;
-    max-width: 900px;
+    width: 99%;
+    max-width: 970px;
     padding: 80px;
     margin: auto;
     box-shadow: rgba(0, 0, 0, .40) 0px 5px 10px;
     border-radius: 45px;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    height: auto;
 }
 
 .selectedBlock {
@@ -426,6 +429,13 @@ td {
         margin: auto;
         margin-bottom: 1vmax;
     }
+    
+    .textblock {
+      padding: 15px;
+      box-shadow: none;
+      border-radius: 0;
+      margin-top: 10px;
+  }
 
 }
 
