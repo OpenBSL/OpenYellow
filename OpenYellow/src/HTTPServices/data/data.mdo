@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:HTTPService xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="8dd74043-0c77-43c4-8bed-80d2b6d12328">
+  <name>data</name>
+  <synonym>
+    <key>ru</key>
+    <value>Data</value>
+  </synonym>
+  <rootURL>data</rootURL>
+  <reuseSessions>AutoUse</reuseSessions>
+  <sessionMaxAge>20</sessionMaxAge>
+  <urlTemplates uuid="4f45307d-f178-4b02-b69d-3c52dca4b619">
+    <name>getData</name>
+    <synonym>
+      <key>ru</key>
+      <value>Get data</value>
+    </synonym>
+    <template>/*</template>
+    <methods uuid="5cb02e46-9567-4fae-a1bf-74ba61908255">
+      <name>GET</name>
+      <synonym>
+        <key>ru</key>
+        <value>GET</value>
+      </synonym>
+      <handler>getDataGET</handler>
+    </methods>
+    <methods uuid="ea2821b5-5c27-47c4-8d29-c3c9df61b4cc">
+      <name>Cors</name>
+      <synonym>
+        <key>ru</key>
+        <value>Cors</value>
+      </synonym>
+      <httpMethod>OPTIONS</httpMethod>
+      <handler>getDataCors</handler>
+    </methods>
+  </urlTemplates>
+</mdclass:HTTPService>

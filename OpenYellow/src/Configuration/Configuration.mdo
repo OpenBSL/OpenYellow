@@ -38,25 +38,24 @@
   <subsystems>Subsystem.OpenYellow</subsystems>
   <commonModules>CommonModule.Инструментарий</commonModules>
   <commonModules>CommonModule.МетодыGitHub</commonModules>
-  <commonModules>CommonModule.МетодыNotion</commonModules>
   <commonModules>CommonModule.МетодыСайта</commonModules>
   <commonModules>CommonModule.МетодыТелеграм</commonModules>
   <commonModules>CommonModule.ИнструментарийКлиент</commonModules>
+  <httpServices>HTTPService.data</httpServices>
   <scheduledJobs>ScheduledJob.ОбновитьДанныеОРепозиториях</scheduledJobs>
   <scheduledJobs>ScheduledJob.ОбновитьДанныеОРелизах</scheduledJobs>
   <scheduledJobs>ScheduledJob.ОпубликоватьТрендыНедели</scheduledJobs>
+  <scheduledJobs>ScheduledJob.ВыгрузитьДанные</scheduledJobs>
   <constants>Constant.GitHubToken</constants>
-  <constants>Constant.Токен</constants>
-  <constants>Constant.База</constants>
-  <constants>Constant.ПапкаСайта</constants>
-  <constants>Constant.Лого</constants>
-  <constants>Constant.БазаПоследних</constants>
-  <constants>Constant.БазаОбновленных</constants>
+  <constants>Constant.GithubTokenДополнительный</constants>
   <constants>Constant.ТокенТелеграм</constants>
   <constants>Constant.ЧатТелеграм</constants>
-  <constants>Constant.GithubTokenДополнительный</constants>
+  <constants>Constant.ПапкаСайта</constants>
+  <constants>Constant.ПапкаДанных</constants>
+  <constants>Constant.Лого</constants>
   <constants>Constant.АдресСайта</constants>
   <constants>Constant.ВерсияYPM</constants>
+  <constants>Constant.ТокенNeocities</constants>
   <catalogs>Catalog.Авторы</catalogs>
   <catalogs>Catalog.Репозитории</catalogs>
   <catalogs>Catalog.Запросы</catalogs>

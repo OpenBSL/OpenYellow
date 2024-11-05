@@ -269,41 +269,6 @@
     <fullTextSearch>Use</fullTextSearch>
     <dataHistory>Use</dataHistory>
   </attributes>
-  <attributes uuid="1c57c00f-5729-4db4-8f5e-15de07dcdc7e">
-    <name>СтраницаNotion</name>
-    <synonym>
-      <key>ru</key>
-      <value>Страница notion</value>
-    </synonym>
-    <type>
-      <types>String</types>
-      <stringQualifiers>
-        <length>100</length>
-      </stringQualifiers>
-    </type>
-    <minValue xsi:type="core:UndefinedValue"/>
-    <maxValue xsi:type="core:UndefinedValue"/>
-    <fillValue xsi:type="core:StringValue">
-      <value></value>
-    </fillValue>
-    <fullTextSearch>Use</fullTextSearch>
-    <dataHistory>Use</dataHistory>
-  </attributes>
-  <attributes uuid="1354b731-4a4c-41bd-b7e8-032e91b3aa7e">
-    <name>Архивирован</name>
-    <synonym>
-      <key>ru</key>
-      <value>Архивирован</value>
-    </synonym>
-    <type>
-      <types>Boolean</types>
-    </type>
-    <minValue xsi:type="core:UndefinedValue"/>
-    <maxValue xsi:type="core:UndefinedValue"/>
-    <fillValue xsi:type="core:UndefinedValue"/>
-    <fullTextSearch>Use</fullTextSearch>
-    <dataHistory>Use</dataHistory>
-  </attributes>
   <attributes uuid="b8673094-759b-4483-8afb-2688fc6df5e1">
     <name>Группа</name>
     <synonym>
@@ -322,69 +287,17 @@
     <fullTextSearch>Use</fullTextSearch>
     <dataHistory>Use</dataHistory>
   </attributes>
-  <attributes uuid="8dbf34f0-8e0b-4aa8-9583-99e16100c797">
-    <name>СтраницаNotionПоследние</name>
+  <attributes uuid="9f06377c-e7e1-47ea-840b-9028fe51f87f">
+    <name>ДатаДобавления</name>
     <synonym>
       <key>ru</key>
-      <value>Страница notion последние</value>
+      <value>Дата добавления</value>
     </synonym>
     <type>
-      <types>String</types>
-      <stringQualifiers>
-        <length>100</length>
-      </stringQualifiers>
-    </type>
-    <minValue xsi:type="core:UndefinedValue"/>
-    <maxValue xsi:type="core:UndefinedValue"/>
-    <fillValue xsi:type="core:StringValue">
-      <value></value>
-    </fillValue>
-    <fullTextSearch>Use</fullTextSearch>
-    <dataHistory>Use</dataHistory>
-  </attributes>
-  <attributes uuid="82608ea0-dd24-4655-a990-d58c5f806728">
-    <name>АрхивированПоследние</name>
-    <synonym>
-      <key>ru</key>
-      <value>Архивирован последние</value>
-    </synonym>
-    <type>
-      <types>Boolean</types>
-    </type>
-    <minValue xsi:type="core:UndefinedValue"/>
-    <maxValue xsi:type="core:UndefinedValue"/>
-    <fillValue xsi:type="core:UndefinedValue"/>
-    <fullTextSearch>Use</fullTextSearch>
-    <dataHistory>Use</dataHistory>
-  </attributes>
-  <attributes uuid="585411cf-0338-480a-bfdb-6ed10503de17">
-    <name>СтраницаNotionОбновленные</name>
-    <synonym>
-      <key>ru</key>
-      <value>Страница notion обновленные</value>
-    </synonym>
-    <type>
-      <types>String</types>
-      <stringQualifiers>
-        <length>100</length>
-      </stringQualifiers>
-    </type>
-    <minValue xsi:type="core:UndefinedValue"/>
-    <maxValue xsi:type="core:UndefinedValue"/>
-    <fillValue xsi:type="core:StringValue">
-      <value></value>
-    </fillValue>
-    <fullTextSearch>Use</fullTextSearch>
-    <dataHistory>Use</dataHistory>
-  </attributes>
-  <attributes uuid="8f9e14cb-d2b3-4e85-8f28-6b09ebfd79af">
-    <name>АрхивированОбновленные</name>
-    <synonym>
-      <key>ru</key>
-      <value>Архивирован обновленные</value>
-    </synonym>
-    <type>
-      <types>Boolean</types>
+      <types>Date</types>
+      <dateQualifiers>
+        <dateFractions>Date</dateFractions>
+      </dateQualifiers>
     </type>
     <minValue xsi:type="core:UndefinedValue"/>
     <maxValue xsi:type="core:UndefinedValue"/>

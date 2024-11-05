@@ -11,12 +11,8 @@
   <content>Constant.GithubTokenДополнительный</content>
   <content>Constant.ЧатТелеграм</content>
   <content>Constant.ТокенТелеграм</content>
-  <content>Constant.БазаОбновленных</content>
-  <content>Constant.БазаПоследних</content>
   <content>Constant.Лого</content>
   <content>Constant.ПапкаСайта</content>
-  <content>Constant.База</content>
-  <content>Constant.Токен</content>
   <content>Constant.GitHubToken</content>
   <content>Catalog.Авторы</content>
   <content>Catalog.Запросы</content>
@@ -31,4 +27,6 @@
   <content>InformationRegister.Пакеты</content>
   <content>Constant.ВерсияYPM</content>
   <content>Catalog.ВерсииYPM</content>
+  <content>Constant.ПапкаДанных</content>
+  <content>Constant.ТокенNeocities</content>
 </mdclass:Subsystem>
