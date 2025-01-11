@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Report xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="90af6e1d-74d9-4f39-a187-1d3bbb03969d">
+  <producedTypes>
+    <objectType typeId="818eeecf-e865-474d-b88d-5c60e7271fe4" valueTypeId="fccf62b8-143e-460d-b5bf-72e672a47a8d"/>
+    <managerType typeId="d49a8da7-e55c-429c-969c-b73bc9736f9a" valueTypeId="2ab09d56-4338-4ce2-b904-c729513aad80"/>
+  </producedTypes>
+  <name>СписокРепозиториев</name>
+  <synonym>
+    <key>ru</key>
+    <value>Список репозиториев</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <mainDataCompositionSchema>Report.СписокРепозиториев.Template.ОсновнаяСхемаКомпоновкиДанных</mainDataCompositionSchema>
+  <templates uuid="b35d438c-08b0-4346-a799-c9bb716b9bf2">
+    <name>ОсновнаяСхемаКомпоновкиДанных</name>
+    <synonym>
+      <key>ru</key>
+      <value>Основная схема компоновки данных</value>
+    </synonym>
+    <templateType>DataCompositionSchema</templateType>
+  </templates>
+</mdclass:Report>

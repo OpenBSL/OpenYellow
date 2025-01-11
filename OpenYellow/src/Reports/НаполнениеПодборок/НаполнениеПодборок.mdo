@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Report xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="86985f9b-77f4-4289-bc18-6834daf35858">
+  <producedTypes>
+    <objectType typeId="ba0d6a43-9908-4210-ab24-c2875243ed6a" valueTypeId="0a68ed0a-59da-421c-aede-b225e0787208"/>
+    <managerType typeId="86c7e694-daba-49c8-ad97-23ac196e5068" valueTypeId="c639c324-61c3-4d6a-92c5-3314130d37e5"/>
+  </producedTypes>
+  <name>НаполнениеПодборок</name>
+  <synonym>
+    <key>ru</key>
+    <value>Наполнение подборок</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <mainDataCompositionSchema>Report.НаполнениеПодборок.Template.ОсновнаяСхемаКомпоновкиДанных</mainDataCompositionSchema>
+  <templates uuid="233200c4-24e9-4798-9e5b-faf207f9eace">
+    <name>ОсновнаяСхемаКомпоновкиДанных</name>
+    <synonym>
+      <key>ru</key>
+      <value>Основная схема компоновки данных</value>
+    </synonym>
+    <templateType>DataCompositionSchema</templateType>
+  </templates>
+</mdclass:Report>

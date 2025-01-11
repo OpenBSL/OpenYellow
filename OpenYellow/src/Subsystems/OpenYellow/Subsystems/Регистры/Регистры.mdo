@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Subsystem xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="3a7bffbe-e1fd-4bde-b9e2-5855b50a7e1e">
+  <name>Регистры</name>
+  <synonym>
+    <key>ru</key>
+    <value>Регистры</value>
+  </synonym>
+  <includeHelpInContents>true</includeHelpInContents>
+  <includeInCommandInterface>true</includeInCommandInterface>
+  <content>InformationRegister.СтатистикаРепозиториев</content>
+  <content>InformationRegister.Исключения</content>
+  <content>InformationRegister.Тренды</content>
+  <content>InformationRegister.Релизы</content>
+  <content>InformationRegister.Пакеты</content>
+  <content>InformationRegister.ПубликацииПодборок</content>
+  <parentSubsystem>Subsystem.OpenYellow</parentSubsystem>
+</mdclass:Subsystem>

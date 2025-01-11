@@ -333,6 +333,31 @@
       <fullTextSearch>Use</fullTextSearch>
     </attributes>
   </tabularSections>
+  <tabularSections uuid="3d0fd165-2b8b-4316-baee-c5a9d17503ea">
+    <producedTypes>
+      <objectType typeId="babcf350-2fb5-46a9-a7a5-a93f9d5353a9" valueTypeId="22a74a5c-13a0-49d0-85ab-1966208c93d9"/>
+      <rowType typeId="cbe3531a-3c0d-4dcf-bfe9-58d1dff53e85" valueTypeId="3d2874dd-fddf-4a53-8f4f-c8ff497d8d3b"/>
+    </producedTypes>
+    <name>Подборки</name>
+    <synonym>
+      <key>ru</key>
+      <value>Подборки</value>
+    </synonym>
+    <attributes uuid="358f21d9-05ed-460e-874f-3da797e72ed6">
+      <name>Подборка</name>
+      <synonym>
+        <key>ru</key>
+        <value>Подборка</value>
+      </synonym>
+      <type>
+        <types>CatalogRef.Подборки</types>
+      </type>
+      <minValue xsi:type="core:UndefinedValue"/>
+      <maxValue xsi:type="core:UndefinedValue"/>
+      <dataHistory>Use</dataHistory>
+      <fullTextSearch>Use</fullTextSearch>
+    </attributes>
+  </tabularSections>
   <forms uuid="45bf5533-94b1-4c1a-b74c-3b9af3618449">
     <name>ФормаСписка</name>
     <synonym>

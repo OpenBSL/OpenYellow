@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="e96abc10-6acd-4e53-a57e-431a0bb1902a">
+  <producedTypes>
+    <selectionType typeId="b76188d3-2171-4943-acaa-e6c17ba12ae6" valueTypeId="dd98ac75-e64a-47ac-b7ee-a2aa6f2a6a7b"/>
+    <listType typeId="b1abbd03-acf0-41a5-beea-de0d5d277bb7" valueTypeId="db28b4d4-9b1a-412e-a180-d90355403b6e"/>
+    <managerType typeId="f0469dce-c543-4f2f-9f16-82a13b328e80" valueTypeId="93df4e75-4378-4726-b7cd-fd9d23653395"/>
+    <recordSetType typeId="5319d658-3ae3-4467-b7c9-2fd6d0321a30" valueTypeId="4051825a-31b2-4e13-8af6-499d1ab08c40"/>
+    <recordKeyType typeId="3753c59c-ff7d-4e57-872f-639a3fb8df7b" valueTypeId="a4496b48-e6a6-4bc7-80b0-b826b2f776ac"/>
+    <recordType typeId="fd884505-feed-48e6-85c6-e4452ffcaef3" valueTypeId="393744ba-82c2-4444-8dbf-76cb68b19447"/>
+    <recordManagerType typeId="c530d569-935b-4999-8a0a-71c632218e99" valueTypeId="4681e243-acd5-4ebc-afc4-22ad1ea7e25b"/>
+  </producedTypes>
+  <name>ПубликацииПодборок</name>
+  <synonym>
+    <key>ru</key>
+    <value>Публикации подборок</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <editType>InDialog</editType>
+  <informationRegisterPeriodicity>Day</informationRegisterPeriodicity>
+  <mainFilterOnPeriod>true</mainFilterOnPeriod>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <dimensions uuid="c6be2928-09b1-43ff-833c-3c75e6187f31">
+    <name>Подборка</name>
+    <synonym>
+      <key>ru</key>
+      <value>Подборка</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Подборки</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+</mdclass:InformationRegister>

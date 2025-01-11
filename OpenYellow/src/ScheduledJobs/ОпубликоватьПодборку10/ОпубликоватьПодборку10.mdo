@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:ScheduledJob xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="34b7113f-2bef-4f47-a267-2850debfa832">
+  <name>ОпубликоватьПодборку10</name>
+  <synonym>
+    <key>ru</key>
+    <value>Опубликовать подборку (10)</value>
+  </synonym>
+  <methodName>CommonModule.МетодыТелеграм.ОпубликоватьПодборку</methodName>
+  <use>true</use>
+  <predefined>true</predefined>
+  <restartCountOnFailure>3</restartCountOnFailure>
+  <restartIntervalOnFailure>10</restartIntervalOnFailure>
+</mdclass:ScheduledJob>

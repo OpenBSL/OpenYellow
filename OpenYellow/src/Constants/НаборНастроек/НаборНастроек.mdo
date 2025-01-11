@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Constant xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="16fcc59a-7c34-4f5d-a109-c5d13ecc2940">
+  <producedTypes>
+    <managerType typeId="53ca436b-8d57-4ff7-b252-6f33223374d8" valueTypeId="2b209802-6dcf-47cd-8803-fb3a9d9ffc65"/>
+    <valueManagerType typeId="931e1640-8a61-4235-a4fa-9e7889a40302" valueTypeId="e5ceba1d-528b-4d66-aacd-0a8251b12cdb"/>
+    <valueKeyType typeId="ca9819f0-1586-4760-a03a-5869860aa2f9" valueTypeId="5698db29-4d12-41af-9f3d-0a5c7d392d48"/>
+  </producedTypes>
+  <name>НаборНастроек</name>
+  <synonym>
+    <key>ru</key>
+    <value>Набор настроек</value>
+  </synonym>
+  <type>
+    <types>CatalogRef.НаборыНастроек</types>
+  </type>
+  <useStandardCommands>true</useStandardCommands>
+  <minValue xsi:type="core:UndefinedValue"/>
+  <maxValue xsi:type="core:UndefinedValue"/>
+  <dataLockControlMode>Managed</dataLockControlMode>
+</mdclass:Constant>
