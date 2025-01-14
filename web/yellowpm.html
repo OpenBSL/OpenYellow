@@ -66,43 +66,25 @@
   <div id="sidebar"></div>
 
   <div id="content" class="content-center">
+  
+      <div class="container" style="text-align: center">
 
-    <div class="wide-container">
-
-      <div class="row">
-        <div class="col">
-          <h2 id="title">Топ-500 репозиториев</h2>
-          <small id="description">По числу звезд</small><br /><br />
+        <div class="ypm-bg" style="width: 40%; height: 50%; top: 40%; left: 52%;"></div>
+        
+        <div class="ypm-hero">
+          <img src="./static/ypm_small.png">
+          <h1>YellowPM</h1>
+          <p>Пакетный менеджер для 1С:Предприятие 8</p>
+          
+          <br><br>
+          
+            <a href="https://t.me/openyellowproject" class="btn btn-outline-light">Скачать v0.2.0</a>
+            <a href="https://t.me/openyellowproject" class="btn btn-outline-light">GitHub</a>
         </div>
-        <div class="col">
-          <input type="text" id="filterbox" class="searchinput" placeholder="Поиск..."
-            style="  float: right; clear: both; margin-top: 30px;" />
-        </div>
-      </div>
 
+    
 
-      <div id="myGrid" class="ag-theme-custom topGrid"></div>
-      <div id="selectedRows" class="col bottomblock selectedBlock">
-        <div class="row">
-          <div class="col-1" style="min-width: 80px;">
-            <img id="currentPic"
-              style="width: 64px; border-radius: 45px; margin-top: 2px; margin-bottom: 5px; box-shadow:rgba(0,0,0,.40) 0px 5px 10px;" />
-          </div>
-          <div class="col-9">
-            <h3>
-              <a id="currentTitle"></a> by <a id="currentAuthor"></a>
-            </h3>
-
-            <small id="currentDescription"></small>
-          </div>
-          <div class="col">
-            <span class="stat" id="currentStars"></span><br />
-            <span class="stat" id="currentForks"></span>
-          </div>
-        </div>
-      </div>
     </div>
-
   </div>
 
   <script type="text/javascript">
@@ -116,6 +98,7 @@
       }
     });
   </script>
+
 
 </body>
 

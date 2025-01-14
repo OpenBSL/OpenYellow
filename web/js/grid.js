@@ -144,7 +144,7 @@ if (dataname == "top") {
     { headerName: "⭐", field: "stars", filter: true, cellDataType: 'number' },
     { headerName: "Наименование", field: "name", filter: true, cellRenderer: picRender },
     { headerName: "URL", field: "url", filter: true, hide: true },
-    { headerName: "Описание", field: "description", filter: true },
+    { headerName: "Описание", field: "description", filter: true, maxWidth: 600 },
     { headerName: "Автор", field: "author", filter: true },
     { headerName: "URL", field: "authorUrl", filter: true },
     { headerName: "Язык", field: "lang", filter: true },

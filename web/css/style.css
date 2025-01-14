@@ -39,12 +39,15 @@ html {
     justify-content: center;
     min-height: 80vh;
     background-color: #3d3d3d;
+
 }
 
-.container {
+.container, .wide-container {
+    transform-origin: top;
     margin-top: 1.7vw;
-    max-width: 88vw;
+    max-width: 91vw;
 }
+
 
 button,
 input {
@@ -237,7 +240,7 @@ td {
 }
 
 .topGrid {
-    height: 66vh;
+    height: 75vh;
 }
 
 .menublocks {
@@ -479,6 +482,7 @@ td {
         box-shadow: rgba(0, 0, 0, .48) 0 2px 7px;
         background-color: #212121;
         border-radius: 45px;
+        transform: scale(0.95);
 
     }
 
@@ -508,5 +512,18 @@ td {
         padding-left: 140px;
 
     }
+    
+  .container, .wide-container {
+    transform: scale(0.90);
+  }
+  
+  
+.container{
+ max-width: 90vw; 
+}
+
+.wide-container{
+  max-width: 94vw;
+}
 
 }
