@@ -1,3 +1,7 @@
+:root {
+  --main-shadow: rgba(0, 0, 0, 0.4) 0px 3px 6px, rgba(0, 0, 0, 0.3) 0px 9px 16px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
 @keyframes ani {
     0% {
         opacity: 0
@@ -133,10 +137,11 @@ td {
     height: 100%;
     background-size: cover;
     background-position: center center;
-    /* background-image: url('/static/3.webp'); */
+
     background-color: #212121;
     transform: translateZ(0);
     z-index: 0;
+    background-image: url('../static/1.png'); 
 }
 
 .nav-link {
@@ -189,7 +194,7 @@ td {
     max-width: 970px;
     padding: 80px;
     margin: auto;
-    box-shadow: rgba(0, 0, 0, .40) 0px 5px 10px;
+    box-shadow: var(--main-shadow);
     border-radius: 45px;
     margin-top: 40px;
     margin-bottom: 15px;
@@ -212,7 +217,7 @@ td {
     height: 60px;
     font-size: 5px;
     z-index: 999;
-    box-shadow: rgba(0, 0, 0, .40) 0px 5px 10px;
+    box-shadow: var(--main-shadow);
     background-size: 400% 400%;
     border-radius: 0px;
 }
@@ -224,7 +229,7 @@ td {
     background-color: #212121;
     border-top: solid 1px rgba(0, 0, 0, .3);
     border-radius: 45px;
-    box-shadow: rgba(0, 0, 0, .40) 0px 5px 10px;
+    box-shadow: var(--main-shadow);
     margin: 1vw;
 }
 
@@ -236,7 +241,7 @@ td {
     background-color: #212121;
     border-top: solid 1px rgba(0, 0, 0, .3);
     border-radius: 45px;
-    box-shadow: rgba(0, 0, 0, .40) 0px 5px 10px;
+    box-shadow: var(--main-shadow);
 }
 
 .topGrid {
@@ -250,7 +255,7 @@ td {
     background-color: #212121;
     border-top: solid 1px rgba(0, 0, 0, .3);
     border-radius: 45px;
-    box-shadow: rgba(0, 0, 0, .40) 0px 5px 10px;
+    box-shadow: var(--main-shadow);
 
     width: 150px;
     height: 150px;
@@ -335,7 +340,7 @@ td {
     background-color: #212121;
     border-top: solid 1px rgba(0, 0, 0, .3);
     border-radius: 45px;
-    box-shadow: rgba(0, 0, 0, .40) 0px 5px 10px;
+    box-shadow: var(--main-shadow);
 }
 
 .searchinput {
@@ -343,7 +348,7 @@ td {
     background-color: #212121;
     border: none;
     border-radius: 45px;
-    box-shadow: rgba(0, 0, 0, .40) 0px 5px 10px;
+    box-shadow: var(--main-shadow);
     padding: 4px;
     padding-left: 15px;
     width: 20vw;
