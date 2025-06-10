@@ -6,8 +6,6 @@
     <value>Выгрузить данные</value>
   </synonym>
   <methodName>CommonModule.МетодыСайта.ОбновитьДанныеСайта</methodName>
-  <use>true</use>
-  <predefined>true</predefined>
   <restartCountOnFailure>3</restartCountOnFailure>
   <restartIntervalOnFailure>10</restartIntervalOnFailure>
 </mdclass:ScheduledJob>

@@ -30,6 +30,26 @@
   <defaultPresentation>AsDescription</defaultPresentation>
   <editType>InDialog</editType>
   <choiceMode>BothWays</choiceMode>
+  <attributes uuid="fdffb05f-3c45-443b-a7b9-710087422b5f">
+    <name>СтрокаПодключения</name>
+    <synonym>
+      <key>ru</key>
+      <value>Строка подключения</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>300</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
   <attributes uuid="5c6e6ba5-a56f-4e69-9b6f-a2201cd184e3">
     <name>GitHubToken</name>
     <synonym>
@@ -162,5 +182,63 @@
       <value></value>
     </fillValue>
     <fullTextSearch>Use</fullTextSearch>
+  </attributes>
+  <attributes uuid="461cfff5-f8d5-4c83-9bf6-11a93cc99d77">
+    <name>ЧатОбсуждения</name>
+    <synonym>
+      <key>ru</key>
+      <value>ID чата обсуждения</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>100</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="650ca044-1137-42e0-a729-d11af89c5e63">
+    <name>ПоследнееСобытие</name>
+    <synonym>
+      <key>ru</key>
+      <value>Последнее событие</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>10</precision>
+      </numberQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="043a5c47-beee-4e38-aaeb-91c1b341fbf3">
+    <name>Админ</name>
+    <synonym>
+      <key>ru</key>
+      <value>Админ</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>20</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
   </attributes>
 </mdclass:Catalog>

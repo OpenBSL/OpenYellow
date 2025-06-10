@@ -13,5 +13,6 @@
   <content>Catalog.Файлы</content>
   <content>Catalog.ВерсииYPM</content>
   <content>Catalog.Подборки</content>
+  <content>Catalog.Посты</content>
   <parentSubsystem>Subsystem.OpenYellow</parentSubsystem>
 </mdclass:Subsystem>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="0d124955-5dd3-443b-bc6f-e444cbcbb25c">
+  <producedTypes>
+    <objectType typeId="895a8e5f-5d9e-49a3-bba4-f202eabadf8b" valueTypeId="a8dd7d67-47e4-4d03-bc11-cf7b144e811f"/>
+    <refType typeId="edcd46e2-1043-4fbe-88c4-13934f1866fc" valueTypeId="9e58229c-0610-4eae-bc3a-a58389fff915"/>
+    <selectionType typeId="ea372fc6-8299-42db-b2b6-b8ef2dd272c5" valueTypeId="4dcfb8b7-0d57-4c56-9de8-54ba41594b1a"/>
+    <listType typeId="82c91658-2805-4e55-88c7-4e80a043afbe" valueTypeId="c560fd92-35b8-4195-a26c-6732f4248ac9"/>
+    <managerType typeId="fa498d12-6d48-4b33-b67b-7c8d858c962f" valueTypeId="67d61f20-8d5d-4a7f-be6e-afe48b8e4f99"/>
+  </producedTypes>
+  <name>Посты</name>
+  <synonym>
+    <key>ru</key>
+    <value>Посты</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <inputByString>Catalog.Посты.StandardAttribute.Code</inputByString>
+  <fullTextSearchOnInputByString>DontUse</fullTextSearchOnInputByString>
+  <createOnInput>Use</createOnInput>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <fullTextSearch>Use</fullTextSearch>
+  <levelCount>2</levelCount>
+  <foldersOnTop>true</foldersOnTop>
+  <codeLength>12</codeLength>
+  <codeType>String</codeType>
+  <codeAllowedLength>Variable</codeAllowedLength>
+  <checkUnique>true</checkUnique>
+  <autonumbering>true</autonumbering>
+  <editType>InDialog</editType>
+  <choiceMode>BothWays</choiceMode>
+  <attributes uuid="a7f557cf-5903-46f4-aba7-6fe85f6ba9eb">
+    <name>Текст</name>
+    <synonym>
+      <key>ru</key>
+      <value>Текст</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="6c64480f-27b3-46a7-884e-b51b829c2d92">
+    <name>Статус</name>
+    <synonym>
+      <key>ru</key>
+      <value>Статус</value>
+    </synonym>
+    <type>
+      <types>EnumRef.СогласованиеПостов</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="525e8ca9-0652-466b-9d8a-ac1ab3dad80f">
+    <name>Клавиатура</name>
+    <synonym>
+      <key>ru</key>
+      <value>Клавиатура</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="294fe3b3-e8c3-40f6-bb0c-fab978a6ac3d">
+    <name>Ошибка</name>
+    <synonym>
+      <key>ru</key>
+      <value>Ошибка</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>500</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="3ec50c01-f9be-4186-9bc2-920d7960bd13">
+    <name>Репозиторий</name>
+    <synonym>
+      <key>ru</key>
+      <value>Репозиторий</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Репозитории</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+</mdclass:Catalog>

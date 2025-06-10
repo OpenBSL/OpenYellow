@@ -115,11 +115,25 @@
   <autonumbering>true</autonumbering>
   <defaultPresentation>AsDescription</defaultPresentation>
   <predefined>
+    <items id="937dfdac-a526-4b25-8429-22c898e0b36e">
+      <name>Брошюра</name>
+      <description>Брошюра</description>
+      <code xsi:type="core:StringValue">
+        <value>000000004</value>
+      </code>
+    </items>
     <items id="15e06458-5bb9-42f3-98fa-3cd17763cc18">
       <name>Динамика</name>
       <description>Динамика</description>
       <code xsi:type="core:StringValue">
         <value>000000001</value>
+      </code>
+    </items>
+    <items id="aded238d-0daa-45f8-a53b-5ef9d795514f">
+      <name>Подборка</name>
+      <description>Подборка</description>
+      <code xsi:type="core:StringValue">
+        <value>000000003</value>
       </code>
     </items>
     <items id="ba62891a-1cb4-415e-9dbf-01641f02212a">

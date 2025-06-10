@@ -44,13 +44,18 @@
   <commonModules>CommonModule.МетодыСайта</commonModules>
   <commonModules>CommonModule.МетодыТелеграм</commonModules>
   <commonModules>CommonModule.ИнструментарийКлиент</commonModules>
+  <commonModules>CommonModule.ОбработкаСобытий</commonModules>
   <httpServices>HTTPService.data</httpServices>
+  <httpServices>HTTPService.tg</httpServices>
   <scheduledJobs>ScheduledJob.ОбновитьДанныеОРепозиториях</scheduledJobs>
   <scheduledJobs>ScheduledJob.ОбновитьДанныеОРелизах</scheduledJobs>
   <scheduledJobs>ScheduledJob.ОпубликоватьТрендыНедели</scheduledJobs>
   <scheduledJobs>ScheduledJob.ВыгрузитьДанные</scheduledJobs>
   <scheduledJobs>ScheduledJob.ОпубликоватьПодборку10</scheduledJobs>
   <scheduledJobs>ScheduledJob.ОпубликоватьПодборку25</scheduledJobs>
+  <scheduledJobs>ScheduledJob.ОбработатьСоыбтия</scheduledJobs>
+  <scheduledJobs>ScheduledJob.ОпубликоватьБрошюру</scheduledJobs>
+  <scheduledJobs>ScheduledJob.ПубликацияОчередногоПоста</scheduledJobs>
   <constants>Constant.Лого</constants>
   <constants>Constant.ВерсияYPM</constants>
   <constants>Constant.НаборНастроек</constants>
@@ -61,6 +66,8 @@
   <catalogs>Catalog.ВерсииYPM</catalogs>
   <catalogs>Catalog.Подборки</catalogs>
   <catalogs>Catalog.НаборыНастроек</catalogs>
+  <catalogs>Catalog.Посты</catalogs>
+  <enums>Enum.СогласованиеПостов</enums>
   <reports>Report.ОтчетПоЗвездам</reports>
   <reports>Report.СписокРепозиториев</reports>
   <reports>Report.НаполнениеПодборок</reports>
