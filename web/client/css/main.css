@@ -45,6 +45,8 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 body {
@@ -54,6 +56,9 @@ body {
     line-height: 1.6;
     min-height: 100vh;
     position: relative;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
 }
 
 body::before {
@@ -93,12 +98,16 @@ img {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 var(--spacing-md);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .wide-container {
     max-width: 95%;
     margin: 0 auto;
     padding: 0 var(--spacing-md);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* ===== Navigation ===== */
@@ -109,9 +118,10 @@ img {
     top: 0;
     z-index: 1000;
     box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
 }
-
-
 
 .nav-container {
     max-width: 1400px;
@@ -120,6 +130,8 @@ img {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .nav-logo {
@@ -1296,26 +1308,51 @@ img {
     .modal-content {
         margin: 0;
         padding: var(--spacing-md);
-        max-width: 100%;
-        width: 100%;
-        height: 100%;
+        max-width: 100vw;
+        width: 100vw;
+        height: 100vh;
         max-height: 100vh;
         border-radius: 0;
         border: none;
+        box-sizing: border-box;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
     
     .modal-close {
+        position: fixed;
         top: var(--spacing-sm);
         right: var(--spacing-sm);
         width: 36px;
         height: 36px;
         font-size: 1.75rem;
+        z-index: 2001;
+        background-color: var(--bg-secondary);
+    }
+    
+    .repo-details {
+        max-width: 100%;
+        overflow-x: hidden;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
     
     .repo-header {
         flex-direction: column;
         align-items: flex-start;
         gap: var(--spacing-sm);
+        max-width: 100%;
+    }
+    
+    .repo-title-block {
+        max-width: 100%;
+        overflow: hidden;
+    }
+    
+    .repo-title-block h2 {
+        font-size: 1.25rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
     
     .repo-avatar {
@@ -1323,14 +1360,31 @@ img {
         height: 60px;
     }
     
+    .repo-description {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-width: 100%;
+    }
+    
     .repo-stats {
         flex-direction: column;
         gap: var(--spacing-sm);
+        max-width: 100%;
     }
     
     .repo-dates {
         flex-direction: column;
         gap: var(--spacing-xs);
+        max-width: 100%;
+    }
+    
+    .repo-actions {
+        max-width: 100%;
+    }
+    
+    .repo-actions .btn {
+        width: 100%;
+        text-align: center;
     }
     
     .page-header {
@@ -1343,6 +1397,25 @@ img {
     
     .filters-section {
         top: 57px;
+    }
+    
+    /* Authors page mobile */
+    .authors-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .author-card {
+        padding: var(--spacing-md);
+    }
+    
+    .author-stats {
+        gap: var(--spacing-md);
+        justify-content: space-evenly;
+    }
+    
+    .author-stat {
+        min-width: 70px;
     }
 }
 
@@ -1401,15 +1474,16 @@ img {
 
 .author-stats {
     display: flex;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
     width: 100%;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .author-stat {
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-width: 60px;
 }
 
 .author-stat .stat-value {
