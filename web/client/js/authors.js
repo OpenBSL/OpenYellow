@@ -37,7 +37,8 @@ async function loadAuthors() {
                     repos: author.repos || 0,
                     totalStars: author.totalStars || author.stars || 0,
                     totalForks: author.totalForks || author.forks || 0
-                }));
+                }))
+                .sort((a, b) => b.totalStars - a.totalStars);
                 
                 renderAuthors(allAuthors);
                 if (loading) loading.style.display = 'none';
@@ -74,9 +75,9 @@ async function loadAuthors() {
             author.totalForks += repo.forks || 0;
         });
         
-        // Convert to array and sort by repos count
+        // Convert to array and sort by total stars (descending)
         allAuthors = Array.from(authorsMap.values())
-            .sort((a, b) => b.repos - a.repos);
+            .sort((a, b) => b.totalStars - a.totalStars);
         
         // Render
         renderAuthors(allAuthors);
