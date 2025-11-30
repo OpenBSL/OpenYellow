@@ -1,0 +1,29 @@
+### Health check
+GET http://localhost:3000/health
+
+### Get repositories (top)
+GET http://localhost:3000/api/repos?filter=top&page=1&pageSize=50
+
+### Get repositories (new)
+GET http://localhost:3000/api/repos?filter=new&page=1&pageSize=50
+
+### Get repositories (updated)
+GET http://localhost:3000/api/repos?filter=updated&page=1&pageSize=50
+
+### Search repositories
+GET http://localhost:3000/api/repos?search=test&page=1&pageSize=20
+
+### Get repository by ID
+GET http://localhost:3000/api/repos/736878759
+
+### Get statistics
+GET http://localhost:3000/api/repos/stats
+
+### Get authors
+GET http://localhost:3000/api/authors?page=1&pageSize=100
+
+### Search authors
+GET http://localhost:3000/api/authors?search=bay
+
+### Get author by name
+GET http://localhost:3000/api/authors/Bayselonarrend

@@ -80,7 +80,13 @@ class DataService {
     // Get counters data
     static async getCounters() {
         if (this.useAPI) {
-            return this.fetchAPI('/counters');
+            const response = await this.fetchAPI('/repos/stats');
+            // Transform API response to match old format
+            return {
+                totalcounter: response.data.totalRepos,
+                starscounter: response.data.totalStars,
+                authorscounter: response.data.totalAuthors
+            };
         }
         return this.fetchJSON('/counters.json');
     }
@@ -88,7 +94,13 @@ class DataService {
     // Get repositories by filter
     static async getRepositories(filter = 'top') {
         if (this.useAPI) {
-            return this.fetchAPI(`/repositories?filter=${filter}`);
+            const response = await this.fetchAPI(`/repos?filter=${filter}&pageSize=500`);
+            // Transform API response to match old format
+            return {
+                data: response.data,
+                title: '',
+                description: ''
+            };
         }
         const data = await this.fetchJSON(`/${filter}.json`);
         // Ensure data has the expected structure
@@ -101,7 +113,11 @@ class DataService {
     // Get authors data
     static async getAuthors() {
         if (this.useAPI) {
-            return this.fetchAPI('/authors');
+            const response = await this.fetchAPI('/authors?pageSize=100');
+            // Transform API response to match old format
+            return {
+                data: response.data
+            };
         }
         return this.fetchJSON('/authors.json');
     }
@@ -110,12 +126,20 @@ class DataService {
     static async searchRepositories(query, filter = 'top', page = 1, pageSize = 50) {
         if (this.useAPI) {
             const params = new URLSearchParams({
-                q: query,
+                search: query,
                 filter,
                 page,
                 pageSize
             });
-            return this.fetchAPI(`/repositories/search?${params}`);
+            const response = await this.fetchAPI(`/repos?${params}`);
+            // Transform API response to match expected format
+            return {
+                data: response.data,
+                total: response.pagination.total,
+                page: response.pagination.page,
+                pageSize: response.pagination.pageSize,
+                totalPages: response.pagination.totalPages
+            };
         }
         
         // Client-side search fallback
@@ -172,17 +196,26 @@ class DataService {
     
     // Fetch from API
     static async fetchAPI(endpoint) {
-        const response = await fetch(`${this.apiURL}${endpoint}`, {
+        const url = `${this.apiURL}${endpoint}`;
+        console.log(`[API] Fetching: ${url}`);
+        
+        const response = await fetch(url, {
             headers: {
                 'Content-Type': 'application/json'
             }
         });
         
         if (!response.ok) {
-            throw new Error(`API error: ${response.status}`);
+            throw new Error(`API error: ${response.status} ${response.statusText}`);
         }
         
-        return response.json();
+        const data = await response.json();
+        
+        if (!data.success) {
+            throw new Error(data.error || 'API request failed');
+        }
+        
+        return data;
     }
     
     // Fetch JSON file

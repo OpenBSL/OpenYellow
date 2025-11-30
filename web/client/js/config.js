@@ -5,7 +5,7 @@ window.CONFIG = {
     // Data source configuration
     dataSource: {
         // Use API or JSON files
-        useAPI: false,
+        useAPI: true,
         
         // Base URL for JSON files (when useAPI = false)
         // Options:
@@ -15,7 +15,9 @@ window.CONFIG = {
         jsonBaseURL: '/data',
         
         // API base URL (when useAPI = true)
-        apiBaseURL: '/api'
+        // For production: 'https://openyellow.openintegrations.dev/api'
+        // For local dev: 'http://localhost:3000/api'
+        apiBaseURL: 'https://openyellow.openintegrations.dev/api'
     },
     
     // Site configuration
