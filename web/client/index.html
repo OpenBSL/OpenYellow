@@ -17,7 +17,7 @@
     <script src="js/config.js"></script>
     <script src="js/main.js"></script>
 </head>
-<body>
+<body class="page-home">
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-container">
@@ -49,31 +49,43 @@
         </div>
     </nav>
 
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <img src="static/logo_side.png" alt="OpenYellow" class="hero-logo">
+                <h1>Добро пожаловать на OpenYellow</h1>
+                <p class="hero-description">
+                    Агрегатор open-source проектов для 1С:Предприятие. 
+                    Здесь собрано множество инструментов с открытым исходным кодом, 
+                    созданных сообществом разработчиков.
+                </p>
+            </div>
+            
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalRepos">-</div>
+                    <div class="stat-label">Репозиториев</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalStars">-</div>
+                    <div class="stat-label">Звезд</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalAuthors">-</div>
+                    <div class="stat-label">Авторов</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Main Content -->
     <section class="main-content">
         <div class="container-wide">
             <div class="main-layout">
                 <!-- Sidebar -->
                 <aside class="sidebar">
-                    <!-- Stats -->
-                    <div class="sidebar-card">
-                        <h3>Статистика</h3>
-                        <div class="stats-list">
-                            <div class="stat-item">
-                                <div class="stat-value" id="totalRepos">-</div>
-                                <div class="stat-label">Репозиториев</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value" id="totalStars">-</div>
-                                <div class="stat-label">Звезд</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value" id="totalAuthors">-</div>
-                                <div class="stat-label">Авторов</div>
-                            </div>
-                        </div>
-                    </div>
-                    
                     <!-- Quick Links -->
                     <div class="sidebar-card">
                         <h3>Быстрый доступ</h3>
@@ -99,11 +111,32 @@
                                     <div class="quick-link-desc">Недавно обновленные</div>
                                 </div>
                             </a>
-                            <a href="authors.html" class="quick-link">
-                                <span class="quick-link-icon">👤</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Resources -->
+                    <div class="sidebar-card">
+                        <h3>Ресурсы</h3>
+                        <div class="resource-links">
+                            <a href="https://t.me/openyellowproject" target="_blank" class="resource-link telegram">
+                                <img src="static/tg.png" alt="Telegram" class="resource-icon">
                                 <div>
-                                    <div class="quick-link-title">Авторы</div>
-                                    <div class="quick-link-desc">Разработчики</div>
+                                    <div class="resource-title">Telegram</div>
+                                    <div class="resource-desc">Новости и топы</div>
+                                </div>
+                            </a>
+                            <a href="https://boosty.to/bayselonarrend" target="_blank" class="resource-link boosty">
+                                <img src="static/boosty.png" alt="Boosty" class="resource-icon">
+                                <div>
+                                    <div class="resource-title">Boosty</div>
+                                    <div class="resource-desc">Поддержать проект</div>
+                                </div>
+                            </a>
+                            <a href="https://github.com/OpenBSL" target="_blank" class="resource-link github">
+                                <div class="resource-icon-text">GitHub</div>
+                                <div>
+                                    <div class="resource-title">GitHub</div>
+                                    <div class="resource-desc">Исходный код</div>
                                 </div>
                             </a>
                         </div>
@@ -151,42 +184,6 @@
                     <p>Проекты с недавними обновлениями и активной разработкой</p>
                     <span class="category-link">Смотреть →</span>
                 </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Community Section -->
-    <section class="community">
-        <div class="container">
-            <h2 class="section-title">Ресурсы</h2>
-            
-            <div class="community-grid">
-                <div class="community-card telegram">
-                    <img src="static/tg.png" alt="Telegram" class="community-icon">
-                    <h3>Telegram</h3>
-                    <p>Следите за новыми проектами, еженедельными топами и новостями</p>
-                    <a href="https://t.me/openyellowproject" class="btn btn-primary" target="_blank">
-                        Подписаться
-                    </a>
-                </div>
-                
-                <div class="community-card boosty">
-                    <img src="static/boosty.png" alt="Boosty" class="community-icon">
-                    <h3>Boosty</h3>
-                    <p>Поддержите развитие агрегатора и популяризацию open-source</p>
-                    <a href="https://boosty.to/bayselonarrend" class="btn btn-secondary" target="_blank">
-                        Поддержать
-                    </a>
-                </div>
-                
-                <div class="community-card github">
-                    <div class="community-icon-text">GitHub</div>
-                    <h3>GitHub</h3>
-                    <p>Исходный код OpenYellow и другие проекты OpenBSL</p>
-                    <a href="https://github.com/OpenBSL" class="btn btn-secondary" target="_blank">
-                        Перейти
-                    </a>
-                </div>
             </div>
         </div>
     </section>
