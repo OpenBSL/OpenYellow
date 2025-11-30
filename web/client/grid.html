@@ -57,17 +57,8 @@
     <!-- Filters and Search -->
     <section class="filters-section">
         <div class="container">
-            <!-- Search and Column Filters -->
+            <!-- Top Row: Column Filters and Search -->
             <div class="filters-bar">
-                <div class="search-box">
-                    <input 
-                        type="text" 
-                        id="searchInput" 
-                        placeholder="Поиск по названию, описанию, автору..."
-                        class="search-input"
-                    >
-                </div>
-                
                 <div class="column-filters">
                     <select id="langFilter" class="column-filter-select">
                         <option value="">Все языки</option>
@@ -86,9 +77,18 @@
                     
                     <button id="clearFilters" class="filter-clear-btn">Сбросить фильтры</button>
                 </div>
+                
+                <div class="search-box">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Поиск по названию, описанию, автору..."
+                        class="search-input"
+                    >
+                </div>
             </div>
             
-            <!-- Filter Tabs -->
+            <!-- Bottom Row: Filter Tabs -->
             <div class="filter-tabs">
                 <button class="filter-tab active" data-filter="top">
                     Индекс

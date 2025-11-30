@@ -15,27 +15,41 @@ let columnFilters = {
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', () => {
-    // Normalize URL: redirect grid.html to /grid
-    if (window.location.pathname.endsWith('grid.html')) {
-        const newUrl = window.location.pathname.replace('grid.html', 'grid') + window.location.search;
-        window.history.replaceState({}, '', newUrl);
-    }
-    
     // Get filter from URL (support both old and new format)
     const params = new URLSearchParams(window.location.search);
     const filterParam = params.get('filter') || params.get('data'); // data - old format
     const repoParam = params.get('repo');
     
+    if (filterParam && ['top', 'new', 'updated'].includes(filterParam)) {
+        currentFilter = filterParam;
+    }
+    
+    // Normalize URL: redirect grid.html to /grid and ensure filter parameter exists
+    let needsUpdate = false;
+    let newPath = window.location.pathname;
+    
+    if (window.location.pathname.endsWith('grid.html')) {
+        newPath = window.location.pathname.replace('grid.html', 'grid');
+        needsUpdate = true;
+    }
+    
     // Normalize URL parameter: use 'filter' instead of 'data'
     if (params.get('data') && !params.get('filter')) {
         params.delete('data');
-        params.set('filter', filterParam);
-        const newUrl = window.location.pathname + '?' + params.toString();
-        window.history.replaceState({}, '', newUrl);
+        params.set('filter', currentFilter);
+        needsUpdate = true;
     }
     
-    if (filterParam && ['top', 'new', 'updated'].includes(filterParam)) {
-        currentFilter = filterParam;
+    // Add default filter parameter if missing
+    if (!params.get('filter') && !params.get('data')) {
+        params.set('filter', currentFilter);
+        needsUpdate = true;
+    }
+    
+    // Update URL if needed
+    if (needsUpdate) {
+        const newUrl = newPath + '?' + params.toString();
+        window.history.replaceState({}, '', newUrl);
     }
     
     // Set active filter tab
