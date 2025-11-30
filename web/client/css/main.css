@@ -504,6 +504,26 @@ img {
     border-color: var(--accent-primary);
 }
 
+.filter-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.filter-checkbox {
+    cursor: pointer;
+}
+
+.fork-icon {
+    margin-left: var(--spacing-xs);
+    font-size: 0.875rem;
+    opacity: 0.6;
+}
+
 .filter-tabs {
     display: flex;
     gap: var(--spacing-xs);

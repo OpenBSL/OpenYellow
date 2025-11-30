@@ -158,12 +158,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
+    const excludeForksFilter = document.getElementById('excludeForksFilter');
+    if (excludeForksFilter) {
+        excludeForksFilter.addEventListener('change', (e) => {
+            columnFilters.excludeForks = e.target.checked;
+            currentPage = 1;
+            loadRepositories(searchInput?.value || '');
+        });
+    }
+    
     if (clearFiltersBtn) {
         clearFiltersBtn.addEventListener('click', () => {
-            columnFilters = { lang: '', license: '', author: '' };
+            columnFilters = { lang: '', license: '', author: '', excludeForks: false };
             if (langFilter) langFilter.value = '';
             if (licenseFilter) licenseFilter.value = '';
             if (authorFilter) authorFilter.value = '';
+            if (excludeForksFilter) excludeForksFilter.checked = false;
             if (searchInput) searchInput.value = '';
             currentPage = 1;
             loadRepositories('');
@@ -403,6 +413,7 @@ function getColumns() {
                          class="repo-avatar-small"
                          onerror="this.src='static/logo.png'">
                     <span class="repo-name-text">${repo.name || 'N/A'}</span>
+                    ${repo.isFork ? '<span class="fork-icon" title="Форк">🔱</span>' : ''}
                 </div>
             `
         },

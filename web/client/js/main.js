@@ -136,6 +136,7 @@ class DataService {
             if (columnFilters.lang) params.append('lang', columnFilters.lang);
             if (columnFilters.license) params.append('license', columnFilters.license);
             if (columnFilters.author) params.append('author', columnFilters.author);
+            if (columnFilters.excludeForks) params.append('excludeForks', 'true');
             
             const response = await this.fetchAPI(`/repos?${params}`);
             // Transform API response to match expected format
