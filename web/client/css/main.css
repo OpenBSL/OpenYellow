@@ -493,7 +493,6 @@ img {
     position: sticky;
     top: 73px;
     z-index: 999;
-    transition: padding 0.3s ease;
 }
 
 .filters-section:has(.filters-collapsible.active) {
@@ -540,7 +539,7 @@ img {
 .filters-collapsible {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease;
+    transition: max-height 0.3s ease, margin-top 0.3s ease;
     margin-top: 0;
 }
 
