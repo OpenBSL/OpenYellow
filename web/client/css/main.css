@@ -1185,49 +1185,61 @@ img {
         text-align: left !important;
     }
     
-    /* For "top" filter with Place column */
-    /* Row 1: Place + Name with avatar */
-    .repos-table td:nth-child(1) {
+    /* Mobile card layout - works for all filters */
+    /* First visible column (Place for "top", Name for others) */
+    .repos-table td:first-child {
         display: flex !important;
+        align-items: center;
+        gap: var(--spacing-sm);
+    }
+    
+    /* If first column is Place (has only text, no nested elements) */
+    .repos-table td:first-child:not(:has(.repo-name-cell)) {
         font-size: 1.25rem;
         font-weight: 700;
         color: var(--accent-primary);
         line-height: 1;
-        margin-right: var(--spacing-sm);
         flex-shrink: 0;
+        width: auto;
     }
     
-    .repos-table td:nth-child(2) {
+    /* Name column - second for "top", first for others */
+    .repos-table td:has(.repo-name-cell) {
         display: flex !important;
         flex: 1;
         min-width: 0;
     }
     
-    .repos-table td:nth-child(2) .repo-name-cell {
+    .repos-table .repo-name-cell {
         gap: var(--spacing-sm);
         align-items: center;
+        width: 100%;
     }
     
-    .repos-table td:nth-child(2) .repo-avatar-small {
+    .repos-table .repo-avatar-small {
         width: 28px;
         height: 28px;
+        flex-shrink: 0;
     }
     
-    .repos-table td:nth-child(2) .repo-name-text {
+    .repos-table .repo-name-text {
         font-size: 0.9375rem;
         font-weight: 600;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
     
-    /* Row 2: Description */
-    .repos-table td:nth-child(3) {
+    /* Description column */
+    .repos-table td:has(.repo-description-cell) {
         display: block !important;
         font-size: 0.8125rem;
         color: var(--text-secondary);
         line-height: 1.4;
-        order: 10;
+        width: 100%;
     }
     
-    .repos-table td:nth-child(3) .repo-description-cell {
+    .repos-table .repo-description-cell {
         max-width: 100%;
         white-space: normal;
         overflow: hidden;
@@ -1237,20 +1249,24 @@ img {
         -webkit-box-orient: vertical;
     }
     
-    /* Row 3: Author + Stars */
-    .repos-table td:nth-child(4),
-    .repos-table td:nth-child(5) {
+    /* Author column */
+    .repos-table td:has(.author-cell) {
+        display: inline-flex !important;
+        align-items: center;
+        font-size: 0.8125rem;
+        color: var(--text-secondary);
+        margin-right: var(--spacing-md);
+    }
+    
+    /* Stars column - find by checking if it's a number after author */
+    .repos-table td:has(.author-cell) + td {
         display: inline-flex !important;
         align-items: center;
         font-size: 0.8125rem;
         color: var(--text-secondary);
     }
     
-    .repos-table td:nth-child(4) {
-        margin-right: var(--spacing-md);
-    }
-    
-    .repos-table td:nth-child(5)::before {
+    .repos-table td:has(.author-cell) + td::before {
         content: '⭐ ';
         margin-right: 2px;
     }
@@ -2200,19 +2216,16 @@ img {
 
 @media (max-width: 1024px) {
     .main-layout {
+        display: grid;
         grid-template-columns: 1fr;
-        display: flex;
-        flex-direction: column;
-    }
-    
-    .main-area {
-        display: flex;
-        flex-direction: column;
-        order: 1;
+        grid-template-areas:
+            "welcome"
+            "sidebar"
+            "news";
     }
     
     .welcome-banner {
-        order: 1;
+        grid-area: welcome;
         flex-direction: column;
     }
     
@@ -2225,18 +2238,22 @@ img {
     }
     
     .sidebar {
+        grid-area: sidebar;
         position: static;
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        order: 2;
     }
     
     .news-feed {
-        order: 3;
+        grid-area: news;
     }
     
     .news-list {
         max-height: none;
+    }
+    
+    .main-area {
+        display: contents;
     }
 }
 
