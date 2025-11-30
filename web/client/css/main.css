@@ -68,7 +68,7 @@ body::before {
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    opacity: 0.08;
+    opacity: 0.06;
     pointer-events: none;
     z-index: -1;
 }
@@ -448,8 +448,8 @@ img {
     height: 200%;
     background: radial-gradient(
         ellipse at center,
-        rgba(235, 167, 8, 0.15) 0%,
-        rgba(235, 167, 8, 0.08) 30%,
+        rgba(235, 167, 8, 0.10) 0%,
+        rgba(235, 167, 8, 0.05) 30%,
         transparent 70%
     );
     z-index: -1;
