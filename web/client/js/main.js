@@ -123,7 +123,7 @@ class DataService {
     }
     
     // Search repositories (will use API when available)
-    static async searchRepositories(query, filter = 'top', page = 1, pageSize = 50, columnFilters = {}) {
+    static async searchRepositories(query, filter = 'top', page = 1, pageSize = 50, columnFilters = {}, sort = {}) {
         if (this.useAPI) {
             const params = new URLSearchParams({
                 search: query,
@@ -137,6 +137,12 @@ class DataService {
             if (columnFilters.license) params.append('license', columnFilters.license);
             if (columnFilters.author) params.append('author', columnFilters.author);
             if (columnFilters.excludeForks) params.append('excludeForks', 'true');
+            
+            // Add sorting parameters
+            if (sort.column) {
+                params.append('sortBy', sort.column);
+                params.append('sortDir', sort.direction || 'asc');
+            }
             
             const response = await this.fetchAPI(`/repos?${params}`);
             // Transform API response to match expected format

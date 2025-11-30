@@ -225,13 +225,14 @@ async function loadRepositories(searchQuery = '', highlightRepoId = null) {
     if (empty) empty.style.display = 'none';
     
     try {
-        // Fetch data with column filters
+        // Fetch data with column filters and sorting
         const result = await DataService.searchRepositories(
             searchQuery,
             currentFilter,
             currentPage,
             currentPageSize,
-            columnFilters
+            columnFilters,
+            currentSort
         );
         
         currentData = result.data;
@@ -246,12 +247,12 @@ async function loadRepositories(searchQuery = '', highlightRepoId = null) {
         // Update page title and description
         updatePageInfo();
         
-        // Apply current sort if any
+        // Render table (data already sorted on server)
+        renderTable(result.data);
+        
+        // Update sort indicators
         if (currentSort.column) {
-            sortData(currentSort.column, currentSort.direction);
-        } else {
-            // Render table
-            renderTable(result.data);
+            updateSortIndicators(currentSort.column, currentSort.direction);
         }
         
         // Update pagination
@@ -597,40 +598,18 @@ function showCopyNotification(element) {
     }, 2000);
 }
 
-// Sort data
+// Sort data - now triggers server-side sorting
 function sortData(column, direction) {
     if (!direction) {
         direction = 'asc';
     }
     
     currentSort = { column, direction };
+    currentPage = 1; // Reset to first page when sorting
     
-    const sorted = [...currentData].sort((a, b) => {
-        let aVal = a[column];
-        let bVal = b[column];
-        
-        // Handle null/undefined
-        if (aVal == null) aVal = '';
-        if (bVal == null) bVal = '';
-        
-        // Handle numbers
-        if (typeof aVal === 'number' && typeof bVal === 'number') {
-            return direction === 'asc' ? aVal - bVal : bVal - aVal;
-        }
-        
-        // Handle strings
-        aVal = String(aVal).toLowerCase();
-        bVal = String(bVal).toLowerCase();
-        
-        if (direction === 'asc') {
-            return aVal < bVal ? -1 : aVal > bVal ? 1 : 0;
-        } else {
-            return aVal > bVal ? -1 : aVal < bVal ? 1 : 0;
-        }
-    });
-    
-    renderTable(sorted);
-    updateSortIndicators(column, direction);
+    // Reload data with new sort parameters
+    const searchInput = document.getElementById('searchInput');
+    loadRepositories(searchInput?.value || '');
 }
 
 // Update sort indicators

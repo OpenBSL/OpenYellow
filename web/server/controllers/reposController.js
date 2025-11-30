@@ -11,7 +11,9 @@ exports.getRepositories = async (req, res) => {
             lang = '',
             license = '',
             author = '',
-            excludeForks = 'false'
+            excludeForks = 'false',
+            sortBy = '',
+            sortDir = 'asc'
         } = req.query;
 
         const limit = Math.min(parseInt(pageSize), 100);
@@ -21,11 +23,32 @@ exports.getRepositories = async (req, res) => {
         let whereConditions = [];
         let params = [];
 
-        // Apply filter
-        if (filter === 'new') {
-            orderBy = 'createddate DESC';
-        } else if (filter === 'updated') {
-            orderBy = 'updateddate DESC';
+        // Apply custom sorting if provided
+        if (sortBy) {
+            // Map frontend column names to database columns
+            const columnMap = {
+                'name': 'name',
+                'description': 'description',
+                'author': 'author',
+                'stars': 'stars',
+                'forks': 'forks',
+                'lang': 'lang',
+                'license': 'license',
+                'createddate': 'createddate',
+                'updateddate': 'updateddate',
+                'place': 'stars' // place is calculated from stars
+            };
+            
+            const dbColumn = columnMap[sortBy] || 'stars';
+            const direction = sortDir.toLowerCase() === 'desc' ? 'DESC' : 'ASC';
+            orderBy = `${dbColumn} ${direction}`;
+        } else {
+            // Apply default filter sorting
+            if (filter === 'new') {
+                orderBy = 'createddate DESC';
+            } else if (filter === 'updated') {
+                orderBy = 'updateddate DESC';
+            }
         }
 
         // Apply search
