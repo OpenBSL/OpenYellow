@@ -49,6 +49,12 @@ GET http://localhost:3000/data/badges/257929475.svg
 ### Get badge SVG (another repo)
 GET http://localhost:3000/data/badges/736878759.svg
 
+### Get news
+GET http://localhost:3000/api/news?page=1&pageSize=6
+
+### Get news by ID
+GET http://localhost:3000/api/news/1
+
 ### Get badge JSON (shields.io compatibility)
 GET http://localhost:3000/data/badges/2/257929475.json
 

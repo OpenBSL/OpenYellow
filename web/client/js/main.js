@@ -154,6 +154,21 @@ class DataService {
         return this.clientSideSearch(data, query, page, pageSize);
     }
     
+    // Get news
+    static async getNews(page = 1, pageSize = 6) {
+        if (this.useAPI) {
+            const params = new URLSearchParams({ page, pageSize });
+            const response = await this.fetchAPI(`/news?${params}`);
+            return {
+                data: response.data,
+                pagination: response.pagination
+            };
+        }
+        
+        // Fallback: return empty
+        return { data: [], pagination: { page: 1, pageSize, total: 0, totalPages: 0 } };
+    }
+    
     // Get filter options
     static async getFilterOptions() {
         if (this.useAPI) {

@@ -49,34 +49,52 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Compact Hero Section -->
+    <section class="hero-compact">
         <div class="container">
-            <div class="hero-content">
-                <img src="static/logo_side.png" alt="OpenYellow" class="hero-logo">
-                <h1>Добро пожаловать на OpenYellow</h1>
-                <p class="hero-description">
-                    Агрегатор open-source проектов для 1С:Предприятие. 
-                    Здесь собрано множество инструментов с открытым исходным кодом, 
-                    созданных сообществом разработчиков.
-                </p>
+            <div class="hero-compact-content">
+                <div class="hero-compact-info">
+                    <img src="static/logo_side.png" alt="OpenYellow" class="hero-compact-logo">
+                    <div>
+                        <h1>OpenYellow</h1>
+                        <p>Агрегатор open-source проектов для 1С:Предприятие</p>
+                    </div>
+                </div>
+                
+                <!-- Compact Stats -->
+                <div class="stats-compact">
+                    <div class="stat-compact">
+                        <div class="stat-value" id="totalRepos">-</div>
+                        <div class="stat-label">Репозиториев</div>
+                    </div>
+                    <div class="stat-compact">
+                        <div class="stat-value" id="totalStars">-</div>
+                        <div class="stat-label">Звезд</div>
+                    </div>
+                    <div class="stat-compact">
+                        <div class="stat-value" id="totalAuthors">-</div>
+                        <div class="stat-label">Авторов</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Feed Section -->
+    <section class="news-feed">
+        <div class="container">
+            <h2 class="section-title">Новости проекта</h2>
+            
+            <div class="news-grid" id="newsGrid">
+                <div class="news-loading">
+                    <div class="spinner"></div>
+                    <p>Загрузка новостей...</p>
+                </div>
             </div>
             
-            <!-- Stats Cards -->
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-value" id="totalRepos">-</div>
-                    <div class="stat-label">Репозиториев</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="totalStars">-</div>
-                    <div class="stat-label">Звезд</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="totalAuthors">-</div>
-                    <div class="stat-label">Авторов</div>
-                </div>
-            </div>
+            <button id="loadMoreNews" class="btn btn-secondary" style="display: none; margin: var(--spacing-lg) auto 0;">
+                Загрузить еще
+            </button>
         </div>
     </section>
 
@@ -146,9 +164,36 @@
         </div>
     </section>
 
+    <!-- News Modal -->
+    <div class="modal" id="newsModal">
+        <div class="modal-overlay" id="newsModalOverlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="newsModalClose">×</button>
+            
+            <div class="news-details">
+                <div class="news-header">
+                    <img id="newsIcon" src="" alt="" class="news-icon">
+                    <div>
+                        <h2 id="newsTitle"></h2>
+                        <p id="newsDate" class="news-date"></p>
+                    </div>
+                </div>
+                
+                <div id="newsText" class="news-text"></div>
+                
+                <div id="newsLinkContainer" class="news-link-container" style="display: none;">
+                    <a id="newsLink" href="" target="_blank" class="btn btn-primary">
+                        Перейти →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer"></footer>
     <script src="js/footer.js"></script>
+    <script src="js/news.js"></script>
 
     <!-- Yandex.Metrika -->
     <script type="text/javascript">

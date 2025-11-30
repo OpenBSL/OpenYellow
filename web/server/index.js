@@ -5,6 +5,7 @@ require('dotenv').config();
 const reposRoutes = require('./routes/repos');
 const authorsRoutes = require('./routes/authors');
 const badgesRoutes = require('./routes/badges');
+const newsRoutes = require('./routes/news');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -27,6 +28,7 @@ app.get('/health', (req, res) => {
 // API Routes
 app.use('/api/repos', reposRoutes);
 app.use('/api/authors', authorsRoutes);
+app.use('/api/news', newsRoutes);
 
 // Badge Routes (for shields.io compatibility)
 app.use('/data/badges', badgesRoutes);
@@ -64,6 +66,8 @@ app.listen(PORT, () => {
     console.log('  - GET  /api/repos/:id');
     console.log('  - GET  /api/authors');
     console.log('  - GET  /api/authors/:name');
+    console.log('  - GET  /api/news');
+    console.log('  - GET  /api/news/:id');
     console.log('  - GET  /data/badges/:id.svg');
     console.log('  - GET  /data/badges/:group/:id.json');
     console.log('');
