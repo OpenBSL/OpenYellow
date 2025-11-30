@@ -53,6 +53,17 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     min-height: 100vh;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(235, 167, 8, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(235, 167, 8, 0.02) 0%, transparent 50%),
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 40px,
+            rgba(255, 255, 255, 0.01) 40px,
+            rgba(255, 255, 255, 0.01) 80px
+        );
+    background-attachment: fixed;
 }
 
 a {
@@ -164,6 +175,21 @@ img {
 .hero {
     padding: var(--spacing-xl) 0;
     background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(235, 167, 8, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(235, 167, 8, 0.03) 0%, transparent 40%);
+    pointer-events: none;
 }
 
 .hero-content {
@@ -404,6 +430,21 @@ img {
     background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
     padding: var(--spacing-lg) 0 var(--spacing-md);
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 30% 50%, rgba(235, 167, 8, 0.04) 0%, transparent 50%),
+        radial-gradient(circle at 70% 50%, rgba(235, 167, 8, 0.03) 0%, transparent 50%);
+    pointer-events: none;
 }
 
 .page-header .container {
@@ -1601,6 +1642,19 @@ img {
     gap: var(--spacing-lg);
     position: relative;
     overflow: hidden;
+}
+
+.welcome-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 10% 30%, rgba(235, 167, 8, 0.03) 0%, transparent 40%),
+        radial-gradient(circle at 90% 70%, rgba(235, 167, 8, 0.02) 0%, transparent 40%);
+    pointer-events: none;
 }
 
 .welcome-content {

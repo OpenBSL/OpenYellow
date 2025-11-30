@@ -25,23 +25,33 @@ exports.getRepositories = async (req, res) => {
 
         // Apply custom sorting if provided
         if (sortBy) {
-            // Map frontend column names to database columns
-            const columnMap = {
-                'name': 'name',
-                'description': 'description',
-                'author': 'author',
-                'stars': 'stars',
-                'forks': 'forks',
-                'lang': 'lang',
-                'license': 'license',
-                'createddate': 'createddate',
-                'updateddate': 'updateddate',
-                'place': 'stars' // place is calculated from stars
-            };
-            
-            const dbColumn = columnMap[sortBy] || 'stars';
             const direction = sortDir.toLowerCase() === 'desc' ? 'DESC' : 'ASC';
-            orderBy = `${dbColumn} ${direction}`;
+            
+            // Special handling for 'place' - use the same multi-level sorting
+            if (sortBy === 'place') {
+                // Place sorting uses the same criteria as default top filter
+                if (direction === 'ASC') {
+                    orderBy = 'stars DESC, forks DESC, createddate DESC, name ASC';
+                } else {
+                    orderBy = 'stars ASC, forks ASC, createddate ASC, name DESC';
+                }
+            } else {
+                // Map frontend column names to database columns
+                const columnMap = {
+                    'name': 'name',
+                    'description': 'description',
+                    'author': 'author',
+                    'stars': 'stars',
+                    'forks': 'forks',
+                    'lang': 'lang',
+                    'license': 'license',
+                    'createddate': 'createddate',
+                    'updateddate': 'updateddate'
+                };
+                
+                const dbColumn = columnMap[sortBy] || 'stars';
+                orderBy = `${dbColumn} ${direction}`;
+            }
         } else {
             // Apply default filter sorting with tie-breakers
             if (filter === 'new') {
