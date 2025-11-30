@@ -1208,7 +1208,7 @@ img {
         display: flex;
         gap: var(--spacing-sm);
         align-items: center;
-        max-width: 100%;
+        max-width: calc(100vw - 4rem);
     }
     
     .repos-table .repo-avatar-small {
