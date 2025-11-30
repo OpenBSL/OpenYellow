@@ -8,12 +8,18 @@ exports.getBadgeSvg = async (req, res) => {
     try {
         const { id } = req.params;
 
-        // Get repository place in ranking
+        // Get repository place in ranking with multi-level sorting
         const [rows] = await pool.query(`
             SELECT 
                 id,
                 name,
-                (SELECT COUNT(*) + 1 FROM repos r2 WHERE r2.stars > r1.stars) as place
+                (SELECT COUNT(*) + 1 
+                 FROM repos r2 
+                 WHERE (r2.stars > r1.stars)
+                    OR (r2.stars = r1.stars AND r2.forks > r1.forks)
+                    OR (r2.stars = r1.stars AND r2.forks = r1.forks AND r2.createddate > r1.createddate)
+                    OR (r2.stars = r1.stars AND r2.forks = r1.forks AND r2.createddate = r1.createddate AND r2.name < r1.name)
+                ) as place
             FROM repos r1
             WHERE id = ?
         `, [id]);
@@ -57,12 +63,18 @@ exports.getBadge = async (req, res) => {
         const { id } = req.params;
         const { group = '2' } = req.query; // group parameter for compatibility
 
-        // Get repository place in ranking
+        // Get repository place in ranking with multi-level sorting
         const [rows] = await pool.query(`
             SELECT 
                 id,
                 name,
-                (SELECT COUNT(*) + 1 FROM repos r2 WHERE r2.stars > r1.stars) as place
+                (SELECT COUNT(*) + 1 
+                 FROM repos r2 
+                 WHERE (r2.stars > r1.stars)
+                    OR (r2.stars = r1.stars AND r2.forks > r1.forks)
+                    OR (r2.stars = r1.stars AND r2.forks = r1.forks AND r2.createddate > r1.createddate)
+                    OR (r2.stars = r1.stars AND r2.forks = r1.forks AND r2.createddate = r1.createddate AND r2.name < r1.name)
+                ) as place
             FROM repos r1
             WHERE id = ?
         `, [id]);

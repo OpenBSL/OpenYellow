@@ -43,11 +43,14 @@ exports.getRepositories = async (req, res) => {
             const direction = sortDir.toLowerCase() === 'desc' ? 'DESC' : 'ASC';
             orderBy = `${dbColumn} ${direction}`;
         } else {
-            // Apply default filter sorting
+            // Apply default filter sorting with tie-breakers
             if (filter === 'new') {
-                orderBy = 'createddate DESC';
+                orderBy = 'createddate DESC, stars DESC, forks DESC, name ASC';
             } else if (filter === 'updated') {
-                orderBy = 'updateddate DESC';
+                orderBy = 'updateddate DESC, stars DESC, forks DESC, name ASC';
+            } else {
+                // top filter: stars DESC, forks DESC, newer first, then alphabetically
+                orderBy = 'stars DESC, forks DESC, createddate DESC, name ASC';
             }
         }
 
@@ -93,12 +96,19 @@ exports.getRepositories = async (req, res) => {
         // Get paginated data with global ranking
         let query;
         if (filter === 'top') {
-            // For top filter, calculate global place based on stars ranking
+            // For top filter, calculate global place based on multi-level ranking
+            // Ranking: stars DESC, forks DESC, createddate DESC (newer = higher), name ASC
             query = `
                 SELECT 
                     id, name, description, author, authorUrl, url, pic,
                     stars, forks, lang, license, createddate, updateddate, isFork,
-                    (SELECT COUNT(*) + 1 FROM repos r2 WHERE r2.stars > r1.stars) as place
+                    (SELECT COUNT(*) + 1 
+                     FROM repos r2 
+                     WHERE (r2.stars > r1.stars)
+                        OR (r2.stars = r1.stars AND r2.forks > r1.forks)
+                        OR (r2.stars = r1.stars AND r2.forks = r1.forks AND r2.createddate > r1.createddate)
+                        OR (r2.stars = r1.stars AND r2.forks = r1.forks AND r2.createddate = r1.createddate AND r2.name < r1.name)
+                    ) as place
                 FROM repos r1
                 ${whereClause}
                 ORDER BY ${orderBy}
