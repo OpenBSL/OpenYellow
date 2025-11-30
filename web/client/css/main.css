@@ -1143,10 +1143,13 @@ img {
     
     .table-section .container {
         padding: 0 var(--spacing-sm);
+        max-width: 100vw;
+        overflow-x: hidden;
     }
     
     .repos-table {
         min-width: 0;
+        width: 100%;
     }
     
     .repos-table thead {
@@ -1157,6 +1160,7 @@ img {
     .repos-table tbody {
         display: block;
         width: 100%;
+        max-width: 100%;
     }
     
     .repos-table tr {
@@ -1248,9 +1252,11 @@ img {
     
     .repos-table .repo-description-cell {
         max-width: 100%;
+        width: 100%;
         white-space: normal;
         overflow: hidden;
-        text-overflow: ellipsis;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
