@@ -79,6 +79,31 @@ Query параметры:
 **GET /api/authors/:name**
 Получить автора по имени
 
+### Badges
+
+**GET /data/badges/:group/:id.json**
+Получить badge JSON для shields.io
+
+Параметры:
+- `:group` - группа (для совместимости, обычно 2)
+- `:id` - ID репозитория
+
+Возвращает JSON в формате shields.io endpoint:
+```json
+{
+  "schemaVersion": 1,
+  "label": "OpenYellow",
+  "message": "#5",
+  "color": "yellow",
+  "logoSvg": "..."
+}
+```
+
+Пример:
+```
+GET /data/badges/2/257929475.json
+```
+
 ## Структура БД
 
 ### Таблица `authors`

@@ -42,3 +42,9 @@ GET http://localhost:3000/api/authors?search=bay
 
 ### Get author by name
 GET http://localhost:3000/api/authors/Bayselonarrend
+
+### Get badge JSON
+GET http://localhost:3000/data/badges/2/257929475.json
+
+### Get badge JSON (another repo)
+GET http://localhost:3000/data/badges/2/736878759.json

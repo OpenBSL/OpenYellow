@@ -4,6 +4,7 @@ require('dotenv').config();
 
 const reposRoutes = require('./routes/repos');
 const authorsRoutes = require('./routes/authors');
+const badgesRoutes = require('./routes/badges');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -26,6 +27,9 @@ app.get('/health', (req, res) => {
 // API Routes
 app.use('/api/repos', reposRoutes);
 app.use('/api/authors', authorsRoutes);
+
+// Badge Routes (for shields.io compatibility)
+app.use('/data/badges', badgesRoutes);
 
 // 404 handler
 app.use((req, res) => {
@@ -60,6 +64,7 @@ app.listen(PORT, () => {
     console.log('  - GET  /api/repos/:id');
     console.log('  - GET  /api/authors');
     console.log('  - GET  /api/authors/:name');
+    console.log('  - GET  /data/badges/:group/:id.json');
     console.log('');
     console.log('  Press Ctrl+C to stop');
     console.log('');
