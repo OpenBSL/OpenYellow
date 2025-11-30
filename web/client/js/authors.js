@@ -120,7 +120,7 @@ function renderAuthors(authors) {
     if (empty) empty.style.display = 'none';
     grid.style.display = 'grid';
     
-    grid.innerHTML = authors.map(author => `
+    grid.innerHTML = authors.map((author, index) => `
         <a href="${author.url}" target="_blank" class="author-card">
             <img src="${author.avatar || 'static/logo.png'}" 
                  alt="${author.username}" 
@@ -128,6 +128,10 @@ function renderAuthors(authors) {
                  onerror="this.src='static/logo.png'">
             <h3 class="author-name">${author.username}</h3>
             <div class="author-stats">
+                <div class="author-stat author-stat-place">
+                    <span class="stat-value">#${index + 1}</span>
+                    <span class="stat-label">место</span>
+                </div>
                 <div class="author-stat">
                     <span class="stat-value">${author.repos}</span>
                     <span class="stat-label">репозиториев</span>
@@ -135,10 +139,6 @@ function renderAuthors(authors) {
                 <div class="author-stat">
                     <span class="stat-value">${author.totalStars}</span>
                     <span class="stat-label">звезд</span>
-                </div>
-                <div class="author-stat">
-                    <span class="stat-value">${author.totalForks}</span>
-                    <span class="stat-label">форков</span>
                 </div>
             </div>
         </a>

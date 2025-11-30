@@ -1299,6 +1299,11 @@ img {
     white-space: nowrap;
 }
 
+.author-stat-place .stat-value {
+    font-size: 2rem;
+    color: var(--text-primary);
+}
+
 @media (max-width: 768px) {
     .authors-grid {
         grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
