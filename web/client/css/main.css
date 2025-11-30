@@ -1590,6 +1590,17 @@ img {
     padding: var(--spacing-lg);
     border-radius: var(--radius-lg);
     border: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-content {
+    flex: 1;
+    z-index: 1;
 }
 
 .welcome-banner h1 {
@@ -1602,6 +1613,21 @@ img {
     color: var(--text-secondary);
     line-height: 1.6;
     margin-bottom: var(--spacing-md);
+}
+
+.welcome-logo {
+    position: absolute;
+    right: -50px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.welcome-logo img {
+    height: 180px;
+    width: auto;
+    display: block;
 }
 
 .stats-inline {
@@ -1791,7 +1817,22 @@ img {
         max-height: none;
     }
     
+    .welcome-banner {
+        flex-direction: column;
+    }
+    
     .welcome-banner h1 {
         font-size: 1.5rem;
+    }
+    
+    .welcome-logo {
+        position: static;
+        transform: none;
+        opacity: 0.1;
+        margin-top: var(--spacing-md);
+    }
+    
+    .welcome-logo img {
+        height: 120px;
     }
 }
