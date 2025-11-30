@@ -487,12 +487,17 @@ img {
 
 /* ===== Filters Section ===== */
 .filters-section {
-    padding: var(--spacing-sm) 0;
+    padding: var(--spacing-xs) 0;
     background-color: var(--bg-secondary);
     border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 73px;
     z-index: 999;
+    transition: padding 0.3s ease;
+}
+
+.filters-section:has(.filters-collapsible.active) {
+    padding: var(--spacing-sm) 0;
 }
 
 .filters-section .container {
@@ -504,7 +509,6 @@ img {
     justify-content: space-between;
     align-items: center;
     gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-sm);
 }
 
 .filters-toggle-icon {
@@ -537,10 +541,12 @@ img {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
+    margin-top: 0;
 }
 
 .filters-collapsible.active {
     max-height: 500px;
+    margin-top: var(--spacing-sm);
 }
 
 .filters-bar {
@@ -549,7 +555,6 @@ img {
     align-items: center;
     gap: var(--spacing-md);
     flex-wrap: wrap;
-    margin-bottom: var(--spacing-sm);
 }
 
 .column-filters {
