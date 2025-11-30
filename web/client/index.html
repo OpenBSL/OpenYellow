@@ -49,52 +49,79 @@
         </div>
     </nav>
 
-    <!-- Compact Hero Section -->
-    <section class="hero-compact">
-        <div class="container">
-            <div class="hero-compact-content">
-                <div class="hero-compact-info">
-                    <img src="static/logo_side.png" alt="OpenYellow" class="hero-compact-logo">
-                    <div>
-                        <h1>OpenYellow</h1>
-                        <p>Агрегатор open-source проектов для 1С:Предприятие</p>
+    <!-- Main Content -->
+    <section class="main-content">
+        <div class="container-wide">
+            <div class="main-layout">
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <!-- Stats -->
+                    <div class="sidebar-card">
+                        <h3>Статистика</h3>
+                        <div class="stats-list">
+                            <div class="stat-item">
+                                <div class="stat-value" id="totalRepos">-</div>
+                                <div class="stat-label">Репозиториев</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" id="totalStars">-</div>
+                                <div class="stat-label">Звезд</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" id="totalAuthors">-</div>
+                                <div class="stat-label">Авторов</div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    
+                    <!-- Quick Links -->
+                    <div class="sidebar-card">
+                        <h3>Быстрый доступ</h3>
+                        <div class="quick-links">
+                            <a href="grid?filter=top" class="quick-link">
+                                <span class="quick-link-icon">★</span>
+                                <div>
+                                    <div class="quick-link-title">Индекс</div>
+                                    <div class="quick-link-desc">Топ проектов</div>
+                                </div>
+                            </a>
+                            <a href="grid?filter=new" class="quick-link">
+                                <span class="quick-link-icon">+</span>
+                                <div>
+                                    <div class="quick-link-title">Новые</div>
+                                    <div class="quick-link-desc">Свежие проекты</div>
+                                </div>
+                            </a>
+                            <a href="grid?filter=updated" class="quick-link">
+                                <span class="quick-link-icon">↻</span>
+                                <div>
+                                    <div class="quick-link-title">Активные</div>
+                                    <div class="quick-link-desc">Недавно обновленные</div>
+                                </div>
+                            </a>
+                            <a href="authors.html" class="quick-link">
+                                <span class="quick-link-icon">👤</span>
+                                <div>
+                                    <div class="quick-link-title">Авторы</div>
+                                    <div class="quick-link-desc">Разработчики</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </aside>
                 
-                <!-- Compact Stats -->
-                <div class="stats-compact">
-                    <div class="stat-compact">
-                        <div class="stat-value" id="totalRepos">-</div>
-                        <div class="stat-label">Репозиториев</div>
+                <!-- News Feed -->
+                <main class="news-feed">
+                    <h2>Новости проекта</h2>
+                    
+                    <div class="news-list" id="newsList">
+                        <div class="news-loading">
+                            <div class="spinner"></div>
+                            <p>Загрузка новостей...</p>
+                        </div>
                     </div>
-                    <div class="stat-compact">
-                        <div class="stat-value" id="totalStars">-</div>
-                        <div class="stat-label">Звезд</div>
-                    </div>
-                    <div class="stat-compact">
-                        <div class="stat-value" id="totalAuthors">-</div>
-                        <div class="stat-label">Авторов</div>
-                    </div>
-                </div>
+                </main>
             </div>
-        </div>
-    </section>
-
-    <!-- News Feed Section -->
-    <section class="news-feed">
-        <div class="container">
-            <h2 class="section-title">Новости проекта</h2>
-            
-            <div class="news-grid" id="newsGrid">
-                <div class="news-loading">
-                    <div class="spinner"></div>
-                    <p>Загрузка новостей...</p>
-                </div>
-            </div>
-            
-            <button id="loadMoreNews" class="btn btn-secondary" style="display: none; margin: var(--spacing-lg) auto 0;">
-                Загрузить еще
-            </button>
         </div>
     </section>
 

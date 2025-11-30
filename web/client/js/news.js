@@ -5,15 +5,24 @@ let hasMoreNews = true;
 let isLoadingNews = false;
 
 document.addEventListener('DOMContentLoaded', () => {
-    if (document.getElementById('newsGrid')) {
+    if (document.getElementById('newsList')) {
         loadNews();
         
-        // Load more button
-        const loadMoreBtn = document.getElementById('loadMoreNews');
-        if (loadMoreBtn) {
-            loadMoreBtn.addEventListener('click', () => {
-                currentNewsPage++;
-                loadNews(true);
+        // Infinite scroll
+        const newsList = document.getElementById('newsList');
+        if (newsList) {
+            newsList.addEventListener('scroll', () => {
+                if (isLoadingNews || !hasMoreNews) return;
+                
+                const scrollTop = newsList.scrollTop;
+                const scrollHeight = newsList.scrollHeight;
+                const clientHeight = newsList.clientHeight;
+                
+                // Load more when 200px from bottom
+                if (scrollTop + clientHeight >= scrollHeight - 200) {
+                    currentNewsPage++;
+                    loadNews(true);
+                }
             });
         }
         
@@ -28,80 +37,88 @@ async function loadNews(append = false) {
     if (isLoadingNews) return;
     
     isLoadingNews = true;
-    const grid = document.getElementById('newsGrid');
-    const loadMoreBtn = document.getElementById('loadMoreNews');
+    const list = document.getElementById('newsList');
     
     if (!append) {
-        grid.innerHTML = '<div class="news-loading"><div class="spinner"></div><p>Загрузка новостей...</p></div>';
+        list.innerHTML = '<div class="news-loading"><div class="spinner"></div><p>Загрузка новостей...</p></div>';
+    } else {
+        // Add loading indicator at bottom
+        const loadingDiv = document.createElement('div');
+        loadingDiv.className = 'news-loading-more';
+        loadingDiv.innerHTML = '<div class="spinner"></div>';
+        list.appendChild(loadingDiv);
     }
     
     try {
-        const response = await DataService.getNews(currentNewsPage, 6);
+        const response = await DataService.getNews(currentNewsPage, 10);
         
         if (!append) {
-            grid.innerHTML = '';
+            list.innerHTML = '';
         } else {
-            // Remove loading indicator if exists
-            const loading = grid.querySelector('.news-loading');
+            // Remove loading indicator
+            const loading = list.querySelector('.news-loading-more');
             if (loading) loading.remove();
         }
         
         if (response.data.length === 0 && !append) {
-            grid.innerHTML = '<div class="news-empty"><p>Пока нет новостей</p></div>';
+            list.innerHTML = '<div class="news-empty"><p>Пока нет новостей</p></div>';
             return;
         }
         
         response.data.forEach(news => {
-            const newsCard = createNewsCard(news);
-            grid.appendChild(newsCard);
+            const newsItem = createNewsItem(news);
+            list.appendChild(newsItem);
         });
         
-        // Update load more button
+        // Update hasMore flag
         hasMoreNews = response.pagination.page < response.pagination.totalPages;
-        if (loadMoreBtn) {
-            loadMoreBtn.style.display = hasMoreNews ? 'block' : 'none';
-        }
         
     } catch (error) {
         console.error('Failed to load news:', error);
-        grid.innerHTML = '<div class="news-error"><p>Ошибка загрузки новостей</p></div>';
+        if (!append) {
+            list.innerHTML = '<div class="news-error"><p>Ошибка загрузки новостей</p></div>';
+        }
     } finally {
         isLoadingNews = false;
     }
 }
 
-// Create news card
-function createNewsCard(news) {
-    const card = document.createElement('div');
-    card.className = 'news-card';
-    card.onclick = () => openNewsModal(news);
+// Create news item
+function createNewsItem(news) {
+    const item = document.createElement('div');
+    item.className = 'news-item';
+    item.onclick = () => openNewsModal(news);
     
     const date = new Date(news.created_at);
     const dateStr = date.toLocaleDateString('ru-RU', { 
         day: 'numeric', 
         month: 'long', 
-        year: 'numeric' 
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
     });
     
     // Truncate text for preview
-    const preview = news.text.length > 150 
-        ? news.text.substring(0, 150) + '...' 
+    const preview = news.text.length > 200 
+        ? news.text.substring(0, 200) + '...' 
         : news.text;
     
-    card.innerHTML = `
-        <div class="news-card-header">
-            <img src="${news.icon || 'static/logo.png'}" 
-                 alt="${news.title}" 
-                 class="news-card-icon"
-                 onerror="this.src='static/logo.png'">
-            <div class="news-card-date">${dateStr}</div>
+    item.innerHTML = `
+        <img src="${news.icon || 'static/logo.png'}" 
+             alt="${news.title}" 
+             class="news-item-icon"
+             onerror="this.src='static/logo.png'">
+        <div class="news-item-content">
+            <div class="news-item-header">
+                <h3 class="news-item-title">${news.title}</h3>
+                <div class="news-item-date">${dateStr}</div>
+            </div>
+            <p class="news-item-text">${preview}</p>
+            ${news.link ? `<span class="news-item-link">Подробнее →</span>` : ''}
         </div>
-        <h3 class="news-card-title">${news.title}</h3>
-        <p class="news-card-preview">${preview}</p>
-        <span class="news-card-link">Читать далее →</span>
     `;
     
-    return card;
+    return item;
 }
 
 // Open news modal
