@@ -15,10 +15,24 @@ let columnFilters = {
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', () => {
+    // Normalize URL: redirect grid.html to /grid
+    if (window.location.pathname.endsWith('grid.html')) {
+        const newUrl = window.location.pathname.replace('grid.html', 'grid') + window.location.search;
+        window.history.replaceState({}, '', newUrl);
+    }
+    
     // Get filter from URL (support both old and new format)
     const params = new URLSearchParams(window.location.search);
     const filterParam = params.get('filter') || params.get('data'); // data - old format
     const repoParam = params.get('repo');
+    
+    // Normalize URL parameter: use 'filter' instead of 'data'
+    if (params.get('data') && !params.get('filter')) {
+        params.delete('data');
+        params.set('filter', filterParam);
+        const newUrl = window.location.pathname + '?' + params.toString();
+        window.history.replaceState({}, '', newUrl);
+    }
     
     if (filterParam && ['top', 'new', 'updated'].includes(filterParam)) {
         currentFilter = filterParam;

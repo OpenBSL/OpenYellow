@@ -27,7 +27,7 @@
                 <a href="index.html" class="nav-link">
                     <span>Главная</span>
                 </a>
-                <a href="grid.html" class="nav-link active">
+                <a href="grid" class="nav-link active">
                     <span>Репозитории</span>
                 </a>
                 <a href="authors.html" class="nav-link">
@@ -57,19 +57,8 @@
     <!-- Filters and Search -->
     <section class="filters-section">
         <div class="container">
+            <!-- Search and Column Filters -->
             <div class="filters-bar">
-                <div class="filter-tabs">
-                    <button class="filter-tab active" data-filter="top">
-                        Индекс
-                    </button>
-                    <button class="filter-tab" data-filter="new">
-                        Новые
-                    </button>
-                    <button class="filter-tab" data-filter="updated">
-                        Обновленные
-                    </button>
-                </div>
-                
                 <div class="search-box">
                     <input 
                         type="text" 
@@ -78,26 +67,38 @@
                         class="search-input"
                     >
                 </div>
+                
+                <div class="column-filters">
+                    <select id="langFilter" class="column-filter-select">
+                        <option value="">Все языки</option>
+                    </select>
+                    
+                    <select id="licenseFilter" class="column-filter-select">
+                        <option value="">Все лицензии</option>
+                    </select>
+                    
+                    <input 
+                        type="text" 
+                        id="authorFilter" 
+                        placeholder="Фильтр по автору..."
+                        class="column-filter-input"
+                    >
+                    
+                    <button id="clearFilters" class="filter-clear-btn">Сбросить фильтры</button>
+                </div>
             </div>
             
-            <!-- Column Filters -->
-            <div class="column-filters">
-                <select id="langFilter" class="column-filter-select">
-                    <option value="">Все языки</option>
-                </select>
-                
-                <select id="licenseFilter" class="column-filter-select">
-                    <option value="">Все лицензии</option>
-                </select>
-                
-                <input 
-                    type="text" 
-                    id="authorFilter" 
-                    placeholder="Фильтр по автору..."
-                    class="column-filter-input"
-                >
-                
-                <button id="clearFilters" class="filter-clear-btn">Сбросить фильтры</button>
+            <!-- Filter Tabs -->
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="top">
+                    Индекс
+                </button>
+                <button class="filter-tab" data-filter="new">
+                    Новые
+                </button>
+                <button class="filter-tab" data-filter="updated">
+                    Обновленные
+                </button>
             </div>
         </div>
     </section>

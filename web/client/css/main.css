@@ -435,17 +435,18 @@ img {
 .filters-bar {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     gap: var(--spacing-md);
     flex-wrap: wrap;
+    margin-bottom: var(--spacing-sm);
 }
 
 .column-filters {
     display: flex;
     gap: var(--spacing-sm);
-    margin-top: var(--spacing-sm);
     flex-wrap: wrap;
     align-items: center;
+    flex: 1;
 }
 
 .column-filter-select,
@@ -491,6 +492,7 @@ img {
     display: flex;
     gap: var(--spacing-xs);
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .filter-tab {
