@@ -133,11 +133,11 @@ function renderAuthors(authors) {
                     <span class="stat-label">репозиториев</span>
                 </div>
                 <div class="author-stat">
-                    <span class="stat-value">${formatNumber(author.totalStars)}</span>
+                    <span class="stat-value">${author.totalStars}</span>
                     <span class="stat-label">звезд</span>
                 </div>
                 <div class="author-stat">
-                    <span class="stat-value">${formatNumber(author.totalForks)}</span>
+                    <span class="stat-value">${author.totalForks}</span>
                     <span class="stat-label">форков</span>
                 </div>
             </div>

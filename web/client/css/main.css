@@ -1556,8 +1556,8 @@ img {
 }
 
 .quick-link-icon {
-    font-size: 1.75rem;
-    width: 40px;
+    font-size: 2rem;
+    width: 44px;
     text-align: center;
     flex-shrink: 0;
 }
@@ -1640,8 +1640,8 @@ img {
 .community-card {
     position: relative;
     overflow: hidden;
-    padding: var(--spacing-lg);
-    min-height: 180px;
+    padding: var(--spacing-md);
+    min-height: 140px;
     display: flex;
     flex-direction: column;
     transition: var(--transition);
@@ -1654,12 +1654,12 @@ img {
 }
 
 .community-card.telegram-card {
-    border-color: #0088cc;
+    border-color: var(--accent-primary);
 }
 
 .community-card.telegram-card:hover {
-    border-color: #0088cc;
-    box-shadow: 0 4px 12px rgba(0, 136, 204, 0.3);
+    border-color: var(--accent-primary);
+    box-shadow: 0 4px 12px rgba(235, 167, 8, 0.3);
 }
 
 .community-card.boosty-card {
