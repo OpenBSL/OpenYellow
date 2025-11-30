@@ -7,6 +7,11 @@ let currentData = [];
 let allData = [];
 let searchTimeout = null;
 let currentSort = { column: null, direction: null };
+let columnFilters = {
+    lang: '',
+    license: '',
+    author: ''
+};
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', () => {
@@ -91,6 +96,51 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
+    // Column filters
+    const langFilter = document.getElementById('langFilter');
+    const licenseFilter = document.getElementById('licenseFilter');
+    const authorFilter = document.getElementById('authorFilter');
+    const clearFiltersBtn = document.getElementById('clearFilters');
+    
+    if (langFilter) {
+        langFilter.addEventListener('change', (e) => {
+            columnFilters.lang = e.target.value;
+            currentPage = 1;
+            loadRepositories(searchInput?.value || '');
+        });
+    }
+    
+    if (licenseFilter) {
+        licenseFilter.addEventListener('change', (e) => {
+            columnFilters.license = e.target.value;
+            currentPage = 1;
+            loadRepositories(searchInput?.value || '');
+        });
+    }
+    
+    if (authorFilter) {
+        authorFilter.addEventListener('input', (e) => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                columnFilters.author = e.target.value;
+                currentPage = 1;
+                loadRepositories(searchInput?.value || '');
+            }, 300);
+        });
+    }
+    
+    if (clearFiltersBtn) {
+        clearFiltersBtn.addEventListener('click', () => {
+            columnFilters = { lang: '', license: '', author: '' };
+            if (langFilter) langFilter.value = '';
+            if (licenseFilter) licenseFilter.value = '';
+            if (authorFilter) authorFilter.value = '';
+            if (searchInput) searchInput.value = '';
+            currentPage = 1;
+            loadRepositories('');
+        });
+    }
+    
     // Modal close
     document.getElementById('modalClose')?.addEventListener('click', closeModal);
     document.getElementById('modalOverlay')?.addEventListener('click', closeModal);
@@ -136,16 +186,23 @@ async function loadRepositories(searchQuery = '', highlightRepoId = null) {
     if (empty) empty.style.display = 'none';
     
     try {
-        // Fetch data
+        // Fetch data with column filters
         const result = await DataService.searchRepositories(
             searchQuery,
             currentFilter,
             currentPage,
-            currentPageSize
+            currentPageSize,
+            columnFilters
         );
         
         currentData = result.data;
         allData = result.data;
+        
+        // Populate filter dropdowns on first load
+        if (!window.filterOptionsLoaded) {
+            await populateFilterDropdowns();
+            window.filterOptionsLoaded = true;
+        }
         
         // Update page title and description
         updatePageInfo();
@@ -198,7 +255,7 @@ async function loadRepositories(searchQuery = '', highlightRepoId = null) {
 // Update page info
 function updatePageInfo() {
     const titles = {
-        top: 'Топ-500 репозиториев',
+        top: 'Индекс репозиториев',
         new: 'Новые репозитории',
         updated: 'Недавно обновленные'
     };
@@ -214,6 +271,36 @@ function updatePageInfo() {
     
     if (title) title.textContent = titles[currentFilter];
     if (description) description.textContent = descriptions[currentFilter];
+}
+
+// Populate filter dropdowns from API
+async function populateFilterDropdowns() {
+    const langFilter = document.getElementById('langFilter');
+    const licenseFilter = document.getElementById('licenseFilter');
+    
+    try {
+        const options = await DataService.getFilterOptions();
+        
+        if (langFilter && langFilter.options.length === 1) {
+            options.languages.forEach(lang => {
+                const option = document.createElement('option');
+                option.value = lang;
+                option.textContent = lang;
+                langFilter.appendChild(option);
+            });
+        }
+        
+        if (licenseFilter && licenseFilter.options.length === 1) {
+            options.licenses.forEach(license => {
+                const option = document.createElement('option');
+                option.value = license;
+                option.textContent = license;
+                licenseFilter.appendChild(option);
+            });
+        }
+    } catch (error) {
+        console.error('Failed to load filter options:', error);
+    }
 }
 
 // Render table

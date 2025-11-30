@@ -48,11 +48,17 @@ Query параметры:
 - `page` - номер страницы (по умолчанию: 1)
 - `pageSize` - размер страницы (по умолчанию: 50, макс: 100)
 - `search` - поисковый запрос
+- `lang` - фильтр по языку программирования
+- `license` - фильтр по лицензии
+- `author` - фильтр по автору (частичное совпадение)
 
 Пример:
 ```
-GET /api/repos?filter=top&page=1&pageSize=50&search=test
+GET /api/repos?filter=top&page=1&pageSize=50&search=test&lang=1C&license=MIT
 ```
+
+**GET /api/repos/filters**
+Получить доступные опции для фильтров (уникальные языки и лицензии)
 
 **GET /api/repos/stats**
 Получить общую статистику

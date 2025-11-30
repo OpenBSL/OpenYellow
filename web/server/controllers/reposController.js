@@ -7,7 +7,10 @@ exports.getRepositories = async (req, res) => {
             filter = 'top',
             page = 1,
             pageSize = 50,
-            search = ''
+            search = '',
+            lang = '',
+            license = '',
+            author = ''
         } = req.query;
 
         const limit = Math.min(parseInt(pageSize), 100);
@@ -29,6 +32,22 @@ exports.getRepositories = async (req, res) => {
             whereConditions.push('(name LIKE ? OR description LIKE ? OR author LIKE ?)');
             const searchPattern = `%${search}%`;
             params.push(searchPattern, searchPattern, searchPattern);
+        }
+
+        // Apply column filters
+        if (lang) {
+            whereConditions.push('lang = ?');
+            params.push(lang);
+        }
+
+        if (license) {
+            whereConditions.push('license = ?');
+            params.push(license);
+        }
+
+        if (author) {
+            whereConditions.push('author LIKE ?');
+            params.push(`%${author}%`);
         }
 
         const whereClause = whereConditions.length > 0 
@@ -146,6 +165,42 @@ exports.getStatistics = async (req, res) => {
         res.status(500).json({
             success: false,
             error: 'Failed to fetch statistics'
+        });
+    }
+};
+
+// Get filter options (unique values for dropdowns)
+exports.getFilterOptions = async (req, res) => {
+    try {
+        // Get unique languages
+        const [languages] = await pool.query(`
+            SELECT DISTINCT lang 
+            FROM repos 
+            WHERE lang IS NOT NULL AND lang != ''
+            ORDER BY lang
+        `);
+
+        // Get unique licenses
+        const [licenses] = await pool.query(`
+            SELECT DISTINCT license 
+            FROM repos 
+            WHERE license IS NOT NULL AND license != ''
+            ORDER BY license
+        `);
+
+        res.json({
+            success: true,
+            data: {
+                languages: languages.map(row => row.lang),
+                licenses: licenses.map(row => row.license)
+            }
+        });
+
+    } catch (error) {
+        console.error('Error fetching filter options:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Failed to fetch filter options'
         });
     }
 };

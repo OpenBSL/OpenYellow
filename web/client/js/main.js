@@ -92,9 +92,9 @@ class DataService {
     }
     
     // Get repositories by filter
-    static async getRepositories(filter = 'top') {
+    static async getRepositories(filter = 'top', pageSize = 100) {
         if (this.useAPI) {
-            const response = await this.fetchAPI(`/repos?filter=${filter}&pageSize=500`);
+            const response = await this.fetchAPI(`/repos?filter=${filter}&pageSize=${pageSize}`);
             // Transform API response to match old format
             return {
                 data: response.data,
@@ -123,7 +123,7 @@ class DataService {
     }
     
     // Search repositories (will use API when available)
-    static async searchRepositories(query, filter = 'top', page = 1, pageSize = 50) {
+    static async searchRepositories(query, filter = 'top', page = 1, pageSize = 50, columnFilters = {}) {
         if (this.useAPI) {
             const params = new URLSearchParams({
                 search: query,
@@ -131,6 +131,12 @@ class DataService {
                 page,
                 pageSize
             });
+            
+            // Add column filters
+            if (columnFilters.lang) params.append('lang', columnFilters.lang);
+            if (columnFilters.license) params.append('license', columnFilters.license);
+            if (columnFilters.author) params.append('author', columnFilters.author);
+            
             const response = await this.fetchAPI(`/repos?${params}`);
             // Transform API response to match expected format
             return {
@@ -145,6 +151,20 @@ class DataService {
         // Client-side search fallback
         const data = await this.getRepositories(filter);
         return this.clientSideSearch(data, query, page, pageSize);
+    }
+    
+    // Get filter options
+    static async getFilterOptions() {
+        if (this.useAPI) {
+            const response = await this.fetchAPI('/repos/filters');
+            return response.data;
+        }
+        
+        // Fallback: extract from repositories
+        const data = await this.getRepositories('top');
+        const languages = [...new Set(data.data.map(r => r.lang).filter(Boolean))].sort();
+        const licenses = [...new Set(data.data.map(r => r.license).filter(Boolean))].sort();
+        return { languages, licenses };
     }
     
     // Client-side search implementation

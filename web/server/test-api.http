@@ -13,6 +13,21 @@ GET http://localhost:3000/api/repos?filter=updated&page=1&pageSize=50
 ### Search repositories
 GET http://localhost:3000/api/repos?search=test&page=1&pageSize=20
 
+### Filter by language
+GET http://localhost:3000/api/repos?filter=top&lang=1C&page=1&pageSize=50
+
+### Filter by license
+GET http://localhost:3000/api/repos?filter=top&license=MIT&page=1&pageSize=50
+
+### Filter by author
+GET http://localhost:3000/api/repos?filter=top&author=bay&page=1&pageSize=50
+
+### Combined filters
+GET http://localhost:3000/api/repos?filter=top&lang=1C&license=MIT&author=bay&page=1&pageSize=50
+
+### Get filter options
+GET http://localhost:3000/api/repos/filters
+
 ### Get repository by ID
 GET http://localhost:3000/api/repos/736878759
 
