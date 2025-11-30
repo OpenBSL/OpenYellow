@@ -554,8 +554,9 @@ function createLangBadge(lang) {
 function createBadgeMarkdown(repo) {
     if (!repo.id || !repo.place) return '-';
     
-    const group = repo.group || 2;
-    const markdown = `[![OpenYellow](https://img.shields.io/endpoint?url=https://openyellow.org/data/badges/${group}/${repo.id}.json)](https://openyellow.org/grid?data=top&repo=${repo.id})`;
+    // New format: direct SVG badge (recommended)
+    const apiUrl = window.CONFIG?.dataSource?.apiBaseURL?.replace('/api', '') || 'https://openyellow.openintegrations.dev';
+    const markdown = `[![OpenYellow](${apiUrl}/data/badges/${repo.id}.svg)](${apiUrl}/grid?filter=top&repo=${repo.id})`;
     
     return `<input type="text" class="badge-input" value="${markdown.replace(/"/g, '&quot;')}" readonly onclick="event.stopPropagation(); copyBadgeToClipboard(this);" title="Кликните для копирования">`;
 }

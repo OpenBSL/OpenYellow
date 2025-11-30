@@ -43,7 +43,13 @@ GET http://localhost:3000/api/authors?search=bay
 ### Get author by name
 GET http://localhost:3000/api/authors/Bayselonarrend
 
-### Get badge JSON
+### Get badge SVG (direct)
+GET http://localhost:3000/data/badges/257929475.svg
+
+### Get badge SVG (another repo)
+GET http://localhost:3000/data/badges/736878759.svg
+
+### Get badge JSON (shields.io compatibility)
 GET http://localhost:3000/data/badges/2/257929475.json
 
 ### Get badge JSON (another repo)

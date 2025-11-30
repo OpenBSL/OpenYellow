@@ -81,27 +81,31 @@ Query параметры:
 
 ### Badges
 
-**GET /data/badges/:group/:id.json**
+**GET /data/badges/:id.svg** ⭐ Рекомендуется
+Получить готовый SVG badge (прямая генерация)
+
+Параметры:
+- `:id` - ID репозитория
+
+Возвращает готовый SVG badge с актуальным местом в рейтинге.
+
+Пример использования в README:
+```markdown
+[![OpenYellow](https://openyellow.openintegrations.dev/data/badges/257929475.svg)](https://openyellow.openintegrations.dev/grid?filter=top&repo=257929475)
+```
+
+**GET /data/badges/:group/:id.json** (для обратной совместимости)
 Получить badge JSON для shields.io
 
 Параметры:
 - `:group` - группа (для совместимости, обычно 2)
 - `:id` - ID репозитория
 
-Возвращает JSON в формате shields.io endpoint:
-```json
-{
-  "schemaVersion": 1,
-  "label": "OpenYellow",
-  "message": "#5",
-  "color": "yellow",
-  "logoSvg": "..."
-}
-```
+Возвращает JSON в формате shields.io endpoint.
 
-Пример:
-```
-GET /data/badges/2/257929475.json
+Пример (старый формат):
+```markdown
+[![OpenYellow](https://img.shields.io/endpoint?url=https://openyellow.openintegrations.dev/data/badges/2/257929475.json)](https://openyellow.openintegrations.dev/grid?filter=top&repo=257929475)
 ```
 
 ## Структура БД

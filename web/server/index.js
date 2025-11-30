@@ -64,6 +64,7 @@ app.listen(PORT, () => {
     console.log('  - GET  /api/repos/:id');
     console.log('  - GET  /api/authors');
     console.log('  - GET  /api/authors/:name');
+    console.log('  - GET  /data/badges/:id.svg');
     console.log('  - GET  /data/badges/:group/:id.json');
     console.log('');
     console.log('  Press Ctrl+C to stop');
