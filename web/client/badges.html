@@ -98,9 +98,6 @@
                         ⭐ <strong>Место в рейтинге</strong> - текущая позиция в индексе
                     </p>
                     <p style="margin-bottom: var(--spacing-md); color: var(--text-secondary);">
-                        📈 <strong>Динамика</strong> - изменение позиции (↑ вверх, ↓ вниз)
-                    </p>
-                    <p style="margin-bottom: var(--spacing-md); color: var(--text-secondary);">
                         🔗 <strong>Ссылка</strong> - клик по значку ведет на страницу репозитория в OpenYellow
                     </p>
                     <p style="margin-top: var(--spacing-lg); color: var(--text-secondary);">
@@ -132,12 +129,22 @@
             <h2 class="section-title" style="margin-top: var(--spacing-xl);">Пример разметки</h2>
             
             <div class="badge-example">
-                <h3>Markdown для README.md</h3>
+                <h3>Markdown для README.md (рекомендуется)</h3>
                 <div class="badge-code">
-[![OpenYellow](https://img.shields.io/endpoint?url=https://openyellow.org/data/badges/2/736878759.json)](https://openyellow.org/grid?data=top&repo=736878759)
+[![OpenYellow](https://openyellow.openintegrations.dev/data/badges/736878759.svg)](https://openyellow.openintegrations.dev/grid?filter=top&repo=736878759)
                 </div>
                 <p style="color: var(--text-secondary); margin-top: var(--spacing-md); font-size: 0.875rem;">
-                    Где <code>736878759</code> - это ID вашего репозитория
+                    Где <code>736878759</code> - это ID вашего репозитория. Значок генерируется динамически в формате SVG.
+                </p>
+            </div>
+            
+            <div class="badge-example" style="margin-top: var(--spacing-lg);">
+                <h3>Старый формат (для совместимости)</h3>
+                <div class="badge-code">
+[![OpenYellow](https://img.shields.io/endpoint?url=https://openyellow.openintegrations.dev/data/badges/736878759.json)](https://openyellow.openintegrations.dev/grid?filter=top&repo=736878759)
+                </div>
+                <p style="color: var(--text-secondary); margin-top: var(--spacing-md); font-size: 0.875rem;">
+                    Использует shields.io для отображения. Работает, но новый формат предпочтительнее.
                 </p>
             </div>
 

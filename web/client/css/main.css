@@ -1970,6 +1970,11 @@ img {
         position: static;
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        order: 2;
+    }
+    
+    .main-area {
+        order: 1;
     }
     
     .news-list {
@@ -1985,14 +1990,62 @@ img {
     }
     
     .welcome-logo {
-        position: static;
-        transform: none;
-        opacity: 0.1;
-        margin-top: var(--spacing-md);
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .container-wide {
+        padding: 0 var(--spacing-sm);
     }
     
-    .welcome-logo img {
-        height: 120px;
+    .sidebar {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .sidebar-card,
+    .community-card {
+        margin: 0;
+    }
+    
+    .welcome-banner {
+        padding: var(--spacing-md);
+    }
+    
+    .welcome-banner h1 {
+        font-size: 1.25rem;
+    }
+    
+    .welcome-banner p {
+        font-size: 0.875rem;
+    }
+    
+    .stats-inline {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+    
+    .stat-separator {
+        display: none;
+    }
+    
+    .news-item {
+        padding: var(--spacing-md);
+    }
+    
+    .news-item-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .news-item-title {
+        font-size: 1rem;
+    }
+    
+    .news-item-text {
+        font-size: 0.8125rem;
     }
 }
 
