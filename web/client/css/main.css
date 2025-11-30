@@ -161,6 +161,19 @@ img {
     color: var(--accent-primary);
 }
 
+.nav-link-icon {
+    padding: var(--spacing-xs);
+}
+
+.nav-link-icon svg {
+    display: block;
+    transition: var(--transition);
+}
+
+.nav-link-icon:hover svg {
+    transform: scale(1.1);
+}
+
 .nav-toggle {
     display: none;
     flex-direction: column;
@@ -1621,6 +1634,79 @@ img {
 .resource-desc {
     font-size: 0.7rem;
     color: var(--text-muted);
+}
+
+/* ===== Community Cards ===== */
+.community-card {
+    position: relative;
+    overflow: hidden;
+    padding: var(--spacing-lg);
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.community-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.community-card.telegram-card {
+    border-color: #0088cc;
+}
+
+.community-card.telegram-card:hover {
+    border-color: #0088cc;
+    box-shadow: 0 4px 12px rgba(0, 136, 204, 0.3);
+}
+
+.community-card.boosty-card {
+    border-color: #F15F2C;
+}
+
+.community-card.boosty-card:hover {
+    border-color: #F15F2C;
+    box-shadow: 0 4px 12px rgba(241, 95, 44, 0.3);
+}
+
+.community-card-content {
+    position: relative;
+    z-index: 1;
+}
+
+.community-card h3 {
+    font-size: 1.125rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.community-card p {
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+}
+
+.community-card-link {
+    color: var(--accent-primary);
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.community-card-logo {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    width: 120px;
+    height: 120px;
+    opacity: 0.15;
+    pointer-events: none;
+    object-fit: contain;
+    object-position: top right;
 }
 
 /* ===== Main Area ===== */
