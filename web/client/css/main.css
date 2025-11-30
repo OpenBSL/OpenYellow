@@ -1139,17 +1139,21 @@ img {
         border: none;
         background: transparent;
         padding: 0;
+        max-width: 100%;
+        overflow-x: hidden;
     }
     
     .table-section .container {
         padding: 0 var(--spacing-sm);
         max-width: 100vw;
         overflow-x: hidden;
+        box-sizing: border-box;
     }
     
     .repos-table {
         min-width: 0;
         width: 100%;
+        max-width: 100%;
     }
     
     .repos-table thead {
@@ -1161,6 +1165,7 @@ img {
         display: block;
         width: 100%;
         max-width: 100%;
+        overflow-x: hidden;
     }
     
     .repos-table tr {
@@ -1174,7 +1179,7 @@ img {
         padding: var(--spacing-md);
         cursor: pointer;
         transition: var(--transition);
-        width: 100%;
+        width: calc(100% - 2px);
         max-width: 100%;
         box-sizing: border-box;
         overflow: hidden;
@@ -1248,6 +1253,8 @@ img {
         color: var(--text-secondary);
         line-height: 1.4;
         width: 100%;
+        max-width: 100%;
+        overflow: hidden;
     }
     
     .repos-table .repo-description-cell {
@@ -1257,9 +1264,11 @@ img {
         overflow: hidden;
         word-wrap: break-word;
         overflow-wrap: break-word;
+        word-break: break-word;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
     }
     
     /* Author column */
