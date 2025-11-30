@@ -64,11 +64,11 @@ exports.getRepositories = async (req, res) => {
             }
         }
 
-        // Apply search
+        // Apply search (including tags)
         if (search) {
-            whereConditions.push('(name LIKE ? OR description LIKE ? OR author LIKE ?)');
+            whereConditions.push('(name LIKE ? OR description LIKE ? OR author LIKE ? OR tags LIKE ?)');
             const searchPattern = `%${search}%`;
-            params.push(searchPattern, searchPattern, searchPattern);
+            params.push(searchPattern, searchPattern, searchPattern, searchPattern);
         }
 
         // Apply column filters
@@ -111,7 +111,7 @@ exports.getRepositories = async (req, res) => {
             query = `
                 SELECT 
                     id, name, description, author, authorUrl, url, pic,
-                    stars, forks, lang, license, createddate, updateddate, isFork,
+                    stars, forks, lang, license, createddate, updateddate, isFork, tags,
                     (SELECT COUNT(*) + 1 
                      FROM repos r2 
                      WHERE (r2.stars > r1.stars)
@@ -128,7 +128,7 @@ exports.getRepositories = async (req, res) => {
             query = `
                 SELECT 
                     id, name, description, author, authorUrl, url, pic,
-                    stars, forks, lang, license, createddate, updateddate, isFork
+                    stars, forks, lang, license, createddate, updateddate, isFork, tags
                 FROM repos 
                 ${whereClause}
                 ORDER BY ${orderBy}

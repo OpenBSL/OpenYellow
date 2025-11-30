@@ -1568,7 +1568,7 @@ img {
 }
 
 .quick-link-icon-plus {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     font-weight: 300;
     line-height: 1;
 }
@@ -1994,4 +1994,39 @@ img {
     .welcome-logo img {
         height: 120px;
     }
+}
+
+
+/* ===== Repository Tags ===== */
+.repo-tags-block {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    margin: var(--spacing-md) 0;
+    padding: var(--spacing-sm) 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.repo-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    flex: 1;
+}
+
+.repo-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    transition: var(--transition);
+}
+
+.repo-tag:hover {
+    background-color: var(--bg-hover);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
 }

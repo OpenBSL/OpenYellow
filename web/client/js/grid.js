@@ -690,6 +690,19 @@ function openModal(repo) {
         licenseBlock.style.display = 'none';
     }
     
+    // Tags
+    const tagsBlock = document.getElementById('repoTagsBlock');
+    const tagsContainer = document.getElementById('repoTags');
+    if (repo.tags) {
+        tagsBlock.style.display = 'flex';
+        const tagsArray = repo.tags.split(',').map(tag => tag.trim()).filter(tag => tag);
+        tagsContainer.innerHTML = tagsArray.map(tag => 
+            `<span class="repo-tag">${tag}</span>`
+        ).join('');
+    } else {
+        tagsBlock.style.display = 'none';
+    }
+    
     // Show modal
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
