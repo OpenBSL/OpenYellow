@@ -10,7 +10,8 @@ let currentSort = { column: null, direction: null };
 let columnFilters = {
     lang: '',
     license: '',
-    author: ''
+    author: '',
+    excludeForks: false
 };
 
 // Initialize page

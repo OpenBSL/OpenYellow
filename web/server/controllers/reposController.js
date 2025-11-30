@@ -10,7 +10,8 @@ exports.getRepositories = async (req, res) => {
             search = '',
             lang = '',
             license = '',
-            author = ''
+            author = '',
+            excludeForks = 'false'
         } = req.query;
 
         const limit = Math.min(parseInt(pageSize), 100);
@@ -50,6 +51,11 @@ exports.getRepositories = async (req, res) => {
             params.push(`%${author}%`);
         }
 
+        // Exclude forks if requested
+        if (excludeForks === 'true') {
+            whereConditions.push('(isFork IS NULL OR isFork = 0)');
+        }
+
         const whereClause = whereConditions.length > 0 
             ? `WHERE ${whereConditions.join(' AND ')}` 
             : '';
@@ -68,7 +74,7 @@ exports.getRepositories = async (req, res) => {
             query = `
                 SELECT 
                     id, name, description, author, authorUrl, url, pic,
-                    stars, forks, lang, license, createddate, updateddate,
+                    stars, forks, lang, license, createddate, updateddate, isFork,
                     (SELECT COUNT(*) + 1 FROM repos r2 WHERE r2.stars > r1.stars) as place
                 FROM repos r1
                 ${whereClause}
@@ -79,7 +85,7 @@ exports.getRepositories = async (req, res) => {
             query = `
                 SELECT 
                     id, name, description, author, authorUrl, url, pic,
-                    stars, forks, lang, license, createddate, updateddate
+                    stars, forks, lang, license, createddate, updateddate, isFork
                 FROM repos 
                 ${whereClause}
                 ORDER BY ${orderBy}

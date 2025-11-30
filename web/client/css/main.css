@@ -470,6 +470,23 @@ img {
     max-width: 250px;
 }
 
+.filter-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.filter-checkbox {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: var(--accent-primary);
+}
+
 .filter-clear-btn {
     padding: var(--spacing-xs) var(--spacing-md);
     background-color: var(--bg-tertiary);
@@ -677,6 +694,15 @@ img {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.fork-icon {
+    display: inline-block;
+    margin-left: 4px;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    vertical-align: middle;
+    cursor: help;
 }
 
 .repo-description-cell {
