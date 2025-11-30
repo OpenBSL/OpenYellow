@@ -1010,11 +1010,11 @@ img {
 .modal-content {
     position: relative;
     max-width: 700px;
-    margin: 5vh auto;
+    margin: 10vh auto;
     background-color: var(--bg-secondary);
     border-radius: var(--radius-lg);
     padding: var(--spacing-xl);
-    max-height: 90vh;
+    max-height: 80vh;
     overflow-y: auto;
     box-shadow: var(--shadow-lg);
     border: 1px solid var(--border-color);
