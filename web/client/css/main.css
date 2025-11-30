@@ -2125,6 +2125,7 @@ img {
 .welcome-content {
     flex: 1;
     z-index: 1;
+    padding-right: 200px;
 }
 
 .welcome-banner h1 {
@@ -2342,6 +2343,10 @@ img {
     .welcome-banner {
         grid-area: welcome;
         flex-direction: column;
+    }
+    
+    .welcome-content {
+        padding-right: 0;
     }
     
     .welcome-banner h1 {
