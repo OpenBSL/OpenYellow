@@ -16,6 +16,23 @@ let columnFilters = {
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', () => {
+    // Filters toggle
+    const filtersToggle = document.getElementById('filtersToggle');
+    const filtersCollapsible = document.getElementById('filtersCollapsible');
+    
+    if (filtersToggle && filtersCollapsible) {
+        // Start collapsed on mobile, expanded on desktop
+        if (window.innerWidth > 768) {
+            filtersCollapsible.classList.add('active');
+            filtersToggle.classList.add('active');
+        }
+        
+        filtersToggle.addEventListener('click', () => {
+            filtersToggle.classList.toggle('active');
+            filtersCollapsible.classList.toggle('active');
+        });
+    }
+    
     // Get filter from URL (support both old and new format)
     const params = new URLSearchParams(window.location.search);
     const filterParam = params.get('filter') || params.get('data'); // data - old format

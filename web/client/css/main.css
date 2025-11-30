@@ -488,6 +488,47 @@ img {
     max-width: 95%;
 }
 
+.filters-toggle {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+}
+
+.filters-toggle:hover {
+    background-color: var(--bg-hover);
+    border-color: var(--accent-primary);
+}
+
+.filters-toggle-icon {
+    transition: transform 0.3s ease;
+    font-size: 0.75rem;
+}
+
+.filters-toggle.active .filters-toggle-icon {
+    transform: rotate(180deg);
+}
+
+.filters-collapsible {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.filters-collapsible.active {
+    max-height: 500px;
+}
+
 .filters-bar {
     display: flex;
     justify-content: space-between;
@@ -534,13 +575,51 @@ img {
     font-size: 0.875rem;
     cursor: pointer;
     user-select: none;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+}
+
+.filter-checkbox-label:hover {
+    background-color: var(--bg-hover);
+    border-color: var(--accent-primary);
 }
 
 .filter-checkbox {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     cursor: pointer;
     accent-color: var(--accent-primary);
+    background-color: var(--bg-primary);
+    border: 2px solid var(--border-color);
+    border-radius: 3px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    transition: var(--transition);
+}
+
+.filter-checkbox:hover {
+    border-color: var(--accent-primary);
+}
+
+.filter-checkbox:checked {
+    background-color: var(--accent-primary);
+    border-color: var(--accent-primary);
+}
+
+.filter-checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--bg-primary);
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .filter-clear-btn {
@@ -1052,22 +1131,105 @@ img {
         max-width: 100%;
     }
     
-    .repos-table {
-        font-size: 0.875rem;
+    /* Hide table, show card view */
+    .table-container {
+        border: none;
+        background: transparent;
     }
     
-    .repos-table th,
+    .repos-table thead {
+        display: none;
+    }
+    
+    .repos-table,
+    .repos-table tbody,
+    .repos-table tr {
+        display: block;
+    }
+    
+    .repos-table tr {
+        margin-bottom: var(--spacing-md);
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        padding: var(--spacing-md);
+        cursor: pointer;
+        transition: var(--transition);
+    }
+    
+    .repos-table tr:hover {
+        border-color: var(--accent-primary);
+        box-shadow: var(--shadow);
+    }
+    
     .repos-table td {
-        padding: var(--spacing-sm);
+        display: block;
+        text-align: left !important;
+        padding: var(--spacing-xs) 0;
+        border: none;
     }
     
-    .repo-description-cell {
-        max-width: 200px;
+    /* Hide less important columns on mobile */
+    .repos-table td:nth-child(3), /* Author */
+    .repos-table td:nth-child(5), /* Forks */
+    .repos-table td:nth-child(7), /* License */
+    .repos-table td:nth-child(8), /* Created */
+    .repos-table td:nth-child(9), /* Updated */
+    .repos-table td:nth-child(10) /* Badge */ {
+        display: none;
+    }
+    
+    /* Style visible columns */
+    .repos-table td:nth-child(1) { /* Place */
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--accent-primary);
+        margin-bottom: var(--spacing-xs);
+    }
+    
+    .repos-table td:nth-child(2) { /* Name */
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .repos-table td:nth-child(2) .repo-name-cell {
+        gap: var(--spacing-sm);
+    }
+    
+    .repos-table td:nth-child(2) .repo-avatar-small {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .repos-table td:nth-child(4) { /* Stars */
+        display: inline-block;
+        margin-right: var(--spacing-md);
+    }
+    
+    .repos-table td:nth-child(4)::before {
+        content: '⭐ ';
+    }
+    
+    .repos-table td:nth-child(6) { /* Language */
+        display: inline-block;
     }
     
     .modal-content {
         margin: 2vh var(--spacing-md);
         padding: var(--spacing-md);
+    }
+    
+    .page-header {
+        padding: var(--spacing-md) 0;
+    }
+    
+    .page-header h1 {
+        font-size: 1.75rem;
+    }
+    
+    .filters-section {
+        top: 57px;
     }
 }
 
@@ -1975,6 +2137,14 @@ img {
     
     .main-area {
         order: 1;
+    }
+    
+    .welcome-banner {
+        order: 1;
+    }
+    
+    .news-feed {
+        order: 3;
     }
     
     .news-list {
