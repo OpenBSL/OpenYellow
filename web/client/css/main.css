@@ -1160,7 +1160,9 @@ img {
     }
     
     .repos-table tr {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
         margin-bottom: var(--spacing-md);
         background-color: var(--bg-secondary);
         border: 1px solid var(--border-color);
@@ -1169,7 +1171,6 @@ img {
         cursor: pointer;
         transition: var(--transition);
         width: 100%;
-        overflow: hidden;
     }
     
     .repos-table tr:hover {
@@ -1178,37 +1179,41 @@ img {
     }
     
     .repos-table td {
-        display: none;
+        display: none !important;
         padding: 0;
         border: none;
         text-align: left !important;
-        max-width: 100%;
-        box-sizing: border-box;
     }
     
-    /* Row 1: Name with avatar (always first or second) */
-    .repos-table td:nth-child(1),
-    .repos-table td:nth-child(2) {
-        display: inline-block;
-        vertical-align: middle;
+    /* Mobile card layout - works for all filters */
+    /* First visible column (Place for "top", Name for others) */
+    .repos-table td:first-child {
+        display: flex !important;
+        align-items: center;
+        gap: var(--spacing-sm);
     }
     
-    /* Place number (only in "top" filter - first column) */
-    .repos-table td:nth-child(1):not(:empty) {
+    /* If first column is Place (has only text, no nested elements) */
+    .repos-table td:first-child:not(:has(.repo-name-cell)) {
         font-size: 1.25rem;
         font-weight: 700;
         color: var(--accent-primary);
         line-height: 1;
-        margin-right: var(--spacing-sm);
+        flex-shrink: 0;
+        width: auto;
     }
     
-    /* Name column */
-    .repos-table td:nth-child(1) .repo-name-cell,
-    .repos-table td:nth-child(2) .repo-name-cell {
-        display: flex;
+    /* Name column - second for "top", first for others */
+    .repos-table td:has(.repo-name-cell) {
+        display: flex !important;
+        flex: 1;
+        min-width: 0;
+    }
+    
+    .repos-table .repo-name-cell {
         gap: var(--spacing-sm);
         align-items: center;
-        max-width: calc(100vw - 4rem);
+        width: 100%;
     }
     
     .repos-table .repo-avatar-small {
@@ -1223,34 +1228,20 @@ img {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        flex: 1;
-        min-width: 0;
     }
     
-    /* Row 2: Author + Stars */
-    .repos-table td:nth-child(3),
-    .repos-table td:nth-child(4) {
-        display: inline-block;
-        font-size: 0.8125rem;
-        color: var(--text-secondary);
-        margin-top: var(--spacing-xs);
-        margin-right: var(--spacing-md);
-    }
-    
-    .repos-table td:nth-child(4)::before {
-        content: '⭐ ';
-        margin-right: 2px;
-    }
-    
-    /* Row 3: Description */
-    .repos-table td:nth-child(2) .repo-description-cell,
-    .repos-table td:nth-child(3) .repo-description-cell {
-        display: block;
+    /* Description column */
+    .repos-table td:has(.repo-description-cell) {
+        display: block !important;
         font-size: 0.8125rem;
         color: var(--text-secondary);
         line-height: 1.4;
-        margin-top: var(--spacing-sm);
+        width: 100%;
+    }
+    
+    .repos-table .repo-description-cell {
         max-width: 100%;
+        white-space: normal;
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
@@ -1258,35 +1249,45 @@ img {
         -webkit-box-orient: vertical;
     }
     
-    .modal {
-        position: fixed;
-        overflow: hidden;
+    /* Author column */
+    .repos-table td:has(.author-cell) {
+        display: inline-flex !important;
+        align-items: center;
+        font-size: 0.8125rem;
+        color: var(--text-secondary);
+        margin-right: var(--spacing-md);
+    }
+    
+    /* Stars column - find by checking if it's a number after author */
+    .repos-table td:has(.author-cell) + td {
+        display: inline-flex !important;
+        align-items: center;
+        font-size: 0.8125rem;
+        color: var(--text-secondary);
+    }
+    
+    .repos-table td:has(.author-cell) + td::before {
+        content: '⭐ ';
+        margin-right: 2px;
     }
     
     .modal-content {
         margin: 0;
         padding: var(--spacing-md);
-        padding-top: calc(var(--spacing-xl) + var(--spacing-md));
-        max-width: 100vw;
-        width: 100vw;
-        height: 100vh;
+        max-width: 100%;
+        width: 100%;
+        height: 100%;
         max-height: 100vh;
         border-radius: 0;
         border: none;
-        box-sizing: border-box;
-        overflow-y: auto;
-        overflow-x: hidden;
     }
     
     .modal-close {
-        position: fixed;
         top: var(--spacing-sm);
         right: var(--spacing-sm);
-        width: 40px;
-        height: 40px;
+        width: 36px;
+        height: 36px;
         font-size: 1.75rem;
-        z-index: 10;
-        background-color: var(--bg-tertiary);
     }
     
     .repo-header {
@@ -1300,18 +1301,6 @@ img {
         height: 60px;
     }
     
-    .repo-title-block h2 {
-        font-size: 1.25rem;
-        word-break: break-word;
-        overflow-wrap: break-word;
-    }
-    
-    .repo-description {
-        word-break: break-word;
-        overflow-wrap: break-word;
-        max-width: 100%;
-    }
-    
     .repo-stats {
         flex-direction: column;
         gap: var(--spacing-sm);
@@ -1320,15 +1309,6 @@ img {
     .repo-dates {
         flex-direction: column;
         gap: var(--spacing-xs);
-    }
-    
-    .repo-actions {
-        flex-wrap: wrap;
-    }
-    
-    .repo-actions .btn {
-        width: 100%;
-        text-align: center;
     }
     
     .page-header {
