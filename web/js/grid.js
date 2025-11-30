@@ -21,6 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Set active filter tab
     document.querySelectorAll('.filter-tab').forEach(tab => {
+        // Remove active class from all tabs first
+        tab.classList.remove('active');
+        
+        // Add active class only to current filter
         if (tab.dataset.filter === currentFilter) {
             tab.classList.add('active');
         }
@@ -328,7 +332,7 @@ function getColumns() {
             }
         });
         baseColumns.push({
-            header: '<span class="badge-help" title="Markdown разметка значка для README">Значок ?</span>',
+            header: '<a href="badges.html" class="badge-help-link" title="Markdown разметка значка для README" onclick="event.stopPropagation()">Значок ?</a>',
             field: 'badge',
             sortable: false,
             render: (repo) => createBadgeMarkdown(repo)
@@ -411,7 +415,43 @@ function createBadgeMarkdown(repo) {
     const group = repo.group || 2;
     const markdown = `[![OpenYellow](https://img.shields.io/endpoint?url=https://openyellow.org/data/badges/${group}/${repo.id}.json)](https://openyellow.org/grid?data=top&repo=${repo.id})`;
     
-    return `<input type="text" class="badge-input" value="${markdown.replace(/"/g, '&quot;')}" readonly onclick="this.select()" title="Кликните для копирования">`;
+    return `<input type="text" class="badge-input" value="${markdown.replace(/"/g, '&quot;')}" readonly onclick="event.stopPropagation(); copyBadgeToClipboard(this);" title="Кликните для копирования">`;
+}
+
+// Copy badge to clipboard
+window.copyBadgeToClipboard = async function(input) {
+    try {
+        await navigator.clipboard.writeText(input.value);
+        showCopyNotification(input);
+    } catch (err) {
+        // Fallback for older browsers
+        input.select();
+        document.execCommand('copy');
+        showCopyNotification(input);
+    }
+};
+
+// Show copy notification
+function showCopyNotification(element) {
+    // Create notification
+    const notification = document.createElement('div');
+    notification.className = 'copy-notification';
+    notification.textContent = '✓ Скопировано!';
+    
+    // Position near the clicked element
+    const rect = element.getBoundingClientRect();
+    notification.style.position = 'fixed';
+    notification.style.left = rect.left + 'px';
+    notification.style.top = (rect.top - 40) + 'px';
+    
+    document.body.appendChild(notification);
+    
+    // Animate and remove
+    setTimeout(() => notification.classList.add('show'), 10);
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 300);
+    }, 2000);
 }
 
 // Sort data

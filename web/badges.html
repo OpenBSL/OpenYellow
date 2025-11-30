@@ -59,16 +59,16 @@
             
             <!-- Main Info -->
             <div class="badge-preview">
-                <h2>Значки рейтинга OpenYellow</h2>
-                <p style="color: var(--text-secondary); margin-bottom: var(--spacing-lg);">
-                    Каждый репозиторий из Топ-500 имеет уникальный значок, показывающий его позицию в рейтинге
+                <img src="static/badges.png" alt="OpenYellow Badges" style="width: 50%; display: block; margin: 0 auto;">
+                
+                <p style="color: var(--text-secondary); margin-top: var(--spacing-lg); max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.8;">
+                    Если вы - автор проекта, который находится в ТОП-500, то можете помочь порталу OpenYellow, использовав наш значок (badge) в своем репозитории. Он будет всегда показывать актуальную позицию вашего проекта в рейтинге, а при нажатии - перенаправлять на страницу ТОП-500 с фокусировкой на необходимой строке таблицы.
                 </p>
-                
-                <div class="badge-image">
-                    <img src="static/topbadges.png" alt="OpenYellow Badge" style="max-width: 100%;">
-                </div>
-                
-                <h3 style="margin-top: var(--spacing-lg);">Как получить значок для своего репозитория?</h3>
+            </div>
+
+            <!-- How to Get Badge -->
+            <div class="badge-preview" style="margin-top: var(--spacing-xl);">
+                <h2>Как получить значок для своего репозитория?</h2>
                 <div style="text-align: left; max-width: 700px; margin: var(--spacing-lg) auto 0;">
                     <p style="margin-bottom: var(--spacing-md); color: var(--text-secondary);">
                         1. Откройте <a href="grid.html?data=top" style="color: var(--accent-primary);">Топ-500 репозиториев</a>
@@ -83,19 +83,6 @@
                         4. Вставьте её в README.md вашего репозитория
                     </p>
                 </div>
-            </div>
-
-            <!-- Example -->
-            <h2 class="section-title">Пример разметки</h2>
-            
-            <div class="badge-example">
-                <h3>Markdown для README.md</h3>
-                <div class="badge-code">
-[![OpenYellow](https://img.shields.io/endpoint?url=https://openyellow.org/data/badges/2/736878759.json)](https://openyellow.org/grid?data=top&repo=736878759)
-                </div>
-                <p style="color: var(--text-secondary); margin-top: var(--spacing-md); font-size: 0.875rem;">
-                    Где <code>736878759</code> - это ID вашего репозитория
-                </p>
             </div>
 
             <!-- Features -->
@@ -134,6 +121,19 @@
                         ✓ Показывает, что проект - часть 1С open-source сообщества
                     </p>
                 </div>
+            </div>
+
+            <!-- Example -->
+            <h2 class="section-title" style="margin-top: var(--spacing-xl);">Пример разметки</h2>
+            
+            <div class="badge-example">
+                <h3>Markdown для README.md</h3>
+                <div class="badge-code">
+[![OpenYellow](https://img.shields.io/endpoint?url=https://openyellow.org/data/badges/2/736878759.json)](https://openyellow.org/grid?data=top&repo=736878759)
+                </div>
+                <p style="color: var(--text-secondary); margin-top: var(--spacing-md); font-size: 0.875rem;">
+                    Где <code>736878759</code> - это ID вашего репозитория
+                </p>
             </div>
 
         </div>

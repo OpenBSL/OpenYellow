@@ -1208,6 +1208,18 @@ img {
     border-bottom: 1px dotted var(--text-secondary);
 }
 
+.badge-help-link {
+    color: var(--text-secondary);
+    border-bottom: 1px dotted var(--text-secondary);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.badge-help-link:hover {
+    color: var(--accent-primary);
+    border-bottom-color: var(--accent-primary);
+}
+
 /* ===== Highlighted Row ===== */
 .highlighted-row {
     background-color: rgba(235, 167, 8, 0.15) !important;
@@ -1225,4 +1237,26 @@ img {
     50% {
         background-color: rgba(235, 167, 8, 0.3);
     }
+}
+
+/* ===== Copy Notification ===== */
+.copy-notification {
+    position: fixed;
+    background-color: var(--accent-primary);
+    color: var(--bg-primary);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    font-weight: 600;
+    box-shadow: var(--shadow-lg);
+    z-index: 3000;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.copy-notification.show {
+    opacity: 1;
+    transform: translateY(0);
 }
