@@ -130,7 +130,6 @@ function renderAuthors(authors) {
             <div class="author-stats">
                 <div class="author-stat author-stat-place">
                     <span class="stat-value">#${index + 1}</span>
-                    <span class="stat-label">место</span>
                 </div>
                 <div class="author-stat">
                     <span class="stat-value">${author.repos}</span>

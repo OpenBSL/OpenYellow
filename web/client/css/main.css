@@ -114,7 +114,7 @@ img {
 
 
 .nav-container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: var(--spacing-sm) var(--spacing-md);
     display: flex;
@@ -1565,6 +1565,12 @@ img {
     width: 44px;
     text-align: center;
     flex-shrink: 0;
+}
+
+.quick-link-icon-plus {
+    font-size: 2.5rem;
+    font-weight: 300;
+    line-height: 1;
 }
 
 .quick-link-title {
