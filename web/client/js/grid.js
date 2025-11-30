@@ -413,7 +413,6 @@ function getColumns() {
                          class="repo-avatar-small"
                          onerror="this.src='static/logo.png'">
                     <span class="repo-name-text">${repo.name || 'N/A'}</span>
-                    ${repo.isFork ? '<span class="fork-icon" title="Форк">🔱</span>' : ''}
                 </div>
             `
         },
@@ -425,7 +424,12 @@ function getColumns() {
         {
             header: 'Автор',
             field: 'author',
-            render: (repo) => repo.author || 'N/A'
+            render: (repo) => `
+                <div class="author-cell">
+                    <span>${repo.author || 'N/A'}</span>
+                    ${repo.isFork ? '<img src="static/fork.svg" alt="Форк" class="fork-icon" title="Форк">' : ''}
+                </div>
+            `
         },
         {
             header: 'Звезды',
