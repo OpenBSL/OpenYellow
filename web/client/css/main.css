@@ -419,18 +419,41 @@ img {
 
 /* ===== Page Header ===== */
 .page-header {
-    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
-    padding: var(--spacing-lg) 0 var(--spacing-md);
+    background: transparent;
+    padding: var(--spacing-xl) 0 var(--spacing-lg);
     text-align: center;
+    position: relative;
 }
 
 .page-header .container {
     max-width: 95%;
+    position: relative;
+    z-index: 1;
 }
 
 .page-header h1 {
     font-size: 2.5rem;
     margin-bottom: var(--spacing-sm);
+    position: relative;
+    display: inline-block;
+}
+
+.page-header h1::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150%;
+    height: 200%;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(235, 167, 8, 0.15) 0%,
+        rgba(235, 167, 8, 0.08) 30%,
+        transparent 70%
+    );
+    z-index: -1;
+    pointer-events: none;
 }
 
 .page-header p {
