@@ -62,11 +62,24 @@
     <!-- Filters and Search -->
     <section class="filters-section">
         <div class="container">
-            <!-- Filter Toggle Button -->
-            <button class="filters-toggle" id="filtersToggle">
-                <span class="filters-toggle-text">Фильтры</span>
-                <span class="filters-toggle-icon">▼</span>
-            </button>
+            <!-- Filter Tabs (Always Visible) -->
+            <div class="filter-tabs-row">
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-filter="top">
+                        Индекс
+                    </button>
+                    <button class="filter-tab" data-filter="new">
+                        Новые
+                    </button>
+                    <button class="filter-tab" data-filter="updated">
+                        Обновленные
+                    </button>
+                </div>
+                
+                <button class="filters-toggle-icon" id="filtersToggle" title="Показать/скрыть фильтры">
+                    <span>⚙</span>
+                </button>
+            </div>
             
             <!-- Collapsible Filters -->
             <div class="filters-collapsible" id="filtersCollapsible">
@@ -106,18 +119,6 @@
                 </div>
             </div>
             
-                <!-- Bottom Row: Filter Tabs -->
-                <div class="filter-tabs">
-                    <button class="filter-tab active" data-filter="top">
-                        Индекс
-                    </button>
-                    <button class="filter-tab" data-filter="new">
-                        Новые
-                    </button>
-                    <button class="filter-tab" data-filter="updated">
-                        Обновленные
-                    </button>
-                </div>
             </div>
         </div>
     </section>
