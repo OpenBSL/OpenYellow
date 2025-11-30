@@ -24,4 +24,4 @@ jobs:
       with:
         api_token: ${{ secrets.NEOCITIES_TEST_API_TOKEN }}
         cleanup: false
-        dist_dir: ./web
+        dist_dir: ./web/client
