@@ -1,122 +1,198 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="copy.xml"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
-
+<!DOCTYPE html>
+<html lang="ru">
 <head>
-  <title>OpenYellow - агрегатор open-source проектов для 1С:Предприятие</title>
-  <meta http-equiv="Content-Type" content="text/xhtml; charset=utf-8" />
-  <meta http-equiv="content-language" content="ru" />
-  <meta name="robots" content="all" />
-  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
-  <meta name="description" content="OpenYellow - агрегатор open-source проектов для 1С:Предприятие" />
-
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="application-name" content="OpenYellow" />
-  <meta name="apple-mobile-web-app-title" content="OpenYellow" />
-  <meta name="theme-color" content="#212121" />
-  <meta name="msapplication-navbutton-color" content="#212121" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="msapplication-starturl" content="/" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-  <link rel="stylesheet" type="text/css" href="css/style.css" />
-  <link rel="stylesheet" type="text/css" href="css/ag-grid-theme-builder.css">
-  <link rel="icon" href="favicon.ico" />
-  <link rel="manifest" href="/pwa/manifest.json" />
-
-  <script src="js/telegram-web-app.js"></script>
-  <script src="js/app.js?v2" type="module"></script>
-  <script src="js/xhttp.js?v1" type="module"></script>
-  <script src="js/effects.js?v1" type="module"></script>
-  <script src="js/grid.js?v1" type="module"></script>
-  <script src="js/ag-grid-community.min.noStyle.js"></script>
-
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Репозитории - OpenYellow</title>
+    <meta name="description" content="Каталог open-source проектов для 1С">
+    
+    <meta name="theme-color" content="#1a1a1a">
+    <link rel="icon" href="static/logo.png">
+    
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/grid.js"></script>
 </head>
-
 <body>
-
-  <!-- Yandex.Metrika counter -->
-  <script type="text/javascript">
-    (function (m, e, t, r, i, k, a) {
-      m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
-      m[i].l = 1 * new Date();
-      for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
-      k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-    })
-      (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-    ym(98234044, "init", {
-      clickmap: true,
-      trackLinks: true,
-      accurateTrackBounce: true
-    });
-  </script>
-  <noscript>
-    <div><img src="https://mc.yandex.ru/watch/98234044" style="position:absolute; left:-9999px;" alt="" /></div>
-  </noscript>
-  <!-- /Yandex.Metrika counter -->
-
-  <div id="sidebar"></div>
-
-  <div id="content" class="content-center">
-
-    <div class="wide-container">
-
-      <div class="row">
-        <div class="col">
-          <h2 id="title">Топ-500 репозиториев</h2>
-          <small id="description">По числу звезд</small><br /><br />
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="static/logo.png" alt="OpenYellow">
+                <span>OpenYellow</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">
+                    <span>Главная</span>
+                </a>
+                <a href="grid.html" class="nav-link active">
+                    <span>Репозитории</span>
+                </a>
+                <a href="authors.html" class="nav-link">
+                    <span>Авторы</span>
+                </a>
+                <a href="badges.html" class="nav-link">
+                    <span>Значки</span>
+                </a>
+            </div>
+            
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-        <div class="col">
-          <input type="text" id="filterbox" class="searchinput" placeholder="Поиск..."
-            style="  float: right; clear: both; margin-top: 30px;" />
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 id="pageTitle">Репозитории</h1>
+            <p id="pageDescription">Каталог open-source проектов</p>
         </div>
-      </div>
+    </section>
 
-
-      <div id="myGrid" class="ag-theme-custom topGrid"></div>
-      <div id="selectedRows" class="col bottomblock selectedBlock">
-        <div class="row">
-          <div class="col-1" style="min-width: 80px;">
-            <img id="currentPic"
-              style="width: 64px; border-radius: 45px; margin-top: 2px; margin-bottom: 5px; box-shadow:rgba(0,0,0,.40) 0px 5px 10px;" />
-          </div>
-          <div class="col-9">
-            <h3>
-              <a id="currentTitle"></a> by <a id="currentAuthor"></a>
-            </h3>
-
-            <small id="currentDescription"></small>
-          </div>
-          <div class="col">
-            <span class="stat" id="currentStars"></span><br />
-            <span class="stat" id="currentForks"></span>
-          </div>
+    <!-- Filters and Search -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="filters-bar">
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-filter="top">
+                        Топ-500
+                    </button>
+                    <button class="filter-tab" data-filter="new">
+                        Новые
+                    </button>
+                    <button class="filter-tab" data-filter="updated">
+                        Обновленные
+                    </button>
+                </div>
+                
+                <div class="search-box">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Поиск по названию, описанию, автору..."
+                        class="search-input"
+                    >
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
+
+    <!-- Repositories Table -->
+    <section class="table-section">
+        <div class="container">
+            <div class="table-container">
+                <div class="table-loading" id="tableLoading">
+                    <div class="spinner"></div>
+                    <p>Загрузка данных...</p>
+                </div>
+                
+                <table class="repos-table" id="reposTable">
+                    <thead>
+                        <tr id="tableHeader">
+                            <!-- Headers will be generated dynamically -->
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Rows will be generated dynamically -->
+                    </tbody>
+                </table>
+                
+                <div class="table-empty" id="tableEmpty" style="display: none;">
+                    <p>Ничего не найдено</p>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="pagination" id="pagination">
+                <button class="pagination-btn" id="prevPage" disabled>
+                    ← Назад
+                </button>
+                <div class="pagination-info">
+                    <span id="pageInfo">Страница 1 из 1</span>
+                    <select id="pageSize" class="page-size-select">
+                        <option value="25">25</option>
+                        <option value="50" selected>50</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
+                <button class="pagination-btn" id="nextPage">
+                    Вперед →
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Repository Details Modal -->
+    <div class="modal" id="repoModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">×</button>
+            
+            <div class="repo-details">
+                <div class="repo-header">
+                    <img id="repoAvatar" src="" alt="" class="repo-avatar">
+                    <div class="repo-title-block">
+                        <h2 id="repoName"></h2>
+                        <p class="repo-author">
+                            by <a id="repoAuthor" href="" target="_blank"></a>
+                        </p>
+                    </div>
+                </div>
+                
+                <p id="repoDescription" class="repo-description"></p>
+                
+                <div class="repo-stats">
+                    <div class="repo-stat">
+                        <span class="stat-label-inline">Звезды:</span>
+                        <span id="repoStars"></span>
+                    </div>
+                    <div class="repo-stat">
+                        <span class="stat-label-inline">Форки:</span>
+                        <span id="repoForks"></span>
+                    </div>
+                    <div class="repo-stat" id="repoLangBlock">
+                        <span class="stat-label-inline">Язык:</span>
+                        <span id="repoLang"></span>
+                    </div>
+                    <div class="repo-stat" id="repoLicenseBlock">
+                        <span class="stat-label-inline">Лицензия:</span>
+                        <span id="repoLicense"></span>
+                    </div>
+                </div>
+                
+                <div class="repo-dates">
+                    <div>Создан: <span id="repoCreated"></span></div>
+                    <div>Обновлен: <span id="repoUpdated"></span></div>
+                </div>
+                
+                <div class="repo-actions">
+                    <a id="repoLink" href="" target="_blank" class="btn btn-primary">
+                        Открыть на GitHub →
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
-  </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>OpenYellow Project by Bayselonarrend, 2024</p>
+        </div>
+    </footer>
 
-  <script type="text/javascript">
-    window.addEventListener("pageshow", function (event) {
-      var historyTraversal = event.persisted ||
-        (typeof window.performance != "undefined" &&
-          window.performance.navigation.type === 2);
-      if (historyTraversal) {
-        // Handle page restore.
-        window.location.reload();
-      }
-    });
-  </script>
-
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
+        ym(98234044,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
+    </script>
 </body>
-
 </html>

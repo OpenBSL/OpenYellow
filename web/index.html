@@ -1,172 +1,174 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="copy.xml"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
-
+<!DOCTYPE html>
+<html lang="ru">
 <head>
-  <title>OpenYellow - агрегатор open-source проектов для 1С:Предприятие</title>
-  <meta http-equiv="Content-Type" content="text/xhtml; charset=utf-8" />
-  <meta http-equiv="content-language" content="ru" />
-  <meta name="robots" content="all" />
-  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
-  <meta name="description" content="OpenYellow - агрегатор open-source проектов для 1С:Предприятие" />
-
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="application-name" content="OpenYellow" />
-  <meta name="apple-mobile-web-app-title" content="OpenYellow" />
-  <meta name="theme-color" content="#212121" />
-  <meta name="msapplication-navbutton-color" content="#212121" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="msapplication-starturl" content="/" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-  <link rel="stylesheet" type="text/css" href="css/style.css?v1" />
-  <link rel="stylesheet" type="text/css" href="css/ag-grid-theme-builder.css">
-  <link rel="icon" href="favicon.ico" />
-  <link rel="manifest" href="/pwa/manifest.json" />
-
-  <script src="js/app.js?v2" type="module"></script>
-  <script src="js/xhttp.js?v1" type="module"></script>
-  <script src="js/effects.js?v1" type="module"></script>
-  <script src="js/grid.js?v1" type="module"></script>
-  <script src="js/index.js?v1" type="module"></script>
-  <script src="js/ag-grid-community.min.noStyle.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenYellow - Агрегатор open-source проектов для 1С</title>
+    <meta name="description" content="OpenYellow - агрегатор open-source проектов для 1С:Предприятие">
+    
+    <!-- PWA -->
+    <meta name="theme-color" content="#1a1a1a">
+    <link rel="icon" href="static/logo.png">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
 </head>
-
 <body>
-
-  <!-- Yandex.Metrika counter -->
-  <script type="text/javascript">
-    (function (m, e, t, r, i, k, a) {
-      m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
-      m[i].l = 1 * new Date();
-      for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
-      k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-    })
-      (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-    ym(98234044, "init", {
-      clickmap: true,
-      trackLinks: true,
-      accurateTrackBounce: true
-    });
-  </script>
-  <noscript>
-    <div><img src="https://mc.yandex.ru/watch/98234044" style="position:absolute; left:-9999px;" alt="" /></div>
-  </noscript>
-  <!-- /Yandex.Metrika counter -->
-
-  <div id="sidebar"></div>
-
-  <div id="content" class="content-center">
-
-    <div class="container">
-      <div class="row">
-        <div class="col-4 upperblock">
-
-          <img src="./static/logo_side.png" class="logoside" />
-          <h1>Добро пожаловать на OpenYellow</h1>
-          <small>Агрегатор open-source проектов для 1С:Предприятие. Здесь собрано множество инструментов с открытым
-            исходным кодом, которые были созданы "желтым" сообществом. Информация о них собирается на основе данных
-            публичных репозиториев GitHub</small>
-        </div>
-        <div class="col upperblock shortdata">
-          <div id="myGrid" class="ag-theme-custom" style="height:100%; margin-top: 2vh; border-radius: 45px;"></div>
-
-        </div>
-
-      </div>
-
-      <div class="row">
-        <div class="col bottomblock">
-          <img src="./static/Star.svg" class="logochart" />
-          <h3>Лучшие репозитории</h3>
-          <small>Топ-500 лучших репозиториев GitHub за все время - самые известные и популярные открытые инструменты для
-            1С и OneScript</small><br /><br />
-          <a href="/grid?data=top" class="btn btn-outline-light">Перейти</a>
-        </div>
-        <div class="col bottomblock">
-          <img src="./static/Fire.svg" class="logochart" />
-          <h3>Последние созданные</h3>
-          <small>Самые свежие репозитории, найденные агрегатором. Они ждут своих первых
-            пользователей!</small><br /><br />
-          <a href="/grid?data=new" class="btn btn-outline-light">Перейти</a>
-        </div>
-        <div class="col bottomblock">
-          <img src="./static/Clock.svg" class="logochart" />
-          <h3>Последние обновленные</h3>
-          <small>Последние репозитории, проявляющие активность на GitHub - "живые" проекты, поддерживаемые
-            контрибьюторами</small><br /><br />
-          <a href="/grid?data=updated" class="btn btn-outline-light">Перейти</a>
-        </div>
-      </div>
-
-      <div class="row">
-
-        <div class="col bottomblock">
-          <small>Вклад 1С сообщества на GitHub:</small>
-          <div class="row" style="text-align:center;margin:auto; margin-top: 50px; margin-bottom: 30px;">
-            <div class="col">
-              <h1 id="totalcounter">1000</h1>
-              <p>Всего репозиториев</p>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="static/logo.png" alt="OpenYellow">
+                <span>OpenYellow</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="index.html" class="nav-link active">
+                    <span>Главная</span>
+                </a>
+                <a href="grid.html" class="nav-link">
+                    <span>Репозитории</span>
+                </a>
+                <a href="authors.html" class="nav-link">
+                    <span>Авторы</span>
+                </a>
+                <a href="badges.html" class="nav-link">
+                    <span>Значки</span>
+                </a>
             </div>
-            <div class="col">
-              <h1 id="starscounter">5000</h1>
-              <p>Заработано звезд</p>
+            
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <img src="static/logo_side.png" alt="OpenYellow" class="hero-logo">
+                <h1>Добро пожаловать на OpenYellow</h1>
+                <p class="hero-description">
+                    Агрегатор open-source проектов для 1С:Предприятие. 
+                    Здесь собрано множество инструментов с открытым исходным кодом, 
+                    созданных сообществом разработчиков.
+                </p>
             </div>
-            <div class="col">
-              <h1 id="authorscounter">500</h1>
-              <p>Авторов проектов</p>
+            
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalRepos">-</div>
+                    <div class="stat-label">Репозиториев</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalStars">-</div>
+                    <div class="stat-label">Звезд</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalAuthors">-</div>
+                    <div class="stat-label">Авторов</div>
+                </div>
             </div>
-          </div>
         </div>
+    </section>
 
-        <div class="col-4 bottomblock" style="border: 1px solid #EBA708">
-
-          <img src="./static/tg.png" class="tgside" />
-          <h3>Telegram</h3>
-          <small>Не пропустите ни единого нового проекта от 1С сообщества! Информация об обновлениях
-            репозиториев, еженедельные топы и новости проекта в нашем Телеграм-канале</small>
-          <br /><br />
-          <a href="https://t.me/openyellowproject" class="btn btn-outline-light"
-            style="float:left;margin-top:10px;border:1px solid #EBA708">В Телеграм!</a>
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Категории репозиториев</h2>
+            
+            <div class="category-grid">
+                <a href="grid.html?data=top" class="category-card">
+                    <div class="category-icon">★</div>
+                    <h3>Топ-500</h3>
+                    <p>Самые популярные репозитории по количеству звезд</p>
+                    <span class="category-link">Смотреть →</span>
+                </a>
+                
+                <a href="grid.html?data=new" class="category-card">
+                    <div class="category-icon">+</div>
+                    <h3>Новые</h3>
+                    <p>Свежие проекты, ожидающие своих первых пользователей</p>
+                    <span class="category-link">Смотреть →</span>
+                </a>
+                
+                <a href="grid.html?data=updated" class="category-card">
+                    <div class="category-icon">↻</div>
+                    <h3>Активные</h3>
+                    <p>Проекты с недавними обновлениями и активной разработкой</p>
+                    <span class="category-link">Смотреть →</span>
+                </a>
+            </div>
         </div>
+    </section>
 
-        <div class="col-3 bottomblock" style="border: 1px solid #F15F2C">
-          <img src="./static/boosty.png" class="tgside" alt="Boosty" />
-          <h3>Boosty</h3>
-          <small>Вы можете помочь развитию агрегатора и популяризации open-source в 1С-сообществе, поддержав нас на
-            Boosty</small>
-          <br /><br />
-          <a href="https://boosty.to/bayselonarrend" class="btn btn-outline-light"
-            style="float:left;margin-top:10px;border:1px solid #F15F2C">На Boosty!</a>
+    <!-- Community Section -->
+    <section class="community">
+        <div class="container">
+            <h2 class="section-title">Сообщество</h2>
+            
+            <div class="community-grid">
+                <div class="community-card telegram">
+                    <img src="static/tg.png" alt="Telegram" class="community-icon">
+                    <h3>Telegram</h3>
+                    <p>Следите за новыми проектами, еженедельными топами и новостями</p>
+                    <a href="https://t.me/openyellowproject" class="btn btn-primary" target="_blank">
+                        Подписаться
+                    </a>
+                </div>
+                
+                <div class="community-card boosty">
+                    <img src="static/boosty.png" alt="Boosty" class="community-icon">
+                    <h3>Boosty</h3>
+                    <p>Поддержите развитие агрегатора и популяризацию open-source</p>
+                    <a href="https://boosty.to/bayselonarrend" class="btn btn-secondary" target="_blank">
+                        Поддержать
+                    </a>
+                </div>
+                
+                <div class="community-card github">
+                    <div class="community-icon-text">GitHub</div>
+                    <h3>GitHub</h3>
+                    <p>Исходный код OpenYellow и другие проекты OpenBSL</p>
+                    <a href="https://github.com/OpenBSL" class="btn btn-secondary" target="_blank">
+                        Перейти
+                    </a>
+                </div>
+            </div>
         </div>
+    </section>
 
-      </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>OpenYellow Project by Bayselonarrend, 2024</p>
+            <p class="footer-links">
+                <a href="https://github.com/OpenBSL">GitHub</a>
+                <span>•</span>
+                <a href="https://t.me/openyellowproject">Telegram</a>
+                <span>•</span>
+                <a href="/badges">Значки</a>
+            </p>
+        </div>
+    </footer>
 
-      <div style="text-align:center; margin-top: 30px; margin-bottom: 30px;">
-        <small style="color:grey;">OpenYellow Project by Bayselonarrend, 2024</small>
-      </div>
-
-    </div>
-  </div>
-  <script type="text/javascript">
-    window.addEventListener("pageshow", function (event) {
-      var historyTraversal = event.persisted ||
-        (typeof window.performance != "undefined" &&
-          window.performance.navigation.type === 2);
-      if (historyTraversal) {
-        // Handle page restore.
-        window.location.reload();
-      }
-    });
-  </script>
-
+    <!-- Yandex.Metrika -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
+        ym(98234044,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/98234044" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
 </body>
-
 </html>

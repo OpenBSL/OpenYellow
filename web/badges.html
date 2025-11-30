@@ -1,118 +1,158 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="copy.xml"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
-
+<!DOCTYPE html>
+<html lang="ru">
 <head>
-  <title>OpenYellow - агрегатор open-source проектов для 1С:Предприятие</title>
-  <meta http-equiv="Content-Type" content="text/xhtml; charset=utf-8" />
-  <meta http-equiv="content-language" content="ru" />
-  <meta name="robots" content="all" />
-  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
-  <meta name="description" content="OpenYellow - агрегатор open-source проектов для 1С:Предприятие" />
-
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="application-name" content="OpenYellow" />
-  <meta name="apple-mobile-web-app-title" content="OpenYellow" />
-  <meta name="theme-color" content="#212121" />
-  <meta name="msapplication-navbutton-color" content="#212121" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="msapplication-starturl" content="/" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-  <link rel="stylesheet" type="text/css"
-    href="css/bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-  <link rel="stylesheet" type="text/css" href="css/style.css?v1" />
-  <link rel="stylesheet" type="text/css" href="css/ag-grid-theme-builder.css">
-  <link rel="icon" href="favicon.ico" />
-  <link rel="manifest" href="/pwa/manifest.json" />
-
-  <script src="js/app.js?v2" type="module"></script>
-  <script src="js/xhttp.js?v1" type="module"></script>
-  <script src="js/effects.js?v1" type="module"></script>
-  <script src="js/grid.js?v1" type="module"></script>
-  <script src="js/index.js?v1" type="module"></script>
-  <script src="js/ag-grid-community.min.noStyle.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Значки - OpenYellow</title>
+    <meta name="description" content="Значки рейтинга для репозиториев OpenYellow">
+    
+    <meta name="theme-color" content="#1a1a1a">
+    <link rel="icon" href="static/logo.png">
+    
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
 </head>
-
 <body>
-
-  <!-- Yandex.Metrika counter -->
-  <script type="text/javascript">
-    (function (m, e, t, r, i, k, a) {
-      m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
-      m[i].l = 1 * new Date();
-      for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
-      k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-    })
-      (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-    ym(98234044, "init", {
-      clickmap: true,
-      trackLinks: true,
-      accurateTrackBounce: true
-    });
-  </script>
-  <noscript>
-    <div><img src="https://mc.yandex.ru/watch/98234044" style="position:absolute; left:-9999px;" alt="" /></div>
-  </noscript>
-  <!-- /Yandex.Metrika counter -->
-
-  <div id="sidebar"></div>
-
-  <div id="content" class="content-center">
-
-    <div class="textblock">
-      <img src="static/badges.png" style="max-width: 60%; margin: auto; display: block" />
-      <h1>Значки проекта OpenYellow</h1>
-      <p>Если вы - автор проекта, который находится в ТОП-500, то можете помочь порталу OpenYellow, использовав наш
-        значок (badge) в своем репозитории.
-        Он будет всегда показывать актуальную позицию вашего проекта в рейтинге, а при нажатии - перенаправлять на
-        страницу ТОП-500 с фокусировкой на необходимой строке таблицы</p>
-      <br />
-      <img src="static/readmebadge.png" style="max-width: 100%; margin: auto; display: block" />
-      <br />
-      <p>Добавить такой значок к себе очень просто - достаточно найти необходимый репозиторий в <a
-          href="./grid?data=top" style="text-decoration: underline">рейтинговой таблице</a> и скопировать
-        текст Markdown разметки в самой последней колонке.
-        Этот текст, будучи вставленным в Readme файл, станет отображаться в нем как svg значок (как на картинке
-        выше)</p>
-      <br />
-      <img src="static/topbadges.png" style="max-width: 100%; margin: auto; display: block" />
-      <br />
-      <hr />
-      <br />
-
-      <div class="row">
-
-        <div style="width: 128px;">
-          <i class="fa-solid fa-circle-exclamation" style="font-size: 64px; color: #F7B305; margin: 22px"></i>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="static/logo.png" alt="OpenYellow">
+                <span>OpenYellow</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">
+                    <span>Главная</span>
+                </a>
+                <a href="grid.html" class="nav-link">
+                    <span>Репозитории</span>
+                </a>
+                <a href="authors.html" class="nav-link">
+                    <span>Авторы</span>
+                </a>
+                <a href="badges.html" class="nav-link active">
+                    <span>Значки</span>
+                </a>
+            </div>
+            
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-        <div class="col">
-          <h3>О значках, оставшихся со времен Notion</h3>
-          <p>Если вы используете значки, которые были получены еще из таблицы на странице Notion
-            (openyellow.notion.site), то их необходимо заменить на новые. Это нужно для устранения устаревших ссылок на
-            более уже несуществующие ресурсы</p>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Значки рейтинга</h1>
+            <p>Покажите позицию вашего проекта в Топ-500</p>
         </div>
-      </div>
-    </div>
+    </section>
+
+    <!-- Badges Section -->
+    <section class="badges-section">
+        <div class="container">
+            
+            <!-- Main Info -->
+            <div class="badge-preview">
+                <h2>Значки рейтинга OpenYellow</h2>
+                <p style="color: var(--text-secondary); margin-bottom: var(--spacing-lg);">
+                    Каждый репозиторий из Топ-500 имеет уникальный значок, показывающий его позицию в рейтинге
+                </p>
+                
+                <div class="badge-image">
+                    <img src="static/topbadges.png" alt="OpenYellow Badge" style="max-width: 100%;">
+                </div>
+                
+                <h3 style="margin-top: var(--spacing-lg);">Как получить значок для своего репозитория?</h3>
+                <div style="text-align: left; max-width: 700px; margin: var(--spacing-lg) auto 0;">
+                    <p style="margin-bottom: var(--spacing-md); color: var(--text-secondary);">
+                        1. Откройте <a href="grid.html?data=top" style="color: var(--accent-primary);">Топ-500 репозиториев</a>
+                    </p>
+                    <p style="margin-bottom: var(--spacing-md); color: var(--text-secondary);">
+                        2. Найдите свой репозиторий в таблице
+                    </p>
+                    <p style="margin-bottom: var(--spacing-md); color: var(--text-secondary);">
+                        3. В колонке "Значок" скопируйте Markdown разметку
+                    </p>
+                    <p style="margin-bottom: var(--spacing-md); color: var(--text-secondary);">
+                        4. Вставьте её в README.md вашего репозитория
+                    </p>
+                </div>
+            </div>
+
+            <!-- Example -->
+            <h2 class="section-title">Пример разметки</h2>
+            
+            <div class="badge-example">
+                <h3>Markdown для README.md</h3>
+                <div class="badge-code">
+[![OpenYellow](https://img.shields.io/endpoint?url=https://openyellow.org/data/badges/2/736878759.json)](https://openyellow.org/grid?data=top&repo=736878759)
+                </div>
+                <p style="color: var(--text-secondary); margin-top: var(--spacing-md); font-size: 0.875rem;">
+                    Где <code>736878759</code> - это ID вашего репозитория
+                </p>
+            </div>
+
+            <!-- Features -->
+            <div class="badge-preview" style="margin-top: var(--spacing-xl);">
+                <h2>Что показывает значок?</h2>
+                <div style="text-align: left; max-width: 700px; margin: var(--spacing-lg) auto 0;">
+                    <p style="margin-bottom: var(--spacing-md); color: var(--text-secondary);">
+                        ⭐ <strong>Место в рейтинге</strong> - текущая позиция в Топ-500
+                    </p>
+                    <p style="margin-bottom: var(--spacing-md); color: var(--text-secondary);">
+                        📈 <strong>Динамика</strong> - изменение позиции (↑ вверх, ↓ вниз)
+                    </p>
+                    <p style="margin-bottom: var(--spacing-md); color: var(--text-secondary);">
+                        🔗 <strong>Ссылка</strong> - клик по значку ведет на страницу репозитория в OpenYellow
+                    </p>
+                    <p style="margin-top: var(--spacing-lg); color: var(--text-secondary);">
+                        💡 Значок автоматически обновляется при изменении позиции в рейтинге!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Benefits -->
+            <div class="badge-preview" style="margin-top: var(--spacing-xl);">
+                <h2>Зачем добавлять значок?</h2>
+                <div style="text-align: left; max-width: 700px; margin: var(--spacing-lg) auto 0;">
+                    <p style="margin-bottom: var(--spacing-md); color: var(--text-secondary);">
+                        ✓ Показывает популярность вашего проекта
+                    </p>
+                    <p style="margin-bottom: var(--spacing-md); color: var(--text-secondary);">
+                        ✓ Привлекает внимание к репозиторию
+                    </p>
+                    <p style="margin-bottom: var(--spacing-md); color: var(--text-secondary);">
+                        ✓ Помогает популяризировать OpenYellow
+                    </p>
+                    <p style="margin-bottom: var(--spacing-md); color: var(--text-secondary);">
+                        ✓ Показывает, что проект - часть 1С open-source сообщества
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>OpenYellow Project by Bayselonarrend, 2024</p>
+        </div>
+    </footer>
 
     <script type="text/javascript">
-      window.addEventListener("pageshow", function (event) {
-        var historyTraversal = event.persisted ||
-          (typeof window.performance != "undefined" &&
-            window.performance.navigation.type === 2);
-        if (historyTraversal) {
-          // Handle page restore.
-          window.location.reload();
-        }
-      });
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
+        ym(98234044,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
     </script>
-
 </body>
-
 </html>

@@ -1,266 +1,544 @@
-import { getDataByUrl } from './xhttp.js?v4';
+// Repositories page logic
 
-let gridApi;
-let filterInput = document.getElementById('filterbox');
-let title = document.getElementById('title');
-let description = document.getElementById('description');
-let current = document.getElementById('selectedRows');
-let params = new URL(document.location.toString()).searchParams;
-let dataname = params.get("data");
-let repo = params.get("repo");
-let currentPage;
-let pageSize;
-let currentTitle = document.getElementById('currentTitle');
-let currentPic = document.getElementById('currentPic');
-let currentStars = document.getElementById('currentStars');
-let currentForks = document.getElementById('currentForks');
-let currentDescription = document.getElementById('currentDescription');
-let currentAuthor = document.getElementById('currentAuthor');
-let firstRender = true;
+let currentFilter = 'top';
+let currentPage = 1;
+let currentPageSize = 50;
+let currentData = [];
+let allData = [];
+let searchTimeout = null;
+let currentSort = { column: null, direction: null };
 
-
-if (dataname == undefined) {
-  dataname = "top";
-}
-
-
-class picRender {
-
-  init(params) {
-    let companyLogo = document.createElement('img');
-    companyLogo.src = params.data.pic;
-    companyLogo.setAttribute('style', 'display: block; width: 25px; height: 25px; border-radius: 30px; margin-right: 12px; filter: brightness(1.1); box-shadow:rgba(0,0,0,.40) 0px 5px 10px;');
-    let companyName = document.createElement('p');
-    companyName.textContent = params.value;
-
-    companyName.setAttribute('style', 'text-overflow: ellipsis; overflow: hidden; white-space: nowrap;');
-    this.eGui = document.createElement('a');
-    this.eGui.setAttribute('href', params.data.url);
-    this.eGui.setAttribute('style', 'display: flex; height: 100%; width: 100%; align-items: center');
-    this.eGui.appendChild(companyLogo)
-    this.eGui.appendChild(companyName)
-  }
-
-  getGui() {
-    return this.eGui;
-  }
-
-  refresh(params) {
-    return false
-  }
-}
-
-class dynamicRender {
-
-  init(params) {
-    this.eGui = document.createElement('img');
-
-    this.eGui.src = '/static/' + params.value + '.png';
-    this.eGui.setAttribute('style', 'display: block; width: 25px; height: 25px; border-radius: 30px; margin-right: 12px; filter: brightness(1.1)');
-  }
-
-  // Required: Return the DOM element of the component, this is what the grid puts into the cell
-  getGui() {
-    return this.eGui;
-  }
-
-  // Required: Get the cell to refresh.
-  refresh(params) {
-    return false
-  }
-}
-
-const gridOptions = {
-
-  pagination: true,
-  paginationPageSize: 50,
-  paginationPageSizeSelector: [50, 100, 500],
-
-  autoSizeStrategy: {
-    type: 'fitCellContents'
-  },
-
-  rowData: [],
-  columnDefs: [],
-
-  rowSelection: "single",
-  onSelectionChanged: onSelectionChanged,
-
-  onPaginationChanged: (params) => {
-    if (params.newPage) {
-
-      if (firstRender) {
-        firstRender = false;
-      } else {
-        repo = undefined;
-      }
-
-      selectRow();
-      localStorage.setItem('currentPage' + dataname, JSON.stringify(currentPage));
-
+// Initialize page
+document.addEventListener('DOMContentLoaded', () => {
+    // Get filter from URL (support both old and new format)
+    const params = new URLSearchParams(window.location.search);
+    const filterParam = params.get('filter') || params.get('data'); // data - old format
+    const repoParam = params.get('repo');
+    
+    if (filterParam && ['top', 'new', 'updated'].includes(filterParam)) {
+        currentFilter = filterParam;
     }
-  },
-
-  onFirstDataRendered: (params) => {
-    if (repo == undefined) {
-      const pageToNavigate = JSON.parse(localStorage.getItem('currentPage' + dataname));
-      params.api.paginationGoToPage(pageToNavigate);
-    }
-  },
-};
-
-function onSelectionChanged() {
-  const selectedRows = gridApi.getSelectedRows();
-
-  if (selectedRows.length === 1 && current != undefined) {
-
-
-    currentPic.setAttribute("src", selectedRows[0].pic);
-    currentTitle.textContent = selectedRows[0].name;
-    currentTitle.setAttribute("href", selectedRows[0].url);
-    currentDescription.textContent = selectedRows[0].description;
-    currentAuthor.textContent = selectedRows[0].author;
-    currentAuthor.setAttribute("href", selectedRows[0].authorUrl);
-    currentStars.textContent = "⭐" + selectedRows[0].stars;
-    currentForks.textContent = "🍴" + selectedRows[0].forks;
-
-  }
-}
-
-if (filterInput != undefined) {
-
-  filterInput.addEventListener('input', function () {
-    gridApi.setGridOption(
-      "quickFilterText",
-      filterInput.value,
-    );
-  });
-
-}
-
-if (dataname == "top") {
-  gridOptions["columnDefs"] = [
-    { headerName: "🏆", field: "place", filter: false, cellDataType: 'number', maxWidth: 64 },
-    { headerName: "⭐", field: "stars", filter: true, cellDataType: 'number' },
-    { headerName: "Наименование", field: "name", filter: true, cellRenderer: picRender },
-    { headerName: "URL", field: "url", filter: true, hide: true },
-    { headerName: "Описание", field: "description", filter: true, maxWidth: 600 },
-    { headerName: "Автор", field: "author", filter: true },
-    { headerName: "URL", field: "authorUrl", filter: true },
-    { headerName: "Язык", field: "lang", filter: true },
-    { headerName: "Тэги", field: "tags", filter: true },
-
-    { headerName: "🍴", field: "forks", filter: true, cellDataType: 'number' },
-    { headerName: "🔼", field: "dynamic", filter: false, maxWidth: 64, cellRenderer: dynamicRender },
-    { headerName: "📈", field: "сhanging", filter: false, cellDataType: 'number', maxWidth: 64 },
-    { headerName: "Создан", field: "createddate", filter: true, cellDataType: 'date', valueFormatter: dateFormatter },
-    { headerName: "Обновлен", field: "updateddate", filter: true, cellDataType: 'date', valueFormatter: dateFormatter },
-    { headerName: "Лицензия", field: "license", filter: true },
-    { headerName: "Значок", field: "badge", filter: true, editable: true },
-    { field: "pic", hide: true },
-    { field: "id", hide: true }
-  ]
-}
-else if (dataname == "new") {
-  gridOptions["columnDefs"] = [
-    { headerName: "Создан", field: "createddate", filter: true, cellDataType: 'date', valueFormatter: dateFormatter },
-    { headerName: "Наименование", field: "name", filter: true, cellRenderer: picRender },
-    { headerName: "⭐", field: "stars", filter: true, cellDataType: 'number' },
-    { headerName: "🍴", field: "forks", filter: true, cellDataType: 'number' },
-    { headerName: "URL", field: "url", filter: true, hide: true },
-    { headerName: "Описание", field: "description", filter: true },
-    { headerName: "Автор", field: "author", filter: true },
-    { headerName: "URL", field: "authorUrl", filter: true },
-    { headerName: "Язык", field: "lang", filter: true },
-    { headerName: "Обновлен", field: "updateddate", filter: true, cellDataType: 'date', valueFormatter: dateFormatter },
-    { headerName: "Лицензия", field: "license", filter: true },
-    { field: "pic", hide: true },
-    { field: "id", hide: true }
-  ]
-}
-else {
-  gridOptions["columnDefs"] = [
-    { headerName: "Обновлен", field: "updateddate", filter: true, cellDataType: 'date', valueFormatter: dateFormatter },
-    { headerName: "Наименование", field: "name", filter: true, cellRenderer: picRender },
-    { headerName: "⭐", field: "stars", filter: true, cellDataType: 'number' },
-    { headerName: "🍴", field: "forks", filter: true, cellDataType: 'number' },
-    { headerName: "URL", field: "url", filter: true, hide: true },
-    { headerName: "Описание", field: "description", filter: true },
-    { headerName: "Автор", field: "author", filter: true },
-    { headerName: "URL", field: "authorUrl", filter: true },
-    { headerName: "Язык", field: "lang", filter: true },
-    { headerName: "Создан", field: "createddate", filter: true, cellDataType: 'date', valueFormatter: dateFormatter },
-    { headerName: "Лицензия", field: "license", filter: true },
-    { field: "pic", hide: true },
-    { field: "id", hide: true }
-  ]
-}
-
-function yyyymmdd(item) {
-
-  var dt = new Date(item);
-  var mm = dt.getMonth() + 1; // getMonth() is zero-based
-  var dd = dt.getDate();
-
-  return [
-    (dd > 9 ? '' : '0') + dd,
-    (mm > 9 ? '' : '0') + mm,
-    dt.getFullYear()
-  ].join('-');
-}
-
-function dateFormatter(params) {
-  return yyyymmdd(params.value);
-}
-
-function selectRow() {
-
-  currentPage = gridApi.paginationGetCurrentPage();
-  pageSize = gridApi.paginationGetPageSize();
-
-  if (repo == undefined) {
-    gridApi.forEachNode(node => node.rowIndex - (currentPage * pageSize) ? 0 : node.setSelected(true));
-  } else {
-
-    gridApi.forEachNode(node => {
-
-      if (node.data.id.toString() == repo.toString()) {
-
-        let page = Math.ceil(node.rowIndex / pageSize) - 1;
-
-        if (currentPage != page) {
-          gridApi.paginationGoToPage(page);
+    
+    // Set active filter tab
+    document.querySelectorAll('.filter-tab').forEach(tab => {
+        if (tab.dataset.filter === currentFilter) {
+            tab.classList.add('active');
         }
-
-        if (page == 0) {
-          firstRender = false;
-        }
-
-        node.setSelected(true);
-        gridApi.ensureIndexVisible(node.rowIndex, null);
-      }
-
+        
+        tab.addEventListener('click', () => {
+            switchFilter(tab.dataset.filter);
+        });
     });
-  }
-}
-
-getDataByUrl("./data/" + dataname + ".json", true).then(function (response) {
-
-  gridOptions["rowData"] = response["data"];
-
-  if (title != undefined) {
-    title.textContent = response["title"];
-  }
-
-  if (description != undefined) {
-    description.textContent = response["description"];
-  }
-
-  const myGridElement = document.querySelector('#myGrid');
-  gridApi = agGrid.createGrid(myGridElement, gridOptions);
-
-  selectRow();
-
+    
+    // Search input
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                currentPage = 1;
+                loadRepositories(e.target.value);
+            }, 300);
+        });
+    }
+    
+    // Page size selector
+    const pageSize = document.getElementById('pageSize');
+    if (pageSize) {
+        pageSize.addEventListener('change', (e) => {
+            currentPageSize = parseInt(e.target.value);
+            currentPage = 1;
+            loadRepositories(searchInput?.value || '');
+        });
+    }
+    
+    // Pagination buttons
+    document.getElementById('prevPage')?.addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            loadRepositories(searchInput?.value || '');
+        }
+    });
+    
+    document.getElementById('nextPage')?.addEventListener('click', () => {
+        currentPage++;
+        loadRepositories(searchInput?.value || '');
+    });
+    
+    // Modal close
+    document.getElementById('modalClose')?.addEventListener('click', closeModal);
+    document.getElementById('modalOverlay')?.addEventListener('click', closeModal);
+    
+    // Load initial data
+    loadRepositories('', repoParam);
 });
 
+// Switch filter
+function switchFilter(filter) {
+    if (filter === currentFilter) return;
+    
+    currentFilter = filter;
+    currentPage = 1;
+    
+    // Update active tab
+    document.querySelectorAll('.filter-tab').forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.filter === filter);
+    });
+    
+    // Update URL
+    const url = new URL(window.location);
+    url.searchParams.set('filter', filter);
+    window.history.pushState({}, '', url);
+    
+    // Clear search
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) searchInput.value = '';
+    
+    // Load data
+    loadRepositories('');
+}
 
+// Load repositories
+async function loadRepositories(searchQuery = '', highlightRepoId = null) {
+    const loading = document.getElementById('tableLoading');
+    const table = document.getElementById('reposTable');
+    const empty = document.getElementById('tableEmpty');
+    
+    // Show loading
+    if (loading) loading.style.display = 'flex';
+    if (table) table.style.display = 'none';
+    if (empty) empty.style.display = 'none';
+    
+    try {
+        // Fetch data
+        const result = await DataService.searchRepositories(
+            searchQuery,
+            currentFilter,
+            currentPage,
+            currentPageSize
+        );
+        
+        currentData = result.data;
+        allData = result.data;
+        
+        // Update page title and description
+        updatePageInfo();
+        
+        // Apply current sort if any
+        if (currentSort.column) {
+            sortData(currentSort.column, currentSort.direction);
+        } else {
+            // Render table
+            renderTable(result.data);
+        }
+        
+        // Update pagination
+        updatePagination(result);
+        
+        // Hide loading
+        if (loading) loading.style.display = 'none';
+        if (table) table.style.display = 'table';
+        
+        // Show empty state if no results
+        if (result.data.length === 0) {
+            if (table) table.style.display = 'none';
+            if (empty) empty.style.display = 'block';
+        }
+        
+        // Highlight specific repo if requested
+        if (highlightRepoId) {
+            const repo = result.data.find(r => r.id?.toString() === highlightRepoId);
+            if (repo) {
+                setTimeout(() => openModal(repo), 500);
+            }
+        }
+        
+    } catch (error) {
+        console.error('Failed to load repositories:', error);
+        if (loading) {
+            loading.innerHTML = `
+                <div style="text-align: center; padding: 2rem;">
+                    <p style="color: var(--text-primary); margin-bottom: 1rem;">Ошибка загрузки данных</p>
+                    <p style="color: var(--text-secondary); font-size: 0.875rem;">${error.message}</p>
+                    <p style="color: var(--text-muted); font-size: 0.75rem; margin-top: 1rem;">
+                        Проверьте консоль для подробностей
+                    </p>
+                </div>
+            `;
+        }
+    }
+}
+
+// Update page info
+function updatePageInfo() {
+    const titles = {
+        top: 'Топ-500 репозиториев',
+        new: 'Новые репозитории',
+        updated: 'Недавно обновленные'
+    };
+    
+    const descriptions = {
+        top: 'Самые популярные проекты по количеству звезд',
+        new: 'Свежие проекты, ожидающие своих первых пользователей',
+        updated: 'Проекты с недавними обновлениями и активной разработкой'
+    };
+    
+    const title = document.getElementById('pageTitle');
+    const description = document.getElementById('pageDescription');
+    
+    if (title) title.textContent = titles[currentFilter];
+    if (description) description.textContent = descriptions[currentFilter];
+}
+
+// Render table
+function renderTable(data) {
+    const thead = document.getElementById('tableHeader');
+    const tbody = document.getElementById('tableBody');
+    
+    if (!thead || !tbody) return;
+    
+    // Define columns based on filter
+    const columns = getColumns();
+    
+    // Render header
+    thead.innerHTML = columns.map((col, index) => {
+        const sortable = col.sortable !== false ? 'sortable' : '';
+        const dataColumn = col.field || '';
+        return `<th class="${sortable}" data-column="${dataColumn}">${col.header}</th>`;
+    }).join('');
+    
+    // Add click handlers for sortable columns
+    thead.querySelectorAll('.sortable').forEach(th => {
+        th.addEventListener('click', () => {
+            const column = th.dataset.column;
+            if (!column) return;
+            
+            let direction = 'asc';
+            if (currentSort.column === column) {
+                direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+            }
+            
+            sortData(column, direction);
+        });
+    });
+    
+    // Render rows
+    const params = new URLSearchParams(window.location.search);
+    const highlightRepoId = params.get('repo');
+    
+    tbody.innerHTML = data.map(repo => {
+        const isHighlighted = highlightRepoId && repo.id && repo.id.toString() === highlightRepoId;
+        const highlightClass = isHighlighted ? 'highlighted-row' : '';
+        
+        return `
+            <tr class="${highlightClass}" onclick="openModalById(${data.indexOf(repo)})">
+                ${columns.map(col => `<td>${col.render(repo)}</td>`).join('')}
+            </tr>
+        `;
+    }).join('');
+    
+    // Scroll to highlighted row
+    if (highlightRepoId) {
+        setTimeout(() => {
+            const highlightedRow = tbody.querySelector('.highlighted-row');
+            if (highlightedRow) {
+                highlightedRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }, 500);
+    }
+}
+
+// Get columns configuration
+function getColumns() {
+    const baseColumns = [
+        {
+            header: 'Название',
+            field: 'name',
+            render: (repo) => `
+                <div class="repo-name-cell">
+                    <img src="${repo.pic || 'static/logo.png'}" 
+                         alt="${repo.name}" 
+                         class="repo-avatar-small"
+                         onerror="this.src='static/logo.png'">
+                    <span class="repo-name-text">${repo.name || 'N/A'}</span>
+                </div>
+            `
+        },
+        {
+            header: 'Описание',
+            field: 'description',
+            render: (repo) => `<div class="repo-description-cell">${repo.description || 'Нет описания'}</div>`
+        },
+        {
+            header: 'Автор',
+            field: 'author',
+            render: (repo) => repo.author || 'N/A'
+        },
+        {
+            header: 'Звезды',
+            field: 'stars',
+            render: (repo) => formatNumber(repo.stars || 0)
+        },
+        {
+            header: 'Форки',
+            field: 'forks',
+            render: (repo) => formatNumber(repo.forks || 0)
+        },
+        {
+            header: 'Язык',
+            field: 'lang',
+            render: (repo) => createLangBadge(repo.lang)
+        },
+        {
+            header: 'Лицензия',
+            field: 'license',
+            render: (repo) => repo.license || '-'
+        },
+        {
+            header: 'Создан',
+            field: 'createddate',
+            render: (repo) => formatDate(repo.createddate)
+        },
+        {
+            header: 'Обновлен',
+            field: 'updateddate',
+            render: (repo) => formatDate(repo.updateddate)
+        }
+    ];
+    
+    // Add filter-specific columns
+    if (currentFilter === 'top') {
+        baseColumns.unshift({
+            header: 'Место',
+            field: 'place',
+            render: (repo) => repo.place || '-'
+        });
+        
+        // Remove last two columns (Создан, Обновлен) and add Динамика and Badge
+        baseColumns.splice(-2, 2);
+        baseColumns.push({
+            header: 'Динамика',
+            field: 'сhanging',
+            render: (repo) => {
+                if (!repo.dynamic) return '-';
+                const icon = repo.dynamic === 'up' ? '↑' : 
+                            repo.dynamic === 'down' ? '↓' : '−';
+                const change = repo.сhanging || 0;
+                return change !== 0 ? `${icon} ${Math.abs(change)}` : '−';
+            }
+        });
+        baseColumns.push({
+            header: '<span class="badge-help" title="Markdown разметка значка для README">Значок ?</span>',
+            field: 'badge',
+            sortable: false,
+            render: (repo) => createBadgeMarkdown(repo)
+        });
+    } else if (currentFilter === 'new') {
+        // Remove Обновлен column, keep Создан
+        baseColumns.splice(-1, 1);
+    } else if (currentFilter === 'updated') {
+        // Remove Создан column, keep Обновлен
+        baseColumns.splice(-2, 1);
+    }
+    
+    return baseColumns;
+}
+
+// Format date
+function formatDate(dateString) {
+    if (!dateString) return '-';
+    const date = new Date(dateString);
+    return date.toLocaleDateString('ru-RU');
+}
+
+// Known languages with predefined colors
+const knownLanguages = {
+    '1c': true,
+    '1centerprise': true,
+    'csharp': true,
+    'c#': true,
+    'java': true,
+    'javascript': true,
+    'python': true,
+    'go': true,
+    'rust': true,
+    'typescript': true,
+    'php': true,
+    'ruby': true,
+    'cpp': true,
+    'c++': true
+};
+
+// Get language badge class
+function getLangClass(lang) {
+    if (!lang) return 'lang-default';
+    
+    const normalized = lang.toLowerCase()
+        .replace(/\s+/g, '')
+        .replace('1centerprise', '1c')
+        .replace('c#', 'csharp')
+        .replace('c++', 'cpp');
+    
+    // Check if language has predefined color
+    if (knownLanguages[normalized] || knownLanguages[lang.toLowerCase()]) {
+        return `lang-${normalized}`;
+    }
+    
+    // Generate color for unknown language
+    return `lang-unknown lang-hash-${getColorHash(lang)}`;
+}
+
+// Generate consistent color hash for unknown languages
+function getColorHash(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return Math.abs(hash % 8); // 8 different colors
+}
+
+// Create language badge
+function createLangBadge(lang) {
+    if (!lang) return '<span class="lang-badge lang-default">-</span>';
+    const className = getLangClass(lang);
+    return `<span class="lang-badge ${className}">${lang}</span>`;
+}
+
+// Create badge markdown
+function createBadgeMarkdown(repo) {
+    if (!repo.id || !repo.place) return '-';
+    
+    const group = repo.group || 2;
+    const markdown = `[![OpenYellow](https://img.shields.io/endpoint?url=https://openyellow.org/data/badges/${group}/${repo.id}.json)](https://openyellow.org/grid?data=top&repo=${repo.id})`;
+    
+    return `<input type="text" class="badge-input" value="${markdown.replace(/"/g, '&quot;')}" readonly onclick="this.select()" title="Кликните для копирования">`;
+}
+
+// Sort data
+function sortData(column, direction) {
+    if (!direction) {
+        direction = 'asc';
+    }
+    
+    currentSort = { column, direction };
+    
+    const sorted = [...currentData].sort((a, b) => {
+        let aVal = a[column];
+        let bVal = b[column];
+        
+        // Handle null/undefined
+        if (aVal == null) aVal = '';
+        if (bVal == null) bVal = '';
+        
+        // Handle numbers
+        if (typeof aVal === 'number' && typeof bVal === 'number') {
+            return direction === 'asc' ? aVal - bVal : bVal - aVal;
+        }
+        
+        // Handle strings
+        aVal = String(aVal).toLowerCase();
+        bVal = String(bVal).toLowerCase();
+        
+        if (direction === 'asc') {
+            return aVal < bVal ? -1 : aVal > bVal ? 1 : 0;
+        } else {
+            return aVal > bVal ? -1 : aVal < bVal ? 1 : 0;
+        }
+    });
+    
+    renderTable(sorted);
+    updateSortIndicators(column, direction);
+}
+
+// Update sort indicators
+function updateSortIndicators(column, direction) {
+    document.querySelectorAll('.sortable').forEach(th => {
+        th.classList.remove('asc', 'desc');
+        if (th.dataset.column === column) {
+            th.classList.add(direction);
+        }
+    });
+}
+
+// Update pagination
+function updatePagination(result) {
+    const prevBtn = document.getElementById('prevPage');
+    const nextBtn = document.getElementById('nextPage');
+    const pageInfo = document.getElementById('pageInfo');
+    
+    if (prevBtn) {
+        prevBtn.disabled = currentPage <= 1;
+    }
+    
+    if (nextBtn) {
+        nextBtn.disabled = currentPage >= result.totalPages;
+    }
+    
+    if (pageInfo) {
+        pageInfo.textContent = `Страница ${currentPage} из ${result.totalPages} (${formatNumber(result.total)} записей)`;
+    }
+}
+
+// Open modal by index
+window.openModalById = function(index) {
+    if (currentData[index]) {
+        openModal(currentData[index]);
+    }
+};
+
+// Open modal
+function openModal(repo) {
+    const modal = document.getElementById('repoModal');
+    if (!modal) return;
+    
+    // Populate modal
+    document.getElementById('repoAvatar').src = repo.pic || 'static/logo.png';
+    document.getElementById('repoName').textContent = repo.name || 'N/A';
+    document.getElementById('repoAuthor').textContent = repo.author || 'N/A';
+    document.getElementById('repoAuthor').href = repo.authorUrl || '#';
+    document.getElementById('repoDescription').textContent = repo.description || 'Нет описания';
+    document.getElementById('repoStars').textContent = formatNumber(repo.stars || 0);
+    document.getElementById('repoForks').textContent = formatNumber(repo.forks || 0);
+    document.getElementById('repoCreated').textContent = formatDate(repo.createddate);
+    document.getElementById('repoUpdated').textContent = formatDate(repo.updateddate);
+    document.getElementById('repoLink').href = repo.url || '#';
+    
+    // Optional fields
+    const langBlock = document.getElementById('repoLangBlock');
+    const lang = document.getElementById('repoLang');
+    if (repo.lang) {
+        langBlock.style.display = 'flex';
+        lang.textContent = repo.lang;
+    } else {
+        langBlock.style.display = 'none';
+    }
+    
+    const licenseBlock = document.getElementById('repoLicenseBlock');
+    const license = document.getElementById('repoLicense');
+    if (repo.license) {
+        licenseBlock.style.display = 'flex';
+        license.textContent = repo.license;
+    } else {
+        licenseBlock.style.display = 'none';
+    }
+    
+    // Show modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Close modal
+function closeModal() {
+    const modal = document.getElementById('repoModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeModal();
+    }
+});

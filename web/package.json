@@ -1,0 +1,21 @@
+{
+  "name": "openyellow",
+  "version": "2.0.3",
+  "description": "OpenYellow - Агрегатор open-source проектов для 1С",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "serve": "node server.js"
+  },
+  "keywords": [
+    "1c",
+    "opensource",
+    "aggregator"
+  ],
+  "author": "Bayselonarrend",
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}
