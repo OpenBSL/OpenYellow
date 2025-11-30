@@ -677,6 +677,29 @@ img {
     display: flex;
     align-items: center;
     gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.page-jump {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.page-jump-input {
+    width: 60px;
+    padding: var(--spacing-xs) var(--spacing-xs);
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+.page-jump-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
 }
 
 .page-size-select {

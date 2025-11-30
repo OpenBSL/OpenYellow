@@ -42,24 +42,33 @@ exports.getRepositories = async (req, res) => {
         );
         const total = countResult[0].total;
 
-        // Get paginated data
-        const [rows] = await pool.query(
-            `SELECT 
-                id, name, description, author, authorUrl, url, pic,
-                stars, forks, lang, license, createddate, updateddate
-            FROM repos 
-            ${whereClause}
-            ORDER BY ${orderBy}
-            LIMIT ? OFFSET ?`,
-            [...params, limit, offset]
-        );
-
-        // Calculate place for top filter
+        // Get paginated data with global ranking
+        let query;
         if (filter === 'top') {
-            rows.forEach((row, index) => {
-                row.place = offset + index + 1;
-            });
+            // For top filter, calculate global place based on stars ranking
+            query = `
+                SELECT 
+                    id, name, description, author, authorUrl, url, pic,
+                    stars, forks, lang, license, createddate, updateddate,
+                    (SELECT COUNT(*) + 1 FROM repos r2 WHERE r2.stars > r1.stars) as place
+                FROM repos r1
+                ${whereClause}
+                ORDER BY ${orderBy}
+                LIMIT ? OFFSET ?
+            `;
+        } else {
+            query = `
+                SELECT 
+                    id, name, description, author, authorUrl, url, pic,
+                    stars, forks, lang, license, createddate, updateddate
+                FROM repos 
+                ${whereClause}
+                ORDER BY ${orderBy}
+                LIMIT ? OFFSET ?
+            `;
         }
+        
+        const [rows] = await pool.query(query, [...params, limit, offset]);
 
         res.json({
             success: true,

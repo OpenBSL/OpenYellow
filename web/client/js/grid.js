@@ -69,6 +69,28 @@ document.addEventListener('DOMContentLoaded', () => {
         loadRepositories(searchInput?.value || '');
     });
     
+    // Page jump
+    const pageJumpBtn = document.getElementById('pageJumpBtn');
+    const pageJumpInput = document.getElementById('pageJump');
+    
+    if (pageJumpBtn && pageJumpInput) {
+        pageJumpBtn.addEventListener('click', () => {
+            const targetPage = parseInt(pageJumpInput.value);
+            if (targetPage && targetPage > 0) {
+                currentPage = targetPage;
+                loadRepositories(searchInput?.value || '');
+                pageJumpInput.value = '';
+            }
+        });
+        
+        // Allow Enter key to jump
+        pageJumpInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                pageJumpBtn.click();
+            }
+        });
+    }
+    
     // Modal close
     document.getElementById('modalClose')?.addEventListener('click', closeModal);
     document.getElementById('modalOverlay')?.addEventListener('click', closeModal);
@@ -318,19 +340,8 @@ function getColumns() {
             render: (repo) => repo.place || '-'
         });
         
-        // Remove last two columns (Создан, Обновлен) and add Динамика and Badge
+        // Remove last two columns (Создан, Обновлен) and add Badge
         baseColumns.splice(-2, 2);
-        baseColumns.push({
-            header: 'Динамика',
-            field: 'сhanging',
-            render: (repo) => {
-                if (!repo.dynamic) return '-';
-                const icon = repo.dynamic === 'up' ? '↑' : 
-                            repo.dynamic === 'down' ? '↓' : '−';
-                const change = repo.сhanging || 0;
-                return change !== 0 ? `${icon} ${Math.abs(change)}` : '−';
-            }
-        });
         baseColumns.push({
             header: '<a href="badges.html" class="badge-help-link" title="Markdown разметка значка для README" onclick="event.stopPropagation()">Значок ?</a>',
             field: 'badge',
@@ -505,6 +516,7 @@ function updatePagination(result) {
     const prevBtn = document.getElementById('prevPage');
     const nextBtn = document.getElementById('nextPage');
     const pageInfo = document.getElementById('pageInfo');
+    const pageJumpInput = document.getElementById('pageJump');
     
     if (prevBtn) {
         prevBtn.disabled = currentPage <= 1;
@@ -516,6 +528,11 @@ function updatePagination(result) {
     
     if (pageInfo) {
         pageInfo.textContent = `Страница ${currentPage} из ${result.totalPages} (${formatNumber(result.total)} записей)`;
+    }
+    
+    if (pageJumpInput) {
+        pageJumpInput.max = result.totalPages;
+        pageJumpInput.placeholder = `1-${result.totalPages}`;
     }
 }
 
