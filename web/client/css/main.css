@@ -120,7 +120,6 @@ img {
     box-shadow: var(--shadow);
     width: 100%;
     max-width: 100vw;
-    overflow-x: hidden;
 }
 
 .nav-container {
@@ -1102,17 +1101,28 @@ img {
 
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
+    .nav {
+        overflow: visible;
+    }
+    
+    .nav-container {
+        position: relative;
+    }
+    
     .nav-links {
         display: none;
         position: absolute;
         top: 100%;
         left: 0;
         right: 0;
+        width: 100vw;
+        margin-left: calc(-1 * var(--spacing-md));
         background-color: var(--bg-secondary);
         flex-direction: column;
         padding: var(--spacing-md);
         border-top: 1px solid var(--border-color);
         box-shadow: var(--shadow);
+        z-index: 1001;
     }
     
     .nav-links.active {
