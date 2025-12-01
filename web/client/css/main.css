@@ -559,8 +559,10 @@ img {
 .column-filters {
     display: flex;
     gap: var(--spacing-sm);
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
+    flex: 1;
+    min-width: 0;
 }
 
 .column-filter-select,
@@ -731,10 +733,8 @@ img {
 
 .search-box {
     position: relative;
-    flex: 2;
-    min-width: 300px;
+    flex: 1 0 300px;
     max-width: 500px;
-    flex-shrink: 0;
 }
 
 .search-input {
