@@ -1175,21 +1175,55 @@ img {
         min-width: 0;
     }
     
-    .filter-checkbox-label,
-    .filter-clear-btn {
-        width: auto;
-        flex: 1 1 auto;
-        min-width: fit-content;
+    .filter-checkbox-label {
+        flex: 1 1 0;
+        min-width: 0;
+        justify-content: center;
+        padding-left: var(--spacing-xs);
+        padding-right: var(--spacing-xs);
     }
     
-    /* Checkbox and clear button on same row */
-    .column-filters > .filter-checkbox-label,
-    .column-filters > .filter-clear-btn {
-        display: inline-flex;
+    .filter-clear-btn {
+        flex: 1 1 0;
+        min-width: 0;
+        padding-left: var(--spacing-xs);
+        padding-right: var(--spacing-xs);
+    }
+    
+    /* Wrap checkbox and button in a row */
+    .column-filters {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
     }
     
     .column-filters > .filter-checkbox-label {
-        margin-right: var(--spacing-sm);
+        grid-column: 1;
+    }
+    
+    .column-filters > .filter-clear-btn {
+        grid-column: 1;
+    }
+    
+    /* Last checkbox and button on same row */
+    .column-filters > .filter-checkbox-label:last-of-type {
+        grid-column: 1 / 2;
+        grid-row: auto;
+    }
+    
+    .column-filters > .filter-clear-btn {
+        grid-column: 2 / 3;
+        grid-row: -2;
+    }
+    
+    @supports (display: grid) {
+        .column-filters {
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .column-filters > *:not(.filter-checkbox-label):not(.filter-clear-btn) {
+            grid-column: 1 / -1;
+        }
     }
     
     /* Hide table, show card view */
