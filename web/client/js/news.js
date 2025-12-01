@@ -123,17 +123,17 @@ function createNewsItem(news) {
     }
     
     item.innerHTML = `
-        <img src="${news.icon || 'static/logo.png'}" 
+        <img src="${news.icon || 'static/logo_small.png'}" 
              alt="${news.title}" 
              class="news-item-icon"
-             onerror="this.src='static/logo.png'">
+             onerror="this.src='static/logo_small.png'">
         <div class="news-item-content">
             <div class="news-item-header">
                 <h3 class="news-item-title">${news.title}</h3>
                 <div class="news-item-date">${dateStr}</div>
             </div>
             <p class="news-item-text">${preview}</p>
-            ${news.link ? `<span class="news-item-link">Подробнее →</span>` : ''}
+            ${news.link && news.link.trim() ? `<span class="news-item-link">Подробнее →</span>` : ''}
         </div>
     `;
     
@@ -154,18 +154,23 @@ function openNewsModal(news) {
         minute: '2-digit'
     });
     
-    document.getElementById('newsIcon').src = news.icon || 'static/logo.png';
+    document.getElementById('newsIcon').src = news.icon || 'static/logo_small.png';
     document.getElementById('newsTitle').textContent = news.title;
     document.getElementById('newsDate').textContent = dateStr;
     
-    // Use text as-is from database, but set it directly without any processing
+    // Convert \n to <br> only if there are no <br> tags in the text
+    let formattedText = news.text;
+    if (!/<br\s*\/?>/i.test(formattedText)) {
+        // No <br> tags found, convert \n to <br>
+        formattedText = formattedText.replace(/\n/g, '<br>');
+    }
+    
     const newsTextElement = document.getElementById('newsText');
-    newsTextElement.innerHTML = '';
-    newsTextElement.innerHTML = news.text;
+    newsTextElement.innerHTML = formattedText;
     
     const linkContainer = document.getElementById('newsLinkContainer');
     const link = document.getElementById('newsLink');
-    if (news.link) {
+    if (news.link && news.link.trim()) {
         link.href = news.link;
         linkContainer.style.display = 'block';
     } else {
