@@ -593,11 +593,13 @@ img {
     font-size: 0.875rem;
     cursor: pointer;
     user-select: none;
-    padding: var(--spacing-xs) var(--spacing-sm);
+    padding: 0.4rem var(--spacing-sm);
     background-color: var(--bg-tertiary);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-sm);
     transition: var(--transition);
+    height: 36px;
+    box-sizing: border-box;
 }
 
 .filter-checkbox-label:hover {

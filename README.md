@@ -15,7 +15,7 @@
 
 <br>
 
-![image](https://github.com/user-attachments/assets/206dcff1-c5bb-4b80-9374-2285948b5d3c)
+![image](/media/site.png)
 
 
 <br>
