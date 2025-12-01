@@ -181,7 +181,13 @@ function openNewsModal(news) {
     document.getElementById('newsIcon').src = news.icon || 'static/logo.png';
     document.getElementById('newsTitle').textContent = news.title;
     document.getElementById('newsDate').textContent = dateStr;
-    document.getElementById('newsText').innerHTML = news.text;
+    
+    // Convert \n to <br> only if there are no <br> tags already
+    let formattedText = news.text;
+    if (!/<br\s*\/?>/i.test(formattedText)) {
+        formattedText = formattedText.replace(/\n/g, '<br>');
+    }
+    document.getElementById('newsText').innerHTML = formattedText;
     
     const linkContainer = document.getElementById('newsLinkContainer');
     const link = document.getElementById('newsLink');
