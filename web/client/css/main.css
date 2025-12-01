@@ -2322,7 +2322,6 @@ img {
 .news-text {
     color: var(--text-secondary);
     line-height: 1.8;
-    white-space: pre-wrap;
 }
 
 .news-link-container {

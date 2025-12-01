@@ -182,17 +182,10 @@ function openNewsModal(news) {
     document.getElementById('newsTitle').textContent = news.title;
     document.getElementById('newsDate').textContent = dateStr;
     
-    // Clean up text: remove extra <br> tags that appear around block elements
-    let formattedText = news.text;
-    
-    // Remove <br> before and after block elements (ul, ol, li, div, p, etc.)
-    formattedText = formattedText.replace(/<br\s*\/?>\s*(<\/?(?:ul|ol|li|div|p|h[1-6]|blockquote))/gi, '$1');
-    formattedText = formattedText.replace(/(<\/(?:ul|ol|li|div|p|h[1-6]|blockquote)>)\s*<br\s*\/?>/gi, '$1');
-    
-    // Remove multiple consecutive <br> tags (more than 2)
-    formattedText = formattedText.replace(/(<br\s*\/?>\s*){3,}/gi, '<br><br>');
-    
-    document.getElementById('newsText').innerHTML = formattedText;
+    // Use text as-is from database, but set it directly without any processing
+    const newsTextElement = document.getElementById('newsText');
+    newsTextElement.innerHTML = '';
+    newsTextElement.innerHTML = news.text;
     
     const linkContainer = document.getElementById('newsLinkContainer');
     const link = document.getElementById('newsLink');
