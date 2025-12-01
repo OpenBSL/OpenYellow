@@ -550,7 +550,7 @@ img {
 
 .filters-bar {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     gap: var(--spacing-sm);
     flex-wrap: wrap;
@@ -735,9 +735,10 @@ img {
 
 .search-box {
     position: relative;
-    flex: 1 1 auto;
+    flex: 0 1 auto;
     max-width: 500px;
     min-width: 280px;
+    width: 350px;
 }
 
 .search-input {
