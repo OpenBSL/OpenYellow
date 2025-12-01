@@ -101,9 +101,12 @@ function createNewsItem(news) {
     // Truncate text for preview - keep complete lines only, minimum 2 lines
     let preview = news.text;
     
-    // Find all line breaks in the text
-    const lineBreakRegex = /\n|<br\s*\/?>/gi;
-    const matches = [...news.text.matchAll(lineBreakRegex)];
+    // Normalize line breaks - convert \n to <br> if not already present
+    let normalizedText = news.text.replace(/\n/g, '<br>');
+    
+    // Find all line breaks in the normalized text
+    const lineBreakRegex = /<br\s*\/?>/gi;
+    const matches = [...normalizedText.matchAll(lineBreakRegex)];
     
     if (matches.length >= 2) {
         // At least 2 lines exist
@@ -111,28 +114,36 @@ function createNewsItem(news) {
         
         if (secondLineBreak <= 120) {
             // Second line fits within limit, show at least 2 lines
-            if (news.text.length > secondLineBreak + 10) {
+            if (normalizedText.length > secondLineBreak + 10) {
                 // There's more content after second line
-                preview = news.text.substring(0, secondLineBreak).trim() + '...';
+                preview = normalizedText.substring(0, secondLineBreak).trim() + '...';
+            } else {
+                preview = normalizedText;
             }
         } else {
             // Second line is beyond limit, show first line only
             const firstLineBreak = matches[0].index;
-            if (firstLineBreak > 0 && news.text.length > firstLineBreak + 10) {
-                preview = news.text.substring(0, firstLineBreak).trim() + '...';
+            if (firstLineBreak > 0 && normalizedText.length > firstLineBreak + 10) {
+                preview = normalizedText.substring(0, firstLineBreak).trim() + '...';
+            } else {
+                preview = normalizedText;
             }
         }
     } else if (matches.length === 1) {
         // Only 1 line break exists
         const firstLineBreak = matches[0].index;
-        if (firstLineBreak <= 120 && news.text.length > firstLineBreak + 10) {
-            preview = news.text.substring(0, firstLineBreak).trim() + '...';
-        } else if (news.text.length > 120) {
-            preview = news.text.substring(0, 120).trim() + '...';
+        if (firstLineBreak <= 120 && normalizedText.length > firstLineBreak + 10) {
+            preview = normalizedText.substring(0, firstLineBreak).trim() + '...';
+        } else if (normalizedText.length > 120) {
+            preview = normalizedText.substring(0, 120).trim() + '...';
+        } else {
+            preview = normalizedText;
         }
-    } else if (news.text.length > 120) {
+    } else if (normalizedText.length > 120) {
         // No line breaks, use character limit
-        preview = news.text.substring(0, 120).trim() + '...';
+        preview = normalizedText.substring(0, 120).trim() + '...';
+    } else {
+        preview = normalizedText;
     }
     
     item.innerHTML = `
