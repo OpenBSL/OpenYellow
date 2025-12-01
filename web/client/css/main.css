@@ -2423,8 +2423,18 @@ img {
         height: 40px;
     }
     
+    .news-item-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+    
     .news-item-title {
         font-size: 1rem;
+    }
+    
+    .news-item-date {
+        white-space: normal;
     }
     
     .news-item-text {
