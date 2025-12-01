@@ -559,7 +559,7 @@ img {
 .column-filters {
     display: flex;
     gap: var(--spacing-sm);
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     align-items: center;
     flex: 1;
     min-width: 0;
@@ -573,8 +573,8 @@ img {
     border-radius: var(--radius-sm);
     color: var(--text-primary);
     font-size: 0.875rem;
-    min-width: 100px;
-    flex-shrink: 2;
+    min-width: 120px;
+    flex-shrink: 3;
 }
 
 .column-filter-select:focus,
@@ -584,9 +584,9 @@ img {
 }
 
 .column-filter-input {
-    flex: 0.5;
+    flex: 0 1 180px;
     max-width: 180px;
-    min-width: 80px;
+    min-width: 100px;
 }
 
 .filter-checkbox-label {
@@ -604,6 +604,8 @@ img {
     transition: var(--transition);
     height: 36px;
     box-sizing: border-box;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .filter-checkbox-label:hover {
@@ -655,6 +657,8 @@ img {
     cursor: pointer;
     transition: var(--transition);
     font-size: 0.875rem;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .filter-clear-btn:hover {
@@ -733,8 +737,9 @@ img {
 
 .search-box {
     position: relative;
-    flex: 1 0 300px;
+    flex: 1 1 250px;
     max-width: 500px;
+    min-width: 250px;
 }
 
 .search-input {
