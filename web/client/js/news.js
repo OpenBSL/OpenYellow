@@ -98,15 +98,16 @@ function createNewsItem(news) {
         minute: '2-digit'
     });
     
-    // Truncate text for preview - keep complete lines only, minimum 2 non-empty lines
+    // Truncate text for preview - keep 2 non-empty lines, skip empty lines
     let preview = news.text;
     
-    // Normalize line breaks - convert \n to <br> if not already present
-    let normalizedText = news.text.replace(/\n/g, '<br>');
+    // Strip HTML tags for preview to get clean text
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = news.text;
+    const plainText = tempDiv.textContent || tempDiv.innerText || '';
     
     // Split by line breaks and filter out empty lines
-    const lineBreakRegex = /<br\s*\/?>/gi;
-    const lines = normalizedText.split(lineBreakRegex)
+    const lines = plainText.split(/\n/)
         .map(line => line.trim())
         .filter(line => line.length > 0);
     
@@ -115,8 +116,10 @@ function createNewsItem(news) {
         preview = lines.slice(0, 2).join('<br>');
     } else if (lines.length === 1) {
         preview = lines[0];
+    } else if (plainText.length > 120) {
+        preview = plainText.substring(0, 120);
     } else {
-        preview = normalizedText;
+        preview = plainText;
     }
     
     item.innerHTML = `
