@@ -8,23 +8,20 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('newsList')) {
         loadNews();
         
-        // Infinite scroll
-        const newsList = document.getElementById('newsList');
-        if (newsList) {
-            newsList.addEventListener('scroll', () => {
-                if (isLoadingNews || !hasMoreNews) return;
-                
-                const scrollTop = newsList.scrollTop;
-                const scrollHeight = newsList.scrollHeight;
-                const clientHeight = newsList.clientHeight;
-                
-                // Load more when 200px from bottom
-                if (scrollTop + clientHeight >= scrollHeight - 200) {
-                    currentNewsPage++;
-                    loadNews(true);
-                }
-            });
-        }
+        // Infinite scroll on main page scroll
+        window.addEventListener('scroll', () => {
+            if (isLoadingNews || !hasMoreNews) return;
+            
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight;
+            const clientHeight = window.innerHeight;
+            
+            // Load more when 500px from bottom
+            if (scrollTop + clientHeight >= scrollHeight - 500) {
+                currentNewsPage++;
+                loadNews(true);
+            }
+        });
         
         // Modal close
         document.getElementById('newsModalClose')?.addEventListener('click', closeNewsModal);

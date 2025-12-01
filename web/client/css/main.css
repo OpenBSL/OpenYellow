@@ -2200,28 +2200,9 @@ img {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-md);
-    max-height: calc(100vh - 180px);
-    overflow-y: auto;
-    padding-right: var(--spacing-xs);
 }
 
-.news-list::-webkit-scrollbar {
-    width: 8px;
-}
 
-.news-list::-webkit-scrollbar-track {
-    background: var(--bg-tertiary);
-    border-radius: 4px;
-}
-
-.news-list::-webkit-scrollbar-thumb {
-    background: var(--border-color);
-    border-radius: 4px;
-}
-
-.news-list::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-primary);
-}
 
 .news-item {
     display: flex;
@@ -2369,9 +2350,7 @@ img {
         grid-area: news;
     }
     
-    .news-list {
-        max-height: none;
-    }
+
     
     .main-area {
         display: contents;
