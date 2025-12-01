@@ -1154,20 +1154,42 @@ img {
     .filters-bar {
         flex-direction: column;
         align-items: stretch;
+        gap: var(--spacing-sm);
     }
     
     .search-box {
         max-width: 100%;
+        width: 100%;
+        min-width: 0;
     }
     
     .column-filters {
         flex-direction: column;
+        flex-wrap: wrap;
     }
     
     .column-filter-select,
     .column-filter-input {
         width: 100%;
         max-width: 100%;
+        min-width: 0;
+    }
+    
+    .filter-checkbox-label,
+    .filter-clear-btn {
+        width: auto;
+        flex: 1 1 auto;
+        min-width: fit-content;
+    }
+    
+    /* Checkbox and clear button on same row */
+    .column-filters > .filter-checkbox-label,
+    .column-filters > .filter-clear-btn {
+        display: inline-flex;
+    }
+    
+    .column-filters > .filter-checkbox-label {
+        margin-right: var(--spacing-sm);
     }
     
     /* Hide table, show card view */
