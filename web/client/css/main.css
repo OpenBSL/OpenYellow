@@ -550,19 +550,18 @@ img {
 
 .filters-bar {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
     flex-wrap: wrap;
 }
 
 .column-filters {
     display: flex;
     gap: var(--spacing-sm);
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
-    flex: 1;
-    min-width: 0;
+    flex: 0 1 auto;
 }
 
 .column-filter-select,
@@ -573,8 +572,8 @@ img {
     border-radius: var(--radius-sm);
     color: var(--text-primary);
     font-size: 0.875rem;
-    min-width: 120px;
-    flex-shrink: 3;
+    width: 150px;
+    flex-shrink: 1;
 }
 
 .column-filter-select:focus,
@@ -584,9 +583,8 @@ img {
 }
 
 .column-filter-input {
-    flex: 0 1 180px;
-    max-width: 180px;
-    min-width: 100px;
+    width: 180px;
+    min-width: 120px;
 }
 
 .filter-checkbox-label {
@@ -737,9 +735,9 @@ img {
 
 .search-box {
     position: relative;
-    flex: 1 1 250px;
+    flex: 1 1 auto;
     max-width: 500px;
-    min-width: 250px;
+    min-width: 280px;
 }
 
 .search-input {
