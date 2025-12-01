@@ -571,8 +571,8 @@ img {
     border-radius: var(--radius-sm);
     color: var(--text-primary);
     font-size: 0.875rem;
-    min-width: 120px;
-    flex-shrink: 1;
+    min-width: 100px;
+    flex-shrink: 2;
 }
 
 .column-filter-select:focus,
@@ -583,7 +583,8 @@ img {
 
 .column-filter-input {
     flex: 0.5;
-    max-width: 200px;
+    max-width: 180px;
+    min-width: 80px;
 }
 
 .filter-checkbox-label {
@@ -733,6 +734,7 @@ img {
     flex: 2;
     min-width: 300px;
     max-width: 500px;
+    flex-shrink: 0;
 }
 
 .search-input {
