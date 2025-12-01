@@ -98,10 +98,42 @@ function createNewsItem(news) {
         minute: '2-digit'
     });
     
-    // Truncate text for preview
-    const preview = news.text.length > 200 
-        ? news.text.substring(0, 200) + '...' 
-        : news.text;
+    // Truncate text for preview - keep complete lines only, minimum 2 lines
+    let preview = news.text;
+    
+    // Find all line breaks in the text
+    const lineBreakRegex = /\n|<br\s*\/?>/gi;
+    const matches = [...news.text.matchAll(lineBreakRegex)];
+    
+    if (matches.length >= 2) {
+        // At least 2 lines exist
+        const secondLineBreak = matches[1].index;
+        
+        if (secondLineBreak <= 120) {
+            // Second line fits within limit, show at least 2 lines
+            if (news.text.length > secondLineBreak + 10) {
+                // There's more content after second line
+                preview = news.text.substring(0, secondLineBreak).trim() + '...';
+            }
+        } else {
+            // Second line is beyond limit, show first line only
+            const firstLineBreak = matches[0].index;
+            if (firstLineBreak > 0 && news.text.length > firstLineBreak + 10) {
+                preview = news.text.substring(0, firstLineBreak).trim() + '...';
+            }
+        }
+    } else if (matches.length === 1) {
+        // Only 1 line break exists
+        const firstLineBreak = matches[0].index;
+        if (firstLineBreak <= 120 && news.text.length > firstLineBreak + 10) {
+            preview = news.text.substring(0, firstLineBreak).trim() + '...';
+        } else if (news.text.length > 120) {
+            preview = news.text.substring(0, 120).trim() + '...';
+        }
+    } else if (news.text.length > 120) {
+        // No line breaks, use character limit
+        preview = news.text.substring(0, 120).trim() + '...';
+    }
     
     item.innerHTML = `
         <img src="${news.icon || 'static/logo.png'}" 
@@ -138,7 +170,7 @@ function openNewsModal(news) {
     document.getElementById('newsIcon').src = news.icon || 'static/logo.png';
     document.getElementById('newsTitle').textContent = news.title;
     document.getElementById('newsDate').textContent = dateStr;
-    document.getElementById('newsText').textContent = news.text;
+    document.getElementById('newsText').innerHTML = news.text;
     
     const linkContainer = document.getElementById('newsLinkContainer');
     const link = document.getElementById('newsLink');
