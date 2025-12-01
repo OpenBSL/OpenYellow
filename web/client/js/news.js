@@ -98,50 +98,23 @@ function createNewsItem(news) {
         minute: '2-digit'
     });
     
-    // Truncate text for preview - keep complete lines only, minimum 2 lines
+    // Truncate text for preview - keep complete lines only, minimum 2 non-empty lines
     let preview = news.text;
     
     // Normalize line breaks - convert \n to <br> if not already present
     let normalizedText = news.text.replace(/\n/g, '<br>');
     
-    // Find all line breaks in the normalized text
+    // Split by line breaks and filter out empty lines
     const lineBreakRegex = /<br\s*\/?>/gi;
-    const matches = [...normalizedText.matchAll(lineBreakRegex)];
+    const lines = normalizedText.split(lineBreakRegex)
+        .map(line => line.trim())
+        .filter(line => line.length > 0);
     
-    if (matches.length >= 2) {
-        // At least 2 lines exist
-        const secondLineBreak = matches[1].index;
-        
-        if (secondLineBreak <= 120) {
-            // Second line fits within limit, show at least 2 lines
-            if (normalizedText.length > secondLineBreak + 10) {
-                // There's more content after second line
-                preview = normalizedText.substring(0, secondLineBreak).trim() + '...';
-            } else {
-                preview = normalizedText;
-            }
-        } else {
-            // Second line is beyond limit, show first line only
-            const firstLineBreak = matches[0].index;
-            if (firstLineBreak > 0 && normalizedText.length > firstLineBreak + 10) {
-                preview = normalizedText.substring(0, firstLineBreak).trim() + '...';
-            } else {
-                preview = normalizedText;
-            }
-        }
-    } else if (matches.length === 1) {
-        // Only 1 line break exists
-        const firstLineBreak = matches[0].index;
-        if (firstLineBreak <= 120 && normalizedText.length > firstLineBreak + 10) {
-            preview = normalizedText.substring(0, firstLineBreak).trim() + '...';
-        } else if (normalizedText.length > 120) {
-            preview = normalizedText.substring(0, 120).trim() + '...';
-        } else {
-            preview = normalizedText;
-        }
-    } else if (normalizedText.length > 120) {
-        // No line breaks, use character limit
-        preview = normalizedText.substring(0, 120).trim() + '...';
+    // Take first 2 non-empty lines
+    if (lines.length >= 2) {
+        preview = lines.slice(0, 2).join('<br>');
+    } else if (lines.length === 1) {
+        preview = lines[0];
     } else {
         preview = normalizedText;
     }
