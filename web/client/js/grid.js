@@ -574,7 +574,8 @@ function createBadgeMarkdown(repo) {
     
     // New format: direct SVG badge (recommended)
     const apiUrl = window.CONFIG?.dataSource?.apiBaseURL?.replace('/api', '') || 'https://openyellow.openintegrations.dev';
-    const markdown = `[![OpenYellow](${apiUrl}/data/badges/${repo.id}.svg)](${apiUrl}/grid?filter=top&repo=${repo.id})`;
+    const siteUrl = 'https://openyellow.org';
+    const markdown = `[![OpenYellow](${apiUrl}/data/badges/${repo.id}.svg)](${siteUrl}/grid?filter=top&repo=${repo.id})`;
     
     return `<input type="text" class="badge-input" value="${markdown.replace(/"/g, '&quot;')}" readonly onclick="event.stopPropagation(); copyBadgeToClipboard(this);" title="Кликните для копирования">`;
 }
