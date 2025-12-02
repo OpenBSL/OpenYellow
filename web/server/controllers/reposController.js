@@ -165,10 +165,17 @@ exports.getRepositoryById = async (req, res) => {
 
         const [rows] = await pool.query(
             `SELECT 
-                id, name, description, author, authorUrl, url, pic,
-                stars, forks, lang, license, createddate, updateddate
-            FROM repos 
-            WHERE id = ?`,
+                r1.id, r1.name, r1.description, r1.author, r1.authorUrl, r1.url, r1.pic,
+                r1.stars, r1.forks, r1.lang, r1.license, r1.createddate, r1.updateddate,
+                (SELECT COUNT(*) + 1 
+                 FROM repos r2 
+                 WHERE (r2.stars > r1.stars)
+                    OR (r2.stars = r1.stars AND r2.forks > r1.forks)
+                    OR (r2.stars = r1.stars AND r2.forks = r1.forks AND r2.createddate > r1.createddate)
+                    OR (r2.stars = r1.stars AND r2.forks = r1.forks AND r2.createddate = r1.createddate AND r2.name < r1.name)
+                ) as place
+            FROM repos r1
+            WHERE r1.id = ?`,
             [id]
         );
 
