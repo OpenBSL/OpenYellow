@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Subsystem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="64e81b47-8c37-475f-a336-a920bf304952">
+  <name>ОбновлениеДанных</name>
+  <synonym>
+    <key>ru</key>
+    <value>Обновление данных и выгрузка</value>
+  </synonym>
+  <includeHelpInContents>true</includeHelpInContents>
+  <includeInCommandInterface>true</includeInCommandInterface>
+  <picture xsi:type="core:PictureRef">
+    <picture>CommonPicture.Облако</picture>
+  </picture>
+  <content>DataProcessor.ВыгрузкаДанныхMySQL</content>
+  <content>InformationRegister.ОчередьВыгрузки</content>
+  <content>Catalog.Запросы</content>
+</mdclass:Subsystem>

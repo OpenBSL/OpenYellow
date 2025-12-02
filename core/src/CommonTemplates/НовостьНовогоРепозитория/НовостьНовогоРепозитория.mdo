@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:CommonTemplate xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="d712e234-4f59-4ac2-b7fb-2a28a5d5c8ab">
+  <name>НовостьНовогоРепозитория</name>
+  <synonym>
+    <key>ru</key>
+    <value>Новость нового репозитория</value>
+  </synonym>
+  <templateType>TextDocument</templateType>
+</mdclass:CommonTemplate>

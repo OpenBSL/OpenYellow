@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="3e38aab4-e98e-4909-b19d-0fcefb39fc96">
+  <producedTypes>
+    <selectionType typeId="3d0a6135-ce72-40ed-ac08-64ce6585db0b" valueTypeId="0c4b2703-b59b-4c85-86cc-4631560e247b"/>
+    <listType typeId="35c7d48d-8b06-4d78-981c-7c83003df927" valueTypeId="59a84321-783d-498c-8b77-c304799aba8a"/>
+    <managerType typeId="75d770c3-6466-4968-abce-d715504de800" valueTypeId="9bf9077b-6de4-4aeb-88ad-ed2ebb3d9993"/>
+    <recordSetType typeId="a0df7c04-e8ed-4fff-969a-4081d63bb0b2" valueTypeId="555b978d-2308-4d85-afc1-0bfebe338965"/>
+    <recordKeyType typeId="314e66b7-fd5f-4140-95fd-77f05be35b11" valueTypeId="9d680965-06ae-4c75-be8f-3ce1ea6c90f7"/>
+    <recordType typeId="84383267-df3b-4a0b-a597-7fa8af6b6a25" valueTypeId="5173d453-8fda-459c-8e56-e89f21a933c0"/>
+    <recordManagerType typeId="b78c11a8-23c9-4e6d-b8fc-977852668f57" valueTypeId="9c7f0485-bc2b-4ec0-a755-7cedcce66b34"/>
+  </producedTypes>
+  <name>СтатистикаРепозиториев</name>
+  <synonym>
+    <key>ru</key>
+    <value>Статистика репозиториев</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <editType>InDialog</editType>
+  <defaultListForm>InformationRegister.СтатистикаРепозиториев.Form.ФормаСписка</defaultListForm>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <recordPresentation>
+    <key>ru</key>
+    <value>Статистика</value>
+  </recordPresentation>
+  <listPresentation>
+    <key>ru</key>
+    <value>Статистические данные</value>
+  </listPresentation>
+  <resources uuid="03c7464d-e577-4f1d-a0de-064ed78f4853">
+    <name>Звезды</name>
+    <synonym>
+      <key>ru</key>
+      <value>Звезды</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>10</precision>
+      </numberQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="b1f06040-54fb-43e2-b98d-0400a98d9d8f">
+    <name>Подписчики</name>
+    <synonym>
+      <key>ru</key>
+      <value>Подписчики</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>10</precision>
+      </numberQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="5f93a273-c1c5-4f99-baf7-747c6e90107c">
+    <name>Форки</name>
+    <synonym>
+      <key>ru</key>
+      <value>Форки</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>10</precision>
+      </numberQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <resources uuid="afbd533e-7129-4706-a46d-48eaedcfe885">
+    <name>ПрошлоеМесто</name>
+    <synonym>
+      <key>ru</key>
+      <value>Прошлое место</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>10</precision>
+      </numberQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <dimensions uuid="78990d59-66b7-4059-88ce-a4e719b81f08">
+    <name>Репозиторий</name>
+    <synonym>
+      <key>ru</key>
+      <value>Репозиторий</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Репозитории</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <forms uuid="50f3cda8-728a-4655-bd3a-57b46ce2ea7b">
+    <name>ФормаСписка</name>
+    <synonym>
+      <key>ru</key>
+      <value>Форма списка</value>
+    </synonym>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+</mdclass:InformationRegister>

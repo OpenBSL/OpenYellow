@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:ScheduledJob xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="7e8dcf5b-457d-4d5e-9cc8-a5433e3acdc0">
+  <name>ОпубликоватьБрошюру</name>
+  <synonym>
+    <key>ru</key>
+    <value>Опубликовать брошюру</value>
+  </synonym>
+  <methodName>CommonModule.МетодыТелеграм.ОпубликоватьБрошюру</methodName>
+  <use>true</use>
+  <predefined>true</predefined>
+  <restartCountOnFailure>3</restartCountOnFailure>
+  <restartIntervalOnFailure>10</restartIntervalOnFailure>
+</mdclass:ScheduledJob>

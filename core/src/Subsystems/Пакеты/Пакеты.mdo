@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Subsystem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="31a09c23-ef2e-433f-b181-67286a145bb2">
+  <name>Пакеты</name>
+  <synonym>
+    <key>ru</key>
+    <value>Пакеты</value>
+  </synonym>
+  <includeHelpInContents>true</includeHelpInContents>
+  <includeInCommandInterface>true</includeInCommandInterface>
+  <picture xsi:type="core:PictureRef">
+    <picture>CommonPicture.Пакеты</picture>
+  </picture>
+  <content>Constant.ВерсияYPM</content>
+  <content>Catalog.ВерсииYPM</content>
+  <content>InformationRegister.Пакеты</content>
+</mdclass:Subsystem>

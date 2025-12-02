@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="e5b929bd-6727-44b9-96e9-bbffc3156b00">
+  <producedTypes>
+    <selectionType typeId="df2b950a-3fba-42d4-b547-3ff37d30470b" valueTypeId="cf1c45b9-3bae-441e-b3d0-94e64fe71c66"/>
+    <listType typeId="20d9004e-1140-4135-b5f5-80f26492eacf" valueTypeId="a8f12f03-6fcc-47fd-94fe-6c1268865753"/>
+    <managerType typeId="9e1b2f53-29ee-4027-b44d-54386c4076c3" valueTypeId="0c0826f6-94bc-4453-8a21-a410e46eaddd"/>
+    <recordSetType typeId="75c51b80-3684-4903-ad3a-ac06b16eb3fc" valueTypeId="b5226af1-2027-4aab-857f-e81f289762e7"/>
+    <recordKeyType typeId="1015a93f-4735-4ea0-851c-9c71f3b5034e" valueTypeId="ce50e1a9-b3b3-4653-8712-b5334e4f4ead"/>
+    <recordType typeId="8d4a47b3-6a35-41a6-9b32-7aa80ba1490f" valueTypeId="ab6db499-03b0-4aa8-a566-f16d66f284e2"/>
+    <recordManagerType typeId="c71e4c1c-ae9c-47e5-b7b3-ed3e110a7bf0" valueTypeId="37ab5cad-badd-4d1f-8357-0ee6a06f9f27"/>
+  </producedTypes>
+  <name>ОчередьВыгрузки</name>
+  <synonym>
+    <key>ru</key>
+    <value>Очередь выгрузки</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <editType>InDialog</editType>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <recordPresentation>
+    <key>ru</key>
+    <value>Выгрузка</value>
+  </recordPresentation>
+  <listPresentation>
+    <key>ru</key>
+    <value>Выгрузки</value>
+  </listPresentation>
+  <attributes uuid="602eb73b-cb61-4108-865c-c9caf6b4de05">
+    <name>Ошибка</name>
+    <synonym>
+      <key>ru</key>
+      <value>Ошибка</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>500</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+  </attributes>
+  <dimensions uuid="5d7b1dad-2bea-4adb-b958-792a4a9f6c23">
+    <name>ОбъектВыгрузки</name>
+    <synonym>
+      <key>ru</key>
+      <value>Объект выгрузки</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Авторы</types>
+      <types>CatalogRef.Репозитории</types>
+      <types>CatalogRef.Посты</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+</mdclass:InformationRegister>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Subsystem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="074d8381-cb00-48cd-af5f-08bbbef2a5de">
+  <name>Статистика</name>
+  <synonym>
+    <key>ru</key>
+    <value>Статистика</value>
+  </synonym>
+  <includeHelpInContents>true</includeHelpInContents>
+  <includeInCommandInterface>true</includeInCommandInterface>
+  <picture xsi:type="core:PictureRef">
+    <picture>CommonPicture.Статистика</picture>
+  </picture>
+  <content>InformationRegister.Тренды</content>
+  <content>InformationRegister.СтатистикаРепозиториев</content>
+  <content>InformationRegister.ПубликацииПодборок</content>
+  <content>Report.ОтчетПоЗвездам</content>
+  <content>Report.СписокРепозиториев</content>
+  <content>Report.НаполнениеПодборок</content>
+</mdclass:Subsystem>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Subsystem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="2154bffa-c8f6-4b6c-97b8-f861609eb4f0">
+  <name>БазаДанных</name>
+  <synonym>
+    <key>ru</key>
+    <value>База данных</value>
+  </synonym>
+  <includeHelpInContents>true</includeHelpInContents>
+  <includeInCommandInterface>true</includeInCommandInterface>
+  <picture xsi:type="core:PictureRef">
+    <picture>CommonPicture.БазаДанных</picture>
+  </picture>
+  <content>Catalog.Авторы</content>
+  <content>Catalog.Репозитории</content>
+  <content>Catalog.Подборки</content>
+  <content>Catalog.Посты</content>
+  <content>InformationRegister.Релизы</content>
+</mdclass:Subsystem>

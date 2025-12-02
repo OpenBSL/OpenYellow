@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:DataProcessor xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="26b125e0-10a8-46f2-80ce-2ec969cfdd1f">
+  <producedTypes>
+    <objectType typeId="d44a2f42-0248-46c8-b91f-bb038cca54cd" valueTypeId="d37f1ea0-dfbe-4411-b2be-f4f4febeb810"/>
+    <managerType typeId="529a6bd4-cb90-4d3f-9cc3-560abc1ddb65" valueTypeId="0f58c32f-a15a-429e-a67c-018f5dab2bb3"/>
+  </producedTypes>
+  <name>ВыгрузкаДанныхMySQL</name>
+  <synonym>
+    <key>ru</key>
+    <value>Выгрузка данных MySQL</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <defaultForm>DataProcessor.ВыгрузкаДанныхMySQL.Form.Форма</defaultForm>
+  <forms uuid="933bc0f5-71a5-4899-9a98-c0cf3213a66e">
+    <name>Форма</name>
+    <synonym>
+      <key>ru</key>
+      <value>Форма</value>
+    </synonym>
+    <usePurposes>PersonalComputer</usePurposes>
+    <usePurposes>MobileDevice</usePurposes>
+  </forms>
+</mdclass:DataProcessor>
