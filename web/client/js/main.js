@@ -189,6 +189,18 @@ class DataService {
         return { languages, licenses };
     }
     
+    // Get repository by ID
+    static async getRepositoryById(id) {
+        if (this.useAPI) {
+            const response = await this.fetchAPI(`/repos/${id}`);
+            return response.data;
+        }
+        
+        // Fallback: search in all repositories
+        const data = await this.getRepositories('top', 10000);
+        return data.data.find(r => r.id?.toString() === id.toString());
+    }
+    
     // Client-side search implementation
     static clientSideSearch(data, query, page, pageSize) {
         if (!query) {

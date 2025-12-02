@@ -290,6 +290,16 @@ async function loadRepositories(searchQuery = '', highlightRepoId = null) {
             const repo = result.data.find(r => r.id?.toString() === highlightRepoId);
             if (repo) {
                 setTimeout(() => openModal(repo), 500);
+            } else {
+                // Repo not on current page, fetch it directly
+                try {
+                    const repoData = await DataService.getRepositoryById(highlightRepoId);
+                    if (repoData) {
+                        setTimeout(() => openModal(repoData), 500);
+                    }
+                } catch (error) {
+                    console.error('Failed to load specific repository:', error);
+                }
             }
         }
         
