@@ -290,10 +290,21 @@ async function loadRepositories(searchQuery = '', highlightRepoId = null) {
             const repo = result.data.find(r => r.id?.toString() === highlightRepoId);
             if (repo) {
                 setTimeout(() => openModal(repo), 500);
-            } else {
-                // Repo not on current page, fetch it directly
+            } else if (!searchQuery && !columnFilters.lang && !columnFilters.license && !columnFilters.author && !columnFilters.excludeForks) {
+                // Repo not on current page and no filters applied, find which page it's on
                 try {
                     const repoData = await DataService.getRepositoryById(highlightRepoId);
+                    if (repoData && repoData.place) {
+                        // Calculate which page the repo is on
+                        const repoPage = Math.ceil(repoData.place / currentPageSize);
+                        if (repoPage !== currentPage) {
+                            // Load the correct page
+                            currentPage = repoPage;
+                            await loadRepositories('', highlightRepoId);
+                            return; // Exit to avoid duplicate processing
+                        }
+                    }
+                    // If we couldn't find the page or it's the same page, just open modal
                     if (repoData) {
                         setTimeout(() => openModal(repoData), 500);
                     }
