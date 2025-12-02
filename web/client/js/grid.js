@@ -287,18 +287,24 @@ async function loadRepositories(searchQuery = '', highlightRepoId = null) {
         
         // Highlight specific repo if requested
         if (highlightRepoId) {
+            console.log('Looking for repo:', highlightRepoId);
             const repo = result.data.find(r => r.id?.toString() === highlightRepoId);
             if (repo) {
+                console.log('Repo found on current page:', repo);
                 setTimeout(() => openModal(repo), 500);
             } else if (!searchQuery && !columnFilters.lang && !columnFilters.license && !columnFilters.author && !columnFilters.excludeForks) {
+                console.log('Repo not on current page, fetching...');
                 // Repo not on current page and no filters applied, find which page it's on
                 try {
                     const repoData = await DataService.getRepositoryById(highlightRepoId);
+                    console.log('Fetched repo data:', repoData);
                     if (repoData && repoData.place) {
                         // Calculate which page the repo is on
                         const repoPage = Math.ceil(repoData.place / currentPageSize);
+                        console.log(`Repo is on page ${repoPage}, current page is ${currentPage}`);
                         if (repoPage !== currentPage) {
                             // Load the correct page
+                            console.log(`Loading page ${repoPage}...`);
                             currentPage = repoPage;
                             await loadRepositories('', highlightRepoId);
                             return; // Exit to avoid duplicate processing
@@ -306,11 +312,14 @@ async function loadRepositories(searchQuery = '', highlightRepoId = null) {
                     }
                     // If we couldn't find the page or it's the same page, just open modal
                     if (repoData) {
+                        console.log('Opening modal with fetched data');
                         setTimeout(() => openModal(repoData), 500);
                     }
                 } catch (error) {
                     console.error('Failed to load specific repository:', error);
                 }
+            } else {
+                console.log('Filters are applied, cannot navigate to specific page');
             }
         }
         
