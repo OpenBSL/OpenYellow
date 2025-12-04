@@ -831,6 +831,12 @@ function renderChart(period) {
         repoChart.destroy();
     }
     
+    // Calculate dynamic scale
+    const minValue = Math.min(...processedData.values);
+    const maxValue = Math.max(...processedData.values);
+    const range = maxValue - minValue;
+    const padding = range * 0.1; // 10% padding
+    
     // Create new chart
     const ctx = canvas.getContext('2d');
     repoChart = new Chart(ctx, {
@@ -883,19 +889,23 @@ function renderChart(period) {
                     ticks: {
                         color: '#b0b0b0',
                         maxRotation: 45,
-                        minRotation: 0
+                        minRotation: 0,
+                        autoSkip: true,
+                        maxTicksLimit: 12
                     }
                 },
                 y: {
-                    beginAtZero: false,
+                    min: Math.max(0, minValue - padding),
+                    max: maxValue + padding,
                     grid: {
                         color: 'rgba(255, 255, 255, 0.05)',
                         drawBorder: false
                     },
                     ticks: {
                         color: '#b0b0b0',
+                        maxTicksLimit: 8,
                         callback: function(value) {
-                            return formatNumber(value);
+                            return formatNumber(Math.round(value));
                         }
                     }
                 }

@@ -2554,12 +2554,26 @@ img {
     color: var(--text-muted);
 }
 
-#repoChart {
+.chart-canvas-wrapper {
+    position: relative;
     width: 100%;
     height: 300px;
+    min-height: 300px;
+    max-height: 300px;
+}
+
+#repoChart {
     display: none;
 }
 
 #repoChart.active {
     display: block;
+}
+
+@media (max-width: 768px) {
+    .chart-canvas-wrapper {
+        height: 250px;
+        min-height: 250px;
+        max-height: 250px;
+    }
 }
