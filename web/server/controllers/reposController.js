@@ -260,3 +260,30 @@ exports.getFilterOptions = async (req, res) => {
         });
     }
 };
+
+// Get repository stars statistics
+exports.getRepoStats = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const [rows] = await pool.query(
+            `SELECT stars, date 
+             FROM stats 
+             WHERE repo = ?
+             ORDER BY date ASC`,
+            [id]
+        );
+
+        res.json({
+            success: true,
+            data: rows
+        });
+
+    } catch (error) {
+        console.error('Error fetching repository stats:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Failed to fetch repository stats'
+        });
+    }
+};

@@ -1,24 +1,18 @@
-// MIT License
-
 // Copyright (c) 2023-2025 Anton Tsitavets
 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
+// 
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 // https://github.com/OpenBSL/OpenYellow
 
@@ -108,7 +102,8 @@
     Данные    = ИнструментарийВызовСервера.ТаблицаЗначенийВМассив(Результат);
 	
 	Для Каждого Позиция Из Данные Цикл
-		Позиция.Удалить("Ссылка");	
+		Позиция.Удалить("Ссылка");
+		Позиция["repo"] = ?(ЗначениеЗаполнено(Позиция["repo"]), Позиция["repo"], Неопределено);
 	КонецЦикла;
 	
 	Результат = OPI_MySQL.ДобавитьЗаписи(Таблица, Данные, Истина, СтрокаПодключения);
@@ -147,10 +142,24 @@
 	КонецЕсли;
 	
 	ТекстЗапроса = "INSERT INTO repos 
-	|(name, url, authorUrl, author, description, createddate, license, stars, forks, pic, lang, size, updateddate, id, isFork, tags) 
-	|VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+	|    (name, url, authorUrl, author, description, createddate, license, stars, forks, pic, lang, size, updateddate, id, isFork, tags) 
+	|    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 	|ON DUPLICATE KEY UPDATE 
-  	|id = VALUES(id);";
+	|    name = VALUES(name),
+	|    url = VALUES(url),
+	|    authorUrl = VALUES(authorUrl),
+	|    author = VALUES(author),
+	|    description = VALUES(description),
+	|    createddate = VALUES(createddate),
+	|    license = VALUES(license),
+	|    stars = VALUES(stars),
+	|    forks = VALUES(forks),
+	|    pic = VALUES(pic),
+	|    lang = VALUES(lang),
+	|    size = VALUES(size),
+	|    updateddate = VALUES(updateddate),
+	|    isFork = VALUES(isFork),
+	|    tags = VALUES(tags);";
 	
 	Запрос = Новый Запрос(ПолучитьТекстЗапросаРепозиториев(Истина));
 	Запрос.УстановитьПараметр("МассивРепозиториев",  МассивРепозиториев);
@@ -222,7 +231,11 @@
 	
 	ТекстЗапроса = "INSERT INTO authors (name, url, pic, repos, stars) VALUES (?, ?, ?, ?, ?)
 	|ON DUPLICATE KEY UPDATE 
-  	|name = VALUES(name);";
+  	|	name = VALUES(name),
+	|	url = VALUES(url),
+	|	pic = VALUES(pic),
+	|	repos = VALUES(repos),
+	|	stars = VALUES(stars);";
 	
 	Запрос = Новый Запрос(ПолучитьТекстЗапросаАвторов(Истина));
 	Запрос.УстановитьПараметр("МассивАвторов",  МассивАвторов);
@@ -273,9 +286,15 @@
 		ВызватьИсключение Соединение["error"];
 	КонецЕсли;
 	
-	ТекстЗапроса = "INSERT INTO news (id, link, text, icon, title, created_at) VALUES (?, ?, ?, ?, ?, ?)
+	ТекстЗапроса = "INSERT INTO news (id, link, text, icon, title, created_at, repo) VALUES (?, ?, ?, ?, ?, ?, ?)
 	|ON DUPLICATE KEY UPDATE 
-  	|id = VALUES(id);";
+  	|id = VALUES(id),
+	|link = VALUES(link),
+	|text = VALUES(text),
+	|icon = VALUES(icon),
+	|title = VALUES(title),
+	|created_at = VALUES(created_at),
+	|repo = VALUES(repo);";
 	
 	Запрос = Новый Запрос(ПолучитьТекстЗапросаНовостей(Истина));
 	Запрос.УстановитьПараметр("МассивПостов",  МассивПостов);
@@ -294,6 +313,7 @@
 		ТекущиеПараметры.Добавить(Позиция["icon"]);
 		ТекущиеПараметры.Добавить(Позиция["title"]);
 		ТекущиеПараметры.Добавить(Позиция["created_at"]);
+		ТекущиеПараметры.Добавить(Позиция["repo"]);
 		
 		РезультатЗапроса = OPI_MySQL.ВыполнитьЗапросSQL(ТекстЗапроса, ТекущиеПараметры, , Соединение);
 		
@@ -312,6 +332,67 @@
 
 КонецПроцедуры
 
+Процедура УдалитьДанныеРепозитория(Знач Репозиторий) Экспорт
+	
+	Попытка
+		
+		СтрокаПодключения = ИнструментарийВызовСервера.ПолучитьНастройку("СтрокаMySQL");
+		Соединение        = OPI_MySQL.ОткрытьСоединение(СтрокаПодключения);
+		
+		Если Не OPI_MySQL.ЭтоКоннектор(Соединение) Тогда
+			ВызватьИсключение Соединение["error"];
+		КонецЕсли;
+		
+	    СтруктураФильтра = Новый Структура;
+
+	    СтруктураФильтра.Вставить("field", "id");
+	    СтруктураФильтра.Вставить("type" , "=");
+	    СтруктураФильтра.Вставить("value", Новый Структура("INT", Репозиторий.Код));
+	    СтруктураФильтра.Вставить("raw"  , Ложь);
+
+		Результат = OPI_MySQL.УдалитьЗаписи("repos", СтруктураФильтра, Соединение);
+		
+		Если Не Результат["result"] Тогда
+			ВызватьИсключение Результат["errors"][0].error;	
+		КонецЕсли;
+
+	Исключение
+		ИнструментарийВызовСервера.ЗаписатьИсключение(ПодробноеПредставлениеОшибки(ИнформацияОбОшибке()));
+	КонецПопытки;
+
+КонецПроцедуры
+
+Процедура УдалитьДанныеАвтора(Знач Автор) Экспорт
+	
+	Попытка
+		
+		СтрокаПодключения = ИнструментарийВызовСервера.ПолучитьНастройку("СтрокаMySQL");
+		Соединение        = OPI_MySQL.ОткрытьСоединение(СтрокаПодключения);
+		
+		Если Не OPI_MySQL.ЭтоКоннектор(Соединение) Тогда
+			ВызватьИсключение Соединение["error"];
+		КонецЕсли;
+		
+	    СтруктураФильтра = Новый Структура;
+
+	    СтруктураФильтра.Вставить("field", "name");
+	    СтруктураФильтра.Вставить("type" , "=");
+	    СтруктураФильтра.Вставить("value", Автор.Наименование);
+	    СтруктураФильтра.Вставить("raw"  , Ложь);
+
+		Результат = OPI_MySQL.УдалитьЗаписи("authors", СтруктураФильтра, Соединение);
+		
+		Если Не Результат["result"] Тогда
+			ВызватьИсключение Результат["errors"][0].error;	
+		КонецЕсли;
+
+	Исключение
+		ИнструментарийВызовСервера.ЗаписатьИсключение(ПодробноеПредставлениеОшибки(ИнформацияОбОшибке()));
+	КонецПопытки;
+
+КонецПроцедуры
+
+	
 Процедура ОбновитьJSONДанныеСайта(Знач Повтор = 0) Экспорт
     
     Попытка
@@ -440,6 +521,7 @@
 		СтруктураКолонок.Вставить("text"       , "TEXT");
 		СтруктураКолонок.Вставить("icon"       , "VARCHAR(500)");	
 		СтруктураКолонок.Вставить("link"       , "VARCHAR(500)");
+		СтруктураКолонок.Вставить("repo"	   , "INT UNSIGNED NULL");
 		
 		Результат = OPI_MySQL.СоздатьТаблицу("news", СтруктураКолонок, Соединение);
 		
@@ -448,10 +530,18 @@
 		КонецЕсли;
 		
 		Результат = OPI_MySQL.ВыполнитьЗапросSQL(
-			"ALTER TABLE news CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;", 
-			, , 
+			"ALTER TABLE news CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;", , , 
 			Соединение
 		);	
+		
+		Если Не Результат["result"] Тогда
+			ВызватьИсключение Результат["error"];	
+		КонецЕсли;
+		
+		Результат = OPI_MySQL.ВыполнитьЗапросSQL(
+			"ALTER TABLE news ADD FOREIGN KEY (repo) REFERENCES repos(id) ON DELETE CASCADE;", , , 
+			Соединение
+		);
 		
 		Если Не Результат["result"] Тогда
 			ВызватьИсключение Результат["error"];	
@@ -559,7 +649,8 @@
 	        |	ЕСТЬNULL(Посты.Репозиторий.Автор.Аватар, """") КАК icon,
 	        |	Посты.Дата КАК created_at,
 	        |	Посты.Код КАК id,
-	        |	Посты.Ссылка КАК Ссылка
+	        |	Посты.Ссылка КАК Ссылка,
+	        |	Посты.Репозиторий.Код КАК repo
 	        |ИЗ
 	        |	Справочник.Посты КАК Посты
 	        |ГДЕ

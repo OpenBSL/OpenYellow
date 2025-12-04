@@ -10,6 +10,7 @@
     <link rel="icon" href="static/logo.png">
     
     <link rel="stylesheet" href="css/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script src="js/config.js"></script>
     <script src="js/main.js"></script>
     <script src="js/grid.js"></script>
@@ -178,52 +179,70 @@
         <div class="modal-content">
             <button class="modal-close" id="modalClose">×</button>
             
-            <div class="repo-details">
-                <div class="repo-header">
-                    <img id="repoAvatar" src="" alt="" class="repo-avatar">
-                    <div class="repo-title-block">
-                        <h2 id="repoName"></h2>
-                        <p class="repo-author">
-                            by <a id="repoAuthor" href="" target="_blank"></a>
-                        </p>
+            <div class="repo-details-container">
+                <div class="repo-details">
+                    <div class="repo-header">
+                        <img id="repoAvatar" src="" alt="" class="repo-avatar">
+                        <div class="repo-title-block">
+                            <h2 id="repoName"></h2>
+                            <p class="repo-author">
+                                by <a id="repoAuthor" href="" target="_blank"></a>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <p id="repoDescription" class="repo-description"></p>
+                    
+                    <div class="repo-stats">
+                        <div class="repo-stat">
+                            <span class="stat-label-inline">Звезды:</span>
+                            <span id="repoStars"></span>
+                        </div>
+                        <div class="repo-stat">
+                            <span class="stat-label-inline">Форки:</span>
+                            <span id="repoForks"></span>
+                        </div>
+                        <div class="repo-stat" id="repoLangBlock">
+                            <span class="stat-label-inline">Язык:</span>
+                            <span id="repoLang"></span>
+                        </div>
+                        <div class="repo-stat" id="repoLicenseBlock">
+                            <span class="stat-label-inline">Лицензия:</span>
+                            <span id="repoLicense"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="repo-tags-block" id="repoTagsBlock" style="display: none;">
+                        <span class="stat-label-inline">Теги:</span>
+                        <div id="repoTags" class="repo-tags"></div>
+                    </div>
+                    
+                    <div class="repo-dates">
+                        <div>Создан: <span id="repoCreated"></span></div>
+                        <div>Обновлен: <span id="repoUpdated"></span></div>
+                    </div>
+                    
+                    <div class="repo-actions">
+                        <a id="repoLink" href="" target="_blank" class="btn btn-primary">
+                            Открыть на GitHub →
+                        </a>
                     </div>
                 </div>
                 
-                <p id="repoDescription" class="repo-description"></p>
-                
-                <div class="repo-stats">
-                    <div class="repo-stat">
-                        <span class="stat-label-inline">Звезды:</span>
-                        <span id="repoStars"></span>
+                <div class="repo-chart-section" id="repoChartSection">
+                    <h3>История звезд</h3>
+                    <div class="chart-controls">
+                        <button class="chart-period-btn active" data-period="year">Год</button>
+                        <button class="chart-period-btn" data-period="month">Месяц</button>
                     </div>
-                    <div class="repo-stat">
-                        <span class="stat-label-inline">Форки:</span>
-                        <span id="repoForks"></span>
+                    <div class="chart-loading" id="chartLoading">
+                        <div class="spinner"></div>
+                        <p>Загрузка данных...</p>
                     </div>
-                    <div class="repo-stat" id="repoLangBlock">
-                        <span class="stat-label-inline">Язык:</span>
-                        <span id="repoLang"></span>
+                    <div class="chart-empty" id="chartEmpty" style="display: none;">
+                        <p>Нет данных для отображения</p>
                     </div>
-                    <div class="repo-stat" id="repoLicenseBlock">
-                        <span class="stat-label-inline">Лицензия:</span>
-                        <span id="repoLicense"></span>
-                    </div>
-                </div>
-                
-                <div class="repo-tags-block" id="repoTagsBlock" style="display: none;">
-                    <span class="stat-label-inline">Теги:</span>
-                    <div id="repoTags" class="repo-tags"></div>
-                </div>
-                
-                <div class="repo-dates">
-                    <div>Создан: <span id="repoCreated"></span></div>
-                    <div>Обновлен: <span id="repoUpdated"></span></div>
-                </div>
-                
-                <div class="repo-actions">
-                    <a id="repoLink" href="" target="_blank" class="btn btn-primary">
-                        Открыть на GitHub →
-                    </a>
+                    <canvas id="repoChart"></canvas>
                 </div>
             </div>
         </div>

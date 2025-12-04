@@ -201,6 +201,17 @@ class DataService {
         return data.data.find(r => r.id?.toString() === id.toString());
     }
     
+    // Get repository stats
+    static async getRepoStats(id) {
+        if (this.useAPI) {
+            const response = await this.fetchAPI(`/repos/${id}/stats`);
+            return response;
+        }
+        
+        // Fallback: return empty data
+        return { data: [] };
+    }
+    
     // Client-side search implementation
     static clientSideSearch(data, query, page, pageSize) {
         if (!query) {

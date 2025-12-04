@@ -14,4 +14,7 @@ router.get('/', reposController.getRepositories);
 // GET /api/repos/:id - Get repository by ID
 router.get('/:id', reposController.getRepositoryById);
 
+// GET /api/repos/:id/stats - Get repository stars statistics
+router.get('/:id/stats', reposController.getRepoStats);
+
 module.exports = router;

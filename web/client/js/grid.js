@@ -703,8 +703,13 @@ window.openModalById = function(index) {
     }
 };
 
+// Chart instance
+let repoChart = null;
+let currentChartData = null;
+let currentChartPeriod = 'year';
+
 // Open modal
-function openModal(repo) {
+async function openModal(repo) {
     const modal = document.getElementById('repoModal');
     if (!modal) return;
     
@@ -752,9 +757,275 @@ function openModal(repo) {
         tagsBlock.style.display = 'none';
     }
     
+    // Load chart data
+    await loadRepoChart(repo.id);
+    
+    // Initialize chart controls
+    initChartControls();
+    
     // Show modal
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+}
+
+// Load repository chart
+async function loadRepoChart(repoId) {
+    const chartLoading = document.getElementById('chartLoading');
+    const chartEmpty = document.getElementById('chartEmpty');
+    const canvas = document.getElementById('repoChart');
+    
+    // Show loading
+    if (chartLoading) chartLoading.style.display = 'flex';
+    if (chartEmpty) chartEmpty.style.display = 'none';
+    if (canvas) canvas.classList.remove('active');
+    
+    // Destroy previous chart
+    if (repoChart) {
+        repoChart.destroy();
+        repoChart = null;
+    }
+    
+    try {
+        const result = await DataService.getRepoStats(repoId);
+        currentChartData = result.data;
+        
+        if (!currentChartData || currentChartData.length === 0) {
+            if (chartLoading) chartLoading.style.display = 'none';
+            if (chartEmpty) chartEmpty.style.display = 'block';
+            return;
+        }
+        
+        // Render chart with current period
+        renderChart(currentChartPeriod);
+        
+        // Hide loading
+        if (chartLoading) chartLoading.style.display = 'none';
+        if (canvas) canvas.classList.add('active');
+        
+    } catch (error) {
+        console.error('Failed to load chart data:', error);
+        if (chartLoading) chartLoading.style.display = 'none';
+        if (chartEmpty) {
+            chartEmpty.style.display = 'block';
+            chartEmpty.querySelector('p').textContent = 'Ошибка загрузки данных';
+        }
+    }
+}
+
+// Render chart
+function renderChart(period) {
+    const canvas = document.getElementById('repoChart');
+    if (!canvas || !currentChartData) return;
+    
+    // Process data based on period
+    const processedData = processChartData(currentChartData, period);
+    
+    if (processedData.labels.length === 0) {
+        document.getElementById('chartEmpty').style.display = 'block';
+        canvas.classList.remove('active');
+        return;
+    }
+    
+    // Destroy previous chart
+    if (repoChart) {
+        repoChart.destroy();
+    }
+    
+    // Create new chart
+    const ctx = canvas.getContext('2d');
+    repoChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: processedData.labels,
+            datasets: [{
+                label: 'Звезды',
+                data: processedData.values,
+                borderColor: 'rgba(235, 167, 8, 1)',
+                backgroundColor: 'rgba(235, 167, 8, 0.1)',
+                borderWidth: 2,
+                fill: true,
+                tension: 0.4,
+                pointRadius: 3,
+                pointHoverRadius: 5,
+                pointBackgroundColor: 'rgba(235, 167, 8, 1)',
+                pointBorderColor: '#fff',
+                pointBorderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(26, 26, 26, 0.9)',
+                    titleColor: '#ffffff',
+                    bodyColor: '#b0b0b0',
+                    borderColor: 'rgba(235, 167, 8, 0.5)',
+                    borderWidth: 1,
+                    padding: 12,
+                    displayColors: false,
+                    callbacks: {
+                        label: function(context) {
+                            return 'Звезды: ' + formatNumber(context.parsed.y);
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.05)',
+                        drawBorder: false
+                    },
+                    ticks: {
+                        color: '#b0b0b0',
+                        maxRotation: 45,
+                        minRotation: 0
+                    }
+                },
+                y: {
+                    beginAtZero: false,
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.05)',
+                        drawBorder: false
+                    },
+                    ticks: {
+                        color: '#b0b0b0',
+                        callback: function(value) {
+                            return formatNumber(value);
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+// Process chart data based on period
+function processChartData(data, period) {
+    if (!data || data.length === 0) {
+        return { labels: [], values: [] };
+    }
+    
+    // Sort data by date
+    const sortedData = [...data].sort((a, b) => new Date(a.date) - new Date(b.date));
+    
+    if (period === 'month') {
+        // Show last 12 months
+        const now = new Date();
+        const twelveMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 11, 1);
+        
+        // Filter data for last 12 months
+        const filteredData = sortedData.filter(item => {
+            const itemDate = new Date(item.date);
+            return itemDate >= twelveMonthsAgo;
+        });
+        
+        // Group by month and fill gaps
+        const monthlyData = fillMonthlyGaps(filteredData, twelveMonthsAgo, now);
+        
+        return {
+            labels: monthlyData.map(item => formatMonthLabel(item.date)),
+            values: monthlyData.map(item => item.stars)
+        };
+    } else {
+        // Show all years
+        const yearlyData = groupByYear(sortedData);
+        
+        return {
+            labels: yearlyData.map(item => item.year.toString()),
+            values: yearlyData.map(item => item.stars)
+        };
+    }
+}
+
+// Fill monthly gaps
+function fillMonthlyGaps(data, startDate, endDate) {
+    const result = [];
+    const dataByMonth = {};
+    
+    // Index data by year-month
+    data.forEach(item => {
+        const date = new Date(item.date);
+        const key = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+        if (!dataByMonth[key] || new Date(item.date) > new Date(dataByMonth[key].date)) {
+            dataByMonth[key] = item;
+        }
+    });
+    
+    // Fill all months
+    let currentDate = new Date(startDate);
+    let lastKnownStars = data.length > 0 ? data[0].stars : 0;
+    
+    while (currentDate <= endDate) {
+        const key = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}`;
+        
+        if (dataByMonth[key]) {
+            lastKnownStars = dataByMonth[key].stars;
+            result.push({
+                date: new Date(currentDate),
+                stars: lastKnownStars
+            });
+        } else {
+            // Use last known value for missing months
+            result.push({
+                date: new Date(currentDate),
+                stars: lastKnownStars
+            });
+        }
+        
+        currentDate.setMonth(currentDate.getMonth() + 1);
+    }
+    
+    return result;
+}
+
+// Group by year
+function groupByYear(data) {
+    const yearlyData = {};
+    
+    data.forEach(item => {
+        const year = new Date(item.date).getFullYear();
+        if (!yearlyData[year] || new Date(item.date) > new Date(yearlyData[year].date)) {
+            yearlyData[year] = item;
+        }
+    });
+    
+    // Convert to array and sort
+    const result = Object.keys(yearlyData)
+        .map(year => ({
+            year: parseInt(year),
+            stars: yearlyData[year].stars
+        }))
+        .sort((a, b) => a.year - b.year);
+    
+    return result;
+}
+
+// Format month label
+function formatMonthLabel(date) {
+    const months = ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'];
+    return `${months[date.getMonth()]} ${date.getFullYear()}`;
+}
+
+// Initialize chart controls
+function initChartControls() {
+    document.querySelectorAll('.chart-period-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const period = btn.dataset.period;
+            currentChartPeriod = period;
+            
+            // Update active button
+            document.querySelectorAll('.chart-period-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Re-render chart
+            renderChart(period);
+        });
+    });
 }
 
 // Close modal
