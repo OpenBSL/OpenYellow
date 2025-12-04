@@ -11,6 +11,7 @@
     
     <link rel="stylesheet" href="css/main.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
     <script src="js/config.js"></script>
     <script src="js/main.js"></script>
     <script src="js/grid.js"></script>
@@ -231,10 +232,7 @@
                 
                 <div class="repo-chart-section" id="repoChartSection">
                     <h3>История звезд</h3>
-                    <div class="chart-controls">
-                        <button class="chart-period-btn active" data-period="year">Год</button>
-                        <button class="chart-period-btn" data-period="month">Месяц</button>
-                    </div>
+                    
                     <div class="chart-loading" id="chartLoading">
                         <div class="spinner"></div>
                         <p>Загрузка данных...</p>
@@ -242,8 +240,25 @@
                     <div class="chart-empty" id="chartEmpty" style="display: none;">
                         <p>Нет данных для отображения</p>
                     </div>
-                    <div class="chart-canvas-wrapper">
-                        <canvas id="repoChart"></canvas>
+                    
+                    <div class="charts-container" id="chartsContainer" style="display: none;">
+                        <div class="chart-block">
+                            <div class="chart-header">
+                                <h4>По месяцам (все данные)</h4>
+                                <button class="chart-reset-btn" id="resetMonthZoom" style="display: none;">Сбросить зум</button>
+                            </div>
+                            <div class="chart-hint">Прокрутите колесиком для зума, перетащите для навигации</div>
+                            <div class="chart-canvas-wrapper">
+                                <canvas id="repoChartMonth"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="chart-block">
+                            <h4>По годам</h4>
+                            <div class="chart-canvas-wrapper">
+                                <canvas id="repoChartYear"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

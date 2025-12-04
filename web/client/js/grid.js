@@ -703,10 +703,10 @@ window.openModalById = function(index) {
     }
 };
 
-// Chart instance
-let repoChart = null;
+// Chart instances
+let repoChartMonth = null;
+let repoChartYear = null;
 let currentChartData = null;
-let currentChartPeriod = 'year';
 
 // Open modal
 async function openModal(repo) {
@@ -760,9 +760,6 @@ async function openModal(repo) {
     // Load chart data
     await loadRepoChart(repo.id);
     
-    // Initialize chart controls
-    initChartControls();
-    
     // Show modal
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -772,17 +769,21 @@ async function openModal(repo) {
 async function loadRepoChart(repoId) {
     const chartLoading = document.getElementById('chartLoading');
     const chartEmpty = document.getElementById('chartEmpty');
-    const canvas = document.getElementById('repoChart');
+    const chartsContainer = document.getElementById('chartsContainer');
     
     // Show loading
     if (chartLoading) chartLoading.style.display = 'flex';
     if (chartEmpty) chartEmpty.style.display = 'none';
-    if (canvas) canvas.classList.remove('active');
+    if (chartsContainer) chartsContainer.style.display = 'none';
     
-    // Destroy previous chart
-    if (repoChart) {
-        repoChart.destroy();
-        repoChart = null;
+    // Destroy previous charts
+    if (repoChartMonth) {
+        repoChartMonth.destroy();
+        repoChartMonth = null;
+    }
+    if (repoChartYear) {
+        repoChartYear.destroy();
+        repoChartYear = null;
     }
     
     try {
@@ -795,12 +796,13 @@ async function loadRepoChart(repoId) {
             return;
         }
         
-        // Render chart with current period
-        renderChart(currentChartPeriod);
+        // Render both charts
+        renderChart('month', 'repoChartMonth');
+        renderChart('year', 'repoChartYear');
         
-        // Hide loading
+        // Hide loading, show charts
         if (chartLoading) chartLoading.style.display = 'none';
-        if (canvas) canvas.classList.add('active');
+        if (chartsContainer) chartsContainer.style.display = 'flex';
         
     } catch (error) {
         console.error('Failed to load chart data:', error);
@@ -813,22 +815,25 @@ async function loadRepoChart(repoId) {
 }
 
 // Render chart
-function renderChart(period) {
-    const canvas = document.getElementById('repoChart');
+function renderChart(period, canvasId) {
+    const canvas = document.getElementById(canvasId);
     if (!canvas || !currentChartData) return;
     
     // Process data based on period
     const processedData = processChartData(currentChartData, period);
     
     if (processedData.labels.length === 0) {
-        document.getElementById('chartEmpty').style.display = 'block';
-        canvas.classList.remove('active');
         return;
     }
     
-    // Destroy previous chart
-    if (repoChart) {
-        repoChart.destroy();
+    // Destroy previous chart for this canvas
+    if (period === 'month' && repoChartMonth) {
+        repoChartMonth.destroy();
+        repoChartMonth = null;
+    }
+    if (period === 'year' && repoChartYear) {
+        repoChartYear.destroy();
+        repoChartYear = null;
     }
     
     // Calculate dynamic scale
@@ -839,7 +844,48 @@ function renderChart(period) {
     
     // Create new chart
     const ctx = canvas.getContext('2d');
-    repoChart = new Chart(ctx, {
+    
+    // Configure zoom/pan for monthly chart
+    const isMonthly = period === 'month';
+    const zoomOptions = isMonthly ? {
+        zoom: {
+            wheel: {
+                enabled: true,
+                speed: 0.1
+            },
+            pinch: {
+                enabled: true
+            },
+            mode: 'x',
+            onZoomComplete: function({chart}) {
+                // Show reset button when zoomed
+                const resetBtn = document.getElementById('resetMonthZoom');
+                if (resetBtn) {
+                    resetBtn.style.display = 'block';
+                }
+            }
+        },
+        pan: {
+            enabled: true,
+            mode: 'x',
+            modifierKey: null, // Allow pan without modifier key
+            onPanComplete: function({chart}) {
+                // Show reset button when panned
+                const resetBtn = document.getElementById('resetMonthZoom');
+                if (resetBtn) {
+                    resetBtn.style.display = 'block';
+                }
+            }
+        },
+        limits: {
+            x: {
+                min: 'original',
+                max: 'original'
+            }
+        }
+    } : {};
+    
+    const chartInstance = new Chart(ctx, {
         type: 'line',
         data: {
             labels: processedData.labels,
@@ -851,7 +897,7 @@ function renderChart(period) {
                 borderWidth: 2,
                 fill: true,
                 tension: 0.4,
-                pointRadius: 3,
+                pointRadius: isMonthly ? 2 : 3,
                 pointHoverRadius: 5,
                 pointBackgroundColor: 'rgba(235, 167, 8, 1)',
                 pointBorderColor: '#fff',
@@ -878,7 +924,8 @@ function renderChart(period) {
                             return 'Звезды: ' + formatNumber(context.parsed.y);
                         }
                     }
-                }
+                },
+                zoom: zoomOptions
             },
             scales: {
                 x: {
@@ -891,7 +938,7 @@ function renderChart(period) {
                         maxRotation: 45,
                         minRotation: 0,
                         autoSkip: true,
-                        maxTicksLimit: 12
+                        maxTicksLimit: isMonthly ? 15 : 10
                     }
                 },
                 y: {
@@ -903,7 +950,7 @@ function renderChart(period) {
                     },
                     ticks: {
                         color: '#b0b0b0',
-                        maxTicksLimit: 8,
+                        maxTicksLimit: 6,
                         callback: function(value) {
                             return formatNumber(Math.round(value));
                         }
@@ -912,6 +959,23 @@ function renderChart(period) {
             }
         }
     });
+    
+    // Store chart instance
+    if (period === 'month') {
+        repoChartMonth = chartInstance;
+        
+        // Setup reset button
+        const resetBtn = document.getElementById('resetMonthZoom');
+        if (resetBtn) {
+            resetBtn.style.display = 'none';
+            resetBtn.onclick = function() {
+                chartInstance.resetZoom();
+                resetBtn.style.display = 'none';
+            };
+        }
+    } else {
+        repoChartYear = chartInstance;
+    }
 }
 
 // Process chart data based on period
@@ -924,18 +988,21 @@ function processChartData(data, period) {
     const sortedData = [...data].sort((a, b) => new Date(a.date) - new Date(b.date));
     
     if (period === 'month') {
-        // Show last 12 months
-        const now = new Date();
-        const twelveMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 11, 1);
+        // Show ALL months from first to last record
+        if (sortedData.length === 0) {
+            return { labels: [], values: [] };
+        }
         
-        // Filter data for last 12 months
-        const filteredData = sortedData.filter(item => {
-            const itemDate = new Date(item.date);
-            return itemDate >= twelveMonthsAgo;
-        });
+        const firstDate = new Date(sortedData[0].date);
+        const lastDate = new Date(sortedData[sortedData.length - 1].date);
+        
+        // Start from the first day of the first month
+        const startDate = new Date(firstDate.getFullYear(), firstDate.getMonth(), 1);
+        // End at the last day of the last month
+        const endDate = new Date(lastDate.getFullYear(), lastDate.getMonth(), 1);
         
         // Group by month and fill gaps
-        const monthlyData = fillMonthlyGaps(filteredData, twelveMonthsAgo, now);
+        const monthlyData = fillMonthlyGaps(sortedData, startDate, endDate);
         
         return {
             labels: monthlyData.map(item => formatMonthLabel(item.date)),
@@ -1021,22 +1088,7 @@ function formatMonthLabel(date) {
     return `${months[date.getMonth()]} ${date.getFullYear()}`;
 }
 
-// Initialize chart controls
-function initChartControls() {
-    document.querySelectorAll('.chart-period-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const period = btn.dataset.period;
-            currentChartPeriod = period;
-            
-            // Update active button
-            document.querySelectorAll('.chart-period-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            
-            // Re-render chart
-            renderChart(period);
-        });
-    });
-}
+
 
 // Close modal
 function closeModal() {
