@@ -1020,14 +1020,20 @@ img {
 .modal-content {
     position: relative;
     max-width: 700px;
-    margin: 10vh auto;
+    margin: 5vh auto;
     background-color: var(--bg-secondary);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-xl);
-    max-height: 80vh;
+    padding: var(--spacing-lg);
+    max-height: 90vh;
     overflow-y: auto;
     box-shadow: var(--shadow-lg);
     border: 1px solid var(--border-color);
+}
+
+@media (min-width: 1024px) {
+    .modal-content {
+        padding: var(--spacing-xl);
+    }
 }
 
 .modal-close {
@@ -1056,19 +1062,38 @@ img {
 .repo-header {
     display: flex;
     gap: var(--spacing-md);
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+}
+
+@media (min-width: 1024px) {
+    .repo-header {
+        margin-bottom: var(--spacing-lg);
+    }
 }
 
 .repo-avatar {
-    width: 80px;
-    height: 80px;
+    width: 64px;
+    height: 64px;
     border-radius: var(--radius-md);
     object-fit: cover;
 }
 
+@media (min-width: 1024px) {
+    .repo-avatar {
+        width: 80px;
+        height: 80px;
+    }
+}
+
 .repo-title-block h2 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     margin-bottom: var(--spacing-xs);
+}
+
+@media (min-width: 1024px) {
+    .repo-title-block h2 {
+        font-size: 1.75rem;
+    }
 }
 
 .repo-author {
@@ -1077,15 +1102,28 @@ img {
 
 .repo-description {
     color: var(--text-secondary);
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
     line-height: 1.6;
+}
+
+@media (min-width: 1024px) {
+    .repo-description {
+        margin-bottom: var(--spacing-lg);
+    }
 }
 
 .repo-stats {
     display: flex;
-    gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-lg);
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
     flex-wrap: wrap;
+}
+
+@media (min-width: 1024px) {
+    .repo-stats {
+        gap: var(--spacing-lg);
+        margin-bottom: var(--spacing-lg);
+    }
 }
 
 .repo-stat {
@@ -1101,11 +1139,18 @@ img {
 
 .repo-dates {
     display: flex;
-    gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-lg);
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
     color: var(--text-secondary);
     font-size: 0.875rem;
     flex-wrap: wrap;
+}
+
+@media (min-width: 1024px) {
+    .repo-dates {
+        gap: var(--spacing-lg);
+        margin-bottom: var(--spacing-lg);
+    }
 }
 
 .repo-actions {
@@ -2450,9 +2495,15 @@ img {
     display: flex;
     align-items: flex-start;
     gap: var(--spacing-sm);
-    margin: var(--spacing-md) 0;
+    margin: var(--spacing-sm) 0;
     padding: var(--spacing-sm) 0;
     border-top: 1px solid var(--border-color);
+}
+
+@media (min-width: 1024px) {
+    .repo-tags-block {
+        margin: var(--spacing-md) 0;
+    }
 }
 
 .repo-tags {
@@ -2488,7 +2539,8 @@ img {
 
 @media (min-width: 1024px) {
     .modal-content {
-        max-width: 1200px;
+        max-width: 1400px;
+        margin: 3vh auto;
     }
     
     .repo-details-container {
@@ -2499,12 +2551,19 @@ img {
 
 .repo-chart-section {
     background-color: var(--bg-tertiary);
-    padding: var(--spacing-lg);
+    padding: var(--spacing-md);
     border-radius: var(--radius-md);
     border: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
+}
+
+@media (min-width: 1024px) {
+    .repo-chart-section {
+        padding: var(--spacing-lg);
+        gap: var(--spacing-md);
+    }
 }
 
 .repo-chart-section h3 {
@@ -2531,7 +2590,13 @@ img {
 .charts-container {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-md);
+}
+
+@media (min-width: 1024px) {
+    .charts-container {
+        gap: var(--spacing-lg);
+    }
 }
 
 .chart-block {
@@ -2588,9 +2653,17 @@ img {
 .chart-canvas-wrapper {
     position: relative;
     width: 100%;
-    height: 250px;
-    min-height: 250px;
-    max-height: 250px;
+    height: 220px;
+    min-height: 220px;
+    max-height: 220px;
+}
+
+@media (min-width: 1024px) {
+    .chart-canvas-wrapper {
+        height: 240px;
+        min-height: 240px;
+        max-height: 240px;
+    }
 }
 
 @media (max-width: 768px) {
