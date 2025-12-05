@@ -111,7 +111,7 @@ exports.getRepositories = async (req, res) => {
             query = `
                 SELECT 
                     id, name, description, author, authorUrl, url, pic,
-                    stars, forks, lang, license, createddate, updateddate, isFork, tags,
+                    stars, forks, lang, license, createddate, updateddate, isFork, tags, ai_summary,
                     (SELECT COUNT(*) + 1 
                      FROM repos r2 
                      WHERE (r2.stars > r1.stars)
@@ -128,7 +128,7 @@ exports.getRepositories = async (req, res) => {
             query = `
                 SELECT 
                     id, name, description, author, authorUrl, url, pic,
-                    stars, forks, lang, license, createddate, updateddate, isFork, tags
+                    stars, forks, lang, license, createddate, updateddate, isFork, tags, ai_summary
                 FROM repos 
                 ${whereClause}
                 ORDER BY ${orderBy}
@@ -166,7 +166,7 @@ exports.getRepositoryById = async (req, res) => {
         const [rows] = await pool.query(
             `SELECT 
                 r1.id, r1.name, r1.description, r1.author, r1.authorUrl, r1.url, r1.pic,
-                r1.stars, r1.forks, r1.lang, r1.license, r1.createddate, r1.updateddate,
+                r1.stars, r1.forks, r1.lang, r1.license, r1.createddate, r1.updateddate, r1.tags, r1.isFork, r1.ai_summary,
                 (SELECT COUNT(*) + 1 
                  FROM repos r2 
                  WHERE (r2.stars > r1.stars)
