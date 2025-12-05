@@ -51,12 +51,13 @@
 
 ::-webkit-scrollbar-track {
     background: transparent;
-    border-radius: var(--radius-lg);
+    border-radius: 0;
+    margin: 2px;
 }
 
 ::-webkit-scrollbar-thumb {
     background: var(--bg-hover);
-    border-radius: var(--radius-lg);
+    border-radius: 5px;
     border: 2px solid transparent;
     background-clip: padding-box;
 }
@@ -73,7 +74,7 @@
 
 ::-webkit-scrollbar-corner {
     background: transparent;
-    border-radius: var(--radius-lg);
+    border-radius: 0;
 }
 
 /* ===== Reset & Base ===== */
@@ -825,15 +826,11 @@ img {
 .table-container {
     background-color: var(--bg-secondary);
     border-radius: var(--radius-lg);
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
     border: 1px solid var(--border-color);
     min-height: 400px;
     position: relative;
-}
-
-.table-container > * {
-    overflow-x: auto;
-    overflow-y: hidden;
 }
 
 .table-loading {
@@ -1082,14 +1079,10 @@ img {
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
     max-height: 90vh;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     box-shadow: var(--shadow-lg);
     border: 1px solid var(--border-color);
-}
-
-.modal-content > * {
-    overflow-y: auto;
-    max-height: calc(90vh - var(--spacing-lg) * 2);
 }
 
 @media (min-width: 1024px) {
