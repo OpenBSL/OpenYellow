@@ -52,7 +52,6 @@
 ::-webkit-scrollbar-track {
     background: transparent;
     border-radius: 0;
-    margin: 2px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -831,6 +830,7 @@ img {
     border: 1px solid var(--border-color);
     min-height: 400px;
     position: relative;
+    padding: 0 3px 3px 0;
 }
 
 .table-loading {
@@ -1078,6 +1078,7 @@ img {
     background-color: var(--bg-secondary);
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
+    padding-right: calc(var(--spacing-lg) + 3px);
     max-height: 90vh;
     overflow-y: auto;
     overflow-x: hidden;
@@ -1686,6 +1687,8 @@ img {
 .badge-code {
     background-color: var(--bg-tertiary);
     padding: var(--spacing-md);
+    padding-right: calc(var(--spacing-md) + 3px);
+    padding-bottom: calc(var(--spacing-md) + 3px);
     border-radius: var(--radius-sm);
     font-family: 'Courier New', monospace;
     font-size: 0.875rem;
@@ -2612,6 +2615,8 @@ img {
 .ai-summary-block {
     margin: var(--spacing-md) 0;
     padding: var(--spacing-md);
+    padding-right: calc(var(--spacing-md) + 3px);
+    padding-bottom: calc(var(--spacing-md) + 3px);
     background: linear-gradient(135deg, rgba(235, 167, 8, 0.08) 0%, rgba(235, 167, 8, 0.03) 100%);
     border-left: 3px solid var(--accent-primary);
     border-radius: var(--radius-sm);
@@ -2619,7 +2624,7 @@ img {
     max-width: 100%;
     width: 100%;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow: auto;
     overflow-wrap: break-word;
     word-wrap: break-word;
 }
@@ -2776,6 +2781,8 @@ img {
 .repo-chart-section {
     background-color: var(--bg-tertiary);
     padding: var(--spacing-md);
+    padding-right: calc(var(--spacing-md) + 3px);
+    padding-bottom: calc(var(--spacing-md) + 3px);
     border-radius: var(--radius-md);
     border: 1px solid var(--border-color);
     display: flex;
@@ -2784,7 +2791,7 @@ img {
     max-width: 100%;
     width: 100%;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow: auto;
 }
 
 @media (min-width: 1024px) {
