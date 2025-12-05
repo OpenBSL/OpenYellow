@@ -757,6 +757,16 @@ async function openModal(repo) {
         tagsBlock.style.display = 'none';
     }
     
+    // AI Summary
+    const aiSummaryBlock = document.getElementById('repoAiSummaryBlock');
+    const aiSummaryContent = document.getElementById('repoAiSummary');
+    if (repo.ai_summary) {
+        aiSummaryBlock.style.display = 'block';
+        aiSummaryContent.innerHTML = repo.ai_summary;
+    } else {
+        aiSummaryBlock.style.display = 'none';
+    }
+    
     // Load chart data
     await loadRepoChart(repo.id);
     

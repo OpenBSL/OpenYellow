@@ -2513,6 +2513,117 @@ img {
     }
 }
 
+/* ===== AI Summary Block ===== */
+.ai-summary-block {
+    margin: var(--spacing-md) 0;
+    padding: var(--spacing-md);
+    background: linear-gradient(135deg, rgba(235, 167, 8, 0.08) 0%, rgba(235, 167, 8, 0.03) 100%);
+    border-left: 3px solid var(--accent-primary);
+    border-radius: var(--radius-sm);
+    position: relative;
+}
+
+.ai-summary-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at top right, rgba(235, 167, 8, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+    border-radius: var(--radius-sm);
+}
+
+.ai-summary-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+    position: relative;
+    z-index: 1;
+}
+
+.ai-summary-icon {
+    color: var(--accent-primary);
+    flex-shrink: 0;
+    animation: ai-pulse 3s ease-in-out infinite;
+}
+
+@keyframes ai-pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.05);
+    }
+}
+
+.ai-summary-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--accent-primary);
+}
+
+.ai-summary-content {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 0.875rem;
+    position: relative;
+    z-index: 1;
+}
+
+.ai-summary-content p {
+    margin: 0 0 var(--spacing-sm) 0;
+}
+
+.ai-summary-content p:last-child {
+    margin-bottom: 0;
+}
+
+.ai-summary-content ul,
+.ai-summary-content ol {
+    margin: var(--spacing-sm) 0;
+    padding-left: var(--spacing-lg);
+}
+
+.ai-summary-content li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.ai-summary-content strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.ai-summary-content em {
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.ai-summary-content code {
+    background-color: var(--bg-tertiary);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8125rem;
+    color: var(--accent-primary);
+}
+
+.ai-summary-content a {
+    color: var(--accent-primary);
+    text-decoration: underline;
+    text-decoration-style: dotted;
+}
+
+.ai-summary-content a:hover {
+    text-decoration-style: solid;
+}
+
 .repo-tags {
     display: flex;
     flex-wrap: wrap;
