@@ -2672,7 +2672,8 @@ img {
 }
 
 @media (min-width: 1024px) {
-    .modal-content {
+    /* Широкое модальное окно только для репозиториев с графиками */
+    .modal-content:has(.repo-details-container) {
         max-width: 1400px;
         margin: 3vh auto;
     }
