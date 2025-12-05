@@ -2401,7 +2401,7 @@ img {
 
 .news-text ul,
 .news-text ol {
-    padding-left: var(--spacing-xl);
+    padding-left: 2.5rem;
     margin: var(--spacing-sm) 0;
 }
 
