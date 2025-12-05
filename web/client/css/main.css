@@ -1379,11 +1379,21 @@ img {
     
     /* Author column */
     .repos-table td:has(.author-cell) {
-        display: inline-flex !important;
+        display: flex !important;
         align-items: center;
         font-size: 0.8125rem;
         color: var(--text-secondary);
         margin-right: var(--spacing-md);
+        flex-wrap: wrap;
+        width: auto;
+        max-width: 100%;
+    }
+    
+    .repos-table .author-cell {
+        flex: 1;
+        min-width: 0;
+        justify-content: flex-start;
+        flex-wrap: wrap;
     }
     
     /* Stars column - find by checking if it's a number after author */
