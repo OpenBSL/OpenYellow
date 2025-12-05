@@ -8,7 +8,7 @@
   <containedObjects classId="51f2d5d8-ea4d-4064-8892-82951750031e" objectId="f66e78ff-9e9d-40f1-9ede-5b97d01b300e"/>
   <containedObjects classId="e68182ea-4237-4383-967f-90c1e3370bc7" objectId="d0dc1344-7730-4b7c-9878-7cb82c499c74"/>
   <containedObjects classId="fb282519-d103-4dd3-bc12-cb271d631dfc" objectId="8056f497-6a5f-4a34-8d19-98b0d8c99048"/>
-  <configurationExtensionCompatibilityMode>8.3.15</configurationExtensionCompatibilityMode>
+  <configurationExtensionCompatibilityMode>8.3.18</configurationExtensionCompatibilityMode>
   <defaultRunMode>ManagedApplication</defaultRunMode>
   <usePurposes>PersonalComputer</usePurposes>
   <scriptVariant>Russian</scriptVariant>
@@ -50,16 +50,21 @@
   <commonPictures>CommonPicture.Пакеты</commonPictures>
   <commonPictures>CommonPicture.Статистика</commonPictures>
   <commonPictures>CommonPicture.Телеграм</commonPictures>
+  <commonTemplates>CommonTemplate.БлокAIСаммариНовости</commonTemplates>
   <commonTemplates>CommonTemplate.НовостьНовогоРелиза</commonTemplates>
   <commonTemplates>CommonTemplate.НовостьНовогоРепозитория</commonTemplates>
+  <commonTemplates>CommonTemplate.ПромптОписаниеРелиза</commonTemplates>
+  <commonTemplates>CommonTemplate.ПромптОписаниеРепозитория</commonTemplates>
   <commonTemplates>CommonTemplate.СообщениеБрошюры</commonTemplates>
   <commonTemplates>CommonTemplate.СообщениеНовогоРелиза</commonTemplates>
   <commonTemplates>CommonTemplate.СообщениеНовогоРепозитория</commonTemplates>
   <commonTemplates>CommonTemplate.СообщениеРекламыБусти</commonTemplates>
   <commonModules>CommonModule.ИнструментарийВызовСервера</commonModules>
   <commonModules>CommonModule.ИнструментарийКлиент</commonModules>
+  <commonModules>CommonModule.МетодыAI</commonModules>
   <commonModules>CommonModule.МетодыGitHub</commonModules>
   <commonModules>CommonModule.МетодыВыгрзкиДанных</commonModules>
+  <commonModules>CommonModule.МетодыОбработкиДанных</commonModules>
   <commonModules>CommonModule.МетодыТелеграм</commonModules>
   <commonModules>CommonModule.ОбработкаСобытий</commonModules>
   <scheduledJobs>ScheduledJob.ВыгрузитьДанные</scheduledJobs>
@@ -72,9 +77,9 @@
   <scheduledJobs>ScheduledJob.ОпубликоватьРекламуБусти</scheduledJobs>
   <scheduledJobs>ScheduledJob.ОпубликоватьТрендыНедели</scheduledJobs>
   <scheduledJobs>ScheduledJob.ПубликацияОчередногоПоста</scheduledJobs>
+  <scheduledJobs>ScheduledJob.СформироватьТрендыМесяца</scheduledJobs>
   <constants>Constant.ВерсияYPM</constants>
   <constants>Constant.Лого</constants>
-  <constants>Constant.НаборНастроек</constants>
   <catalogs>Catalog.Авторы</catalogs>
   <catalogs>Catalog.ВерсииYPM</catalogs>
   <catalogs>Catalog.Запросы</catalogs>
@@ -96,4 +101,5 @@
   <informationRegisters>InformationRegister.Релизы</informationRegisters>
   <informationRegisters>InformationRegister.СтатистикаРепозиториев</informationRegisters>
   <informationRegisters>InformationRegister.Тренды</informationRegisters>
+  <informationRegisters>InformationRegister.ТрендыПоМесяцам</informationRegisters>
 </mdclass:Configuration>

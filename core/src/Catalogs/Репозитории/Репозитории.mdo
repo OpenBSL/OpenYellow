@@ -313,6 +313,62 @@
     <fullTextSearch>Use</fullTextSearch>
     <dataHistory>Use</dataHistory>
   </attributes>
+  <attributes uuid="7247f95d-6d8a-4226-acfc-d49295e612b4">
+    <name>ОтветGithub</name>
+    <synonym>
+      <key>ru</key>
+      <value>Ответ github</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="b464cb30-b168-46c8-851d-673aceffd324">
+    <name>ReadMe</name>
+    <synonym>
+      <key>ru</key>
+      <value>Read me</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+  <attributes uuid="ba7aa18e-7013-4261-82cc-9dd4c9775bdb">
+    <name>AIСаммари</name>
+    <synonym>
+      <key>ru</key>
+      <value>AIСаммари</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers>
+        <length>1000</length>
+      </stringQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:StringValue">
+      <value></value>
+    </fillValue>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
   <tabularSections uuid="23186d4a-0a72-4668-bd22-8d0d4c22e608">
     <producedTypes>
       <objectType typeId="394c04e3-c083-4250-8170-06c088cc59fb" valueTypeId="3bbbd05d-933d-4d52-aa9f-ee6067a8fcf7"/>

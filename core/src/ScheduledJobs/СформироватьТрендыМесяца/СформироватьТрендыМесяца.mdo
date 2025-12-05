@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:ScheduledJob xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="f55c88be-7f7e-4b96-9d34-0ffb41270948">
+  <name>СформироватьТрендыМесяца</name>
+  <synonym>
+    <key>ru</key>
+    <value>Сформировать тренды месяца</value>
+  </synonym>
+  <methodName>CommonModule.МетодыОбработкиДанных.СформироватьТрендыМесяца</methodName>
+  <use>true</use>
+  <predefined>true</predefined>
+  <restartCountOnFailure>3</restartCountOnFailure>
+  <restartIntervalOnFailure>10</restartIntervalOnFailure>
+</mdclass:ScheduledJob>

@@ -11,7 +11,6 @@
     <picture>CommonPicture.Настройки</picture>
   </picture>
   <content>Constant.Лого</content>
-  <content>Constant.НаборНастроек</content>
   <content>Catalog.НаборыНастроек</content>
   <content>Enum.СогласованиеПостов</content>
   <content>DataProcessor.КонсольЗаданий_УФ</content>

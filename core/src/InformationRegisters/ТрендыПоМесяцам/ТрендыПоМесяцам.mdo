@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:InformationRegister xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="04a2c2d0-5a74-42ba-8e4a-6b0a89d97a51">
+  <producedTypes>
+    <selectionType typeId="e7297f09-bdcd-425b-a675-7787f8b84b1f" valueTypeId="6bb05184-f765-4d68-93a2-764183a3eee7"/>
+    <listType typeId="da49fa69-197c-434e-ac46-2149832c797b" valueTypeId="1436f555-eff4-4faf-9549-6c5bdc0ca6ef"/>
+    <managerType typeId="dd021ec9-a9e6-4a7f-bc81-e1c2fb393ccb" valueTypeId="4570e5b0-e8e5-461c-9179-4173b97d6769"/>
+    <recordSetType typeId="9653f636-1342-475a-8093-91f78ddee6b5" valueTypeId="12eefec2-f5e6-4976-b74d-d542eb4c4b8a"/>
+    <recordKeyType typeId="a92fc719-5019-489f-9f71-a3e286258df7" valueTypeId="279f1c1d-0e81-43a1-b138-74870b1a77d5"/>
+    <recordType typeId="91a3f227-015d-4860-a442-782cfa22e910" valueTypeId="8512e48f-a874-4f74-9235-7e20e718b3cb"/>
+    <recordManagerType typeId="0d0f308d-550e-481a-995e-2e1f716d898f" valueTypeId="08732de9-9610-4cc6-b64a-f3ed8ee8f549"/>
+  </producedTypes>
+  <name>ТрендыПоМесяцам</name>
+  <synonym>
+    <key>ru</key>
+    <value>Тренды по месяцам</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <editType>InDialog</editType>
+  <informationRegisterPeriodicity>Month</informationRegisterPeriodicity>
+  <mainFilterOnPeriod>true</mainFilterOnPeriod>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <resources uuid="ac4ace75-0baa-42b8-9550-0a98d5c98043">
+    <name>Звезды</name>
+    <synonym>
+      <key>ru</key>
+      <value>Звезды</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>10</precision>
+      </numberQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+  </resources>
+  <dimensions uuid="b296093b-c1a0-4b0d-8ca7-e78fd1d31719">
+    <name>Репозиторий</name>
+    <synonym>
+      <key>ru</key>
+      <value>Репозиторий</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.Репозитории</types>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+</mdclass:InformationRegister>
