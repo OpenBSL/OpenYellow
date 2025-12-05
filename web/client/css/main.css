@@ -2401,7 +2401,7 @@ img {
 
 .news-text ul,
 .news-text ol {
-    padding-left: 2.5rem;
+    padding-left: var(--spacing-lg);
     margin: var(--spacing-sm) 0;
 }
 
@@ -2412,7 +2412,7 @@ img {
 @media (max-width: 768px) {
     .news-text ul,
     .news-text ol {
-        padding-left: var(--spacing-lg);
+        padding-left: var(--spacing-md);
     }
 }
 
