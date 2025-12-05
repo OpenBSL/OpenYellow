@@ -45,34 +45,37 @@
 
 /* Webkit (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
 }
 
 ::-webkit-scrollbar-track {
     background: transparent;
     border-radius: 0;
+    margin: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
     background: var(--bg-hover);
-    border-radius: 5px;
-    border: 2px solid transparent;
+    border-radius: 6px;
+    border: 3px solid var(--bg-secondary);
     background-clip: padding-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--bg-tertiary);
+    border: 3px solid var(--bg-secondary);
     background-clip: padding-box;
 }
 
 ::-webkit-scrollbar-thumb:active {
     background: var(--accent-primary);
+    border: 3px solid var(--bg-secondary);
     background-clip: padding-box;
 }
 
 ::-webkit-scrollbar-corner {
-    background: transparent;
+    background: var(--bg-secondary);
     border-radius: 0;
 }
 
@@ -830,7 +833,6 @@ img {
     border: 1px solid var(--border-color);
     min-height: 400px;
     position: relative;
-    padding: 0 3px 3px 0;
 }
 
 .table-loading {
@@ -1078,7 +1080,6 @@ img {
     background-color: var(--bg-secondary);
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
-    padding-right: calc(var(--spacing-lg) + 3px);
     max-height: 90vh;
     overflow-y: auto;
     overflow-x: hidden;
@@ -1687,8 +1688,6 @@ img {
 .badge-code {
     background-color: var(--bg-tertiary);
     padding: var(--spacing-md);
-    padding-right: calc(var(--spacing-md) + 3px);
-    padding-bottom: calc(var(--spacing-md) + 3px);
     border-radius: var(--radius-sm);
     font-family: 'Courier New', monospace;
     font-size: 0.875rem;
@@ -2615,8 +2614,6 @@ img {
 .ai-summary-block {
     margin: var(--spacing-md) 0;
     padding: var(--spacing-md);
-    padding-right: calc(var(--spacing-md) + 3px);
-    padding-bottom: calc(var(--spacing-md) + 3px);
     background: linear-gradient(135deg, rgba(235, 167, 8, 0.08) 0%, rgba(235, 167, 8, 0.03) 100%);
     border-left: 3px solid var(--accent-primary);
     border-radius: var(--radius-sm);
@@ -2781,8 +2778,6 @@ img {
 .repo-chart-section {
     background-color: var(--bg-tertiary);
     padding: var(--spacing-md);
-    padding-right: calc(var(--spacing-md) + 3px);
-    padding-bottom: calc(var(--spacing-md) + 3px);
     border-radius: var(--radius-md);
     border: 1px solid var(--border-color);
     display: flex;
