@@ -728,43 +728,53 @@ async function openModal(repo) {
     // Optional fields
     const langBlock = document.getElementById('repoLangBlock');
     const lang = document.getElementById('repoLang');
-    if (repo.lang) {
-        langBlock.style.display = 'flex';
-        lang.textContent = repo.lang;
-    } else {
-        langBlock.style.display = 'none';
+    if (langBlock && lang) {
+        if (repo.lang) {
+            langBlock.style.display = 'flex';
+            // Remove existing classes and add new ones
+            lang.className = 'lang-badge ' + getLangClass(repo.lang);
+            lang.textContent = repo.lang;
+        } else {
+            langBlock.style.display = 'none';
+        }
     }
     
     const licenseBlock = document.getElementById('repoLicenseBlock');
     const license = document.getElementById('repoLicense');
-    if (repo.license) {
-        licenseBlock.style.display = 'flex';
-        license.textContent = repo.license;
-    } else {
-        licenseBlock.style.display = 'none';
+    if (licenseBlock && license) {
+        if (repo.license) {
+            licenseBlock.style.display = 'flex';
+            license.textContent = repo.license;
+        } else {
+            licenseBlock.style.display = 'none';
+        }
     }
     
     // Tags
     const tagsBlock = document.getElementById('repoTagsBlock');
     const tagsContainer = document.getElementById('repoTags');
-    if (repo.tags) {
-        tagsBlock.style.display = 'flex';
-        const tagsArray = repo.tags.split(',').map(tag => tag.trim()).filter(tag => tag);
-        tagsContainer.innerHTML = tagsArray.map(tag => 
-            `<span class="repo-tag">${tag}</span>`
-        ).join('');
-    } else {
-        tagsBlock.style.display = 'none';
+    if (tagsBlock && tagsContainer) {
+        if (repo.tags) {
+            tagsBlock.style.display = 'flex';
+            const tagsArray = repo.tags.split(',').map(tag => tag.trim()).filter(tag => tag);
+            tagsContainer.innerHTML = tagsArray.map(tag => 
+                `<span class="repo-tag">${tag}</span>`
+            ).join('');
+        } else {
+            tagsBlock.style.display = 'none';
+        }
     }
     
     // AI Summary
     const aiSummaryBlock = document.getElementById('repoAiSummaryBlock');
     const aiSummaryContent = document.getElementById('repoAiSummary');
-    if (repo.ai_summary) {
-        aiSummaryBlock.style.display = 'block';
-        aiSummaryContent.innerHTML = repo.ai_summary;
-    } else {
-        aiSummaryBlock.style.display = 'none';
+    if (aiSummaryBlock && aiSummaryContent) {
+        if (repo.ai_summary) {
+            aiSummaryBlock.style.display = 'block';
+            aiSummaryContent.innerHTML = repo.ai_summary;
+        } else {
+            aiSummaryBlock.style.display = 'none';
+        }
     }
     
     // Load chart data
