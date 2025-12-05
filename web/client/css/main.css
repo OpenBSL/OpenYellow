@@ -1091,8 +1091,8 @@ img {
 
 .modal-close {
     position: absolute;
-    top: var(--spacing-md);
-    right: var(--spacing-md);
+    top: var(--spacing-xs);
+    right: var(--spacing-xs);
     background: none;
     border: none;
     font-size: 2rem;
