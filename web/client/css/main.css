@@ -2399,6 +2399,23 @@ img {
     word-break: break-word;
 }
 
+.news-text ul,
+.news-text ol {
+    padding-left: var(--spacing-xl);
+    margin: var(--spacing-sm) 0;
+}
+
+.news-text li {
+    margin-bottom: var(--spacing-xs);
+}
+
+@media (max-width: 768px) {
+    .news-text ul,
+    .news-text ol {
+        padding-left: var(--spacing-lg);
+    }
+}
+
 .news-link-container {
     display: flex;
     justify-content: center;
