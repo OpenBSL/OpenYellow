@@ -2521,6 +2521,11 @@ img {
     border-left: 3px solid var(--accent-primary);
     border-radius: var(--radius-sm);
     position: relative;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .ai-summary-block::before {
@@ -2575,6 +2580,10 @@ img {
     font-size: 0.875rem;
     position: relative;
     z-index: 1;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
 }
 
 .ai-summary-content p {
