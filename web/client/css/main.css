@@ -2936,6 +2936,7 @@ img {
 
 .badge-modal .modal-content {
     max-width: 600px;
+    margin: 15vh auto;
 }
 
 .badge-modal-content {
