@@ -696,13 +696,24 @@ window.copyBadgeMarkdown = async function(format) {
 
 // Show copy notification for badge modal
 function showBadgeCopyNotification(format) {
-    const btn = document.querySelector(`.badge-format-section:nth-child(${format === 'svg' ? 2 : 3}) .badge-copy-btn`);
+    // Find the correct button by format
+    const sections = document.querySelectorAll('.badge-format-section');
+    const sectionIndex = format === 'svg' ? 0 : 1;
+    const btn = sections[sectionIndex]?.querySelector('.badge-copy-btn');
+    
     if (btn) {
-        const originalText = btn.querySelector('.copy-text').textContent;
-        btn.querySelector('.copy-text').textContent = 'Скопировано!';
+        const copyIcon = btn.querySelector('.copy-icon');
+        const copyText = btn.querySelector('.copy-text');
+        const originalIcon = copyIcon.textContent;
+        const originalText = copyText.textContent;
+        
+        copyIcon.textContent = '✓';
+        copyText.textContent = 'Скопировано!';
         btn.classList.add('copied');
+        
         setTimeout(() => {
-            btn.querySelector('.copy-text').textContent = originalText;
+            copyIcon.textContent = originalIcon;
+            copyText.textContent = originalText;
             btn.classList.remove('copied');
         }, 2000);
     }
