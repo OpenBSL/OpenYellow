@@ -15,7 +15,7 @@
     "mysql2": "^3.6.5",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
-    "@resvg/resvg-js": "^2.6.2"
+    "sharp": "^0.33.2"
   },
   "devDependencies": {
     "nodemon": "^3.0.2"
