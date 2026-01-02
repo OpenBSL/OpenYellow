@@ -603,26 +603,110 @@ function createLangBadge(lang) {
 function createBadgeMarkdown(repo) {
     if (!repo.id || !repo.place) return '-';
     
-    // New format: direct SVG badge (recommended)
-    const apiUrl = window.CONFIG?.dataSource?.apiBaseURL?.replace('/api', '') || 'https://openyellow.openintegrations.dev';
-    const siteUrl = 'https://openyellow.org';
-    const markdown = `[![OpenYellow](${apiUrl}/data/badges/${repo.id}.svg)](${siteUrl}/grid?filter=top&repo=${repo.id})`;
-    
-    return `<input type="text" class="badge-input" value="${markdown.replace(/"/g, '&quot;')}" readonly onclick="event.stopPropagation(); copyBadgeToClipboard(this);" title="Кликните для копирования">`;
+    return `<button class="badge-btn" onclick="event.stopPropagation(); openBadgeModal(${repo.id});" title="Получить разметку значка">📋 Значок</button>`;
 }
 
-// Copy badge to clipboard
-window.copyBadgeToClipboard = async function(input) {
-    try {
-        await navigator.clipboard.writeText(input.value);
-        showCopyNotification(input);
-    } catch (err) {
-        // Fallback for older browsers
-        input.select();
-        document.execCommand('copy');
-        showCopyNotification(input);
+// Open badge modal
+window.openBadgeModal = function(repoId) {
+    const apiUrl = window.CONFIG?.dataSource?.apiBaseURL?.replace('/api', '') || 'https://openyellow.openintegrations.dev';
+    const siteUrl = 'https://openyellow.org';
+    
+    const svgMarkdown = `[![OpenYellow](${apiUrl}/data/badges/${repoId}.svg)](${siteUrl}/grid?filter=top&repo=${repoId})`;
+    const pngMarkdown = `[![OpenYellow](${apiUrl}/data/badges/${repoId}.png)](${siteUrl}/grid?filter=top&repo=${repoId})`;
+    
+    // Create modal if not exists
+    let badgeModal = document.getElementById('badgeModal');
+    if (!badgeModal) {
+        badgeModal = document.createElement('div');
+        badgeModal.id = 'badgeModal';
+        badgeModal.className = 'modal badge-modal';
+        badgeModal.innerHTML = `
+            <div class="modal-overlay" onclick="closeBadgeModal()"></div>
+            <div class="modal-content badge-modal-content">
+                <button class="modal-close" onclick="closeBadgeModal()">×</button>
+                <h2>Разметка значка</h2>
+                <p class="badge-modal-description">Выберите формат значка для вставки в README.md</p>
+                
+                <div class="badge-format-section">
+                    <div class="badge-format-header">
+                        <span class="badge-format-label">SVG (рекомендуется)</span>
+                        <img id="badgePreviewSvg" src="" alt="Badge preview" class="badge-preview-img">
+                    </div>
+                    <div class="badge-code-row">
+                        <input type="text" id="badgeSvgInput" class="badge-modal-input" readonly>
+                        <button class="badge-copy-btn" onclick="copyBadgeMarkdown('svg')">
+                            <span class="copy-icon">📋</span>
+                            <span class="copy-text">Копировать</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="badge-format-section">
+                    <div class="badge-format-header">
+                        <span class="badge-format-label">PNG</span>
+                        <img id="badgePreviewPng" src="" alt="Badge preview" class="badge-preview-img">
+                    </div>
+                    <div class="badge-code-row">
+                        <input type="text" id="badgePngInput" class="badge-modal-input" readonly>
+                        <button class="badge-copy-btn" onclick="copyBadgeMarkdown('png')">
+                            <span class="copy-icon">📋</span>
+                            <span class="copy-text">Копировать</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(badgeModal);
+    }
+    
+    // Update values
+    document.getElementById('badgeSvgInput').value = svgMarkdown;
+    document.getElementById('badgePngInput').value = pngMarkdown;
+    document.getElementById('badgePreviewSvg').src = `${apiUrl}/data/badges/${repoId}.svg`;
+    document.getElementById('badgePreviewPng').src = `${apiUrl}/data/badges/${repoId}.png`;
+    
+    // Show modal
+    badgeModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+};
+
+// Close badge modal
+window.closeBadgeModal = function() {
+    const badgeModal = document.getElementById('badgeModal');
+    if (badgeModal) {
+        badgeModal.classList.remove('active');
+        document.body.style.overflow = '';
     }
 };
+
+// Copy badge markdown to clipboard
+window.copyBadgeMarkdown = async function(format) {
+    const inputId = format === 'svg' ? 'badgeSvgInput' : 'badgePngInput';
+    const input = document.getElementById(inputId);
+    
+    try {
+        await navigator.clipboard.writeText(input.value);
+        showBadgeCopyNotification(format);
+    } catch (err) {
+        input.select();
+        document.execCommand('copy');
+        showBadgeCopyNotification(format);
+    }
+};
+
+// Show copy notification for badge modal
+function showBadgeCopyNotification(format) {
+    const btn = document.querySelector(`.badge-format-section:nth-child(${format === 'svg' ? 2 : 3}) .badge-copy-btn`);
+    if (btn) {
+        const originalText = btn.querySelector('.copy-text').textContent;
+        btn.querySelector('.copy-text').textContent = 'Скопировано!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+            btn.querySelector('.copy-text').textContent = originalText;
+            btn.classList.remove('copied');
+        }, 2000);
+    }
+}
 
 // Show copy notification
 function showCopyNotification(element) {
@@ -1123,5 +1207,6 @@ function closeModal() {
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         closeModal();
+        closeBadgeModal();
     }
 });
