@@ -2094,36 +2094,56 @@ img {
     color: var(--text-muted);
 }
 
-.resource-links {
+/* ===== Resources Card ===== */
+.resources-card {
+    background-color: var(--bg-secondary);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.resources-card h3 {
+    font-size: 0.875rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--text-primary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.resources-links {
     display: flex;
-    flex-direction: column;
-    gap: var(--spacing-xs);
+    justify-content: center;
+    gap: var(--spacing-md);
 }
 
 .resource-link {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
-    padding: var(--spacing-sm);
-    border-radius: var(--radius-sm);
+    justify-content: center;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
     transition: var(--transition);
-    color: var(--text-primary);
+    color: var(--text-secondary);
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
 }
 
 .resource-link:hover {
-    background-color: var(--bg-tertiary);
+    background-color: var(--bg-hover);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
 }
 
-.resource-link.telegram:hover {
-    border-left: 3px solid #0088cc;
+.resource-link svg {
+    display: block;
+    transition: var(--transition);
 }
 
-.resource-link.boosty:hover {
-    border-left: 3px solid #F15F2C;
-}
-
-.resource-link.github:hover {
-    border-left: 3px solid var(--accent-primary);
+.resource-link:hover svg {
+    transform: scale(1.1);
 }
 
 .resource-icon {
