@@ -201,9 +201,24 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('modalClose')?.addEventListener('click', closeModal);
     document.getElementById('modalOverlay')?.addEventListener('click', closeModal);
     
-    // Load initial data
-    loadRepositories('', repoParam);
+    // Defer initial load so browser-restored form state (e.g. exclude forks checkbox) is applied first
+    requestAnimationFrame(() => {
+        loadRepositories('', repoParam);
+    });
 });
+
+// Sync in-memory filters with DOM (browser may restore form state without firing change)
+function syncColumnFiltersFromDOM() {
+    const langFilter = document.getElementById('langFilter');
+    const licenseFilter = document.getElementById('licenseFilter');
+    const authorFilter = document.getElementById('authorFilter');
+    const excludeForksFilter = document.getElementById('excludeForksFilter');
+
+    columnFilters.lang = langFilter?.value || '';
+    columnFilters.license = licenseFilter?.value || '';
+    columnFilters.author = authorFilter?.value || '';
+    columnFilters.excludeForks = Boolean(excludeForksFilter?.checked);
+}
 
 // Switch filter
 function switchFilter(filter) {
@@ -232,6 +247,8 @@ function switchFilter(filter) {
 
 // Load repositories
 async function loadRepositories(searchQuery = '', highlightRepoId = null) {
+    syncColumnFiltersFromDOM();
+
     const loading = document.getElementById('tableLoading');
     const table = document.getElementById('reposTable');
     const empty = document.getElementById('tableEmpty');
