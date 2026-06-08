@@ -7,14 +7,19 @@
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
-  "keywords": ["openyellow", "api", "1c"],
+  "keywords": [
+    "openyellow",
+    "api",
+    "1c"
+  ],
   "author": "Bayselonarrend",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
+    "dejavu-fonts-ttf": "^2.37.3",
+    "dotenv": "^16.3.1",
     "express": "^4.22.1",
     "mysql2": "^3.6.5",
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
     "sharp": "^0.33.2"
   },
   "devDependencies": {
